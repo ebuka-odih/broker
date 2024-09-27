@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\CopyTraderController;
 use App\Http\Controllers\Admin\PackageController;
 use App\Http\Controllers\Admin\PaymentMethodController;
+use App\Http\Controllers\Admin\TradePairController;
 use App\Http\Controllers\Admin\TransactionController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\ProfileController;
@@ -25,5 +26,6 @@ Route::group(['middleware' => ['auth', 'verified', 'admin'], 'prefix' => 'admin'
     Route::resource('/copy-trader', CopyTraderController::class);
     Route::resource('/payment-method', PaymentMethodController::class);
     Route::resource('/package', PackageController::class);
+    Route::resource('/trade-pair', TradePairController::class);
 
 });
