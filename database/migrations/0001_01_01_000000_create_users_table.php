@@ -19,7 +19,8 @@ return new class extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->string('role')->default('user');
-            $table->string('status')->nullable();
+            $table->string('status')->default('active');
+            $table->string('avatar')->nullable();
             $table->double('balance', 11, 2)->default(0);
             $table->double('profit', 11, 2)->default(0);
             $table->timestamp('last_login_at')->nullable();
