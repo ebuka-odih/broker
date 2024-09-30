@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
 
 class TradePairSeeder extends Seeder
 {
@@ -14,7 +15,7 @@ class TradePairSeeder extends Seeder
     public function run(): void
     {
         $cryptoPairs = [
-            'BTC/BCH', 'ETH/LTC', 'BTCETH', 'XRP/BTC', 'ADA/ETH',
+            'BTC/USDT', 'BTC/BCH', 'ETH/LTC', 'BTC/ETH', 'XRP/BTC', 'ADA/ETH',
             'DOT/USDT', 'BNB/USDT', 'SOL/ETH', 'LTC/USDT', 'DOGE/BTC'
         ];
 
@@ -30,6 +31,7 @@ class TradePairSeeder extends Seeder
 
         foreach ($cryptoPairs as $pair) {
             DB::table('trade_pairs')->insert([
+                'id' => Str::uuid(),
                 'type' => 'crypto',
                 'pair' => $pair,
                 'created_at' => now(),
@@ -39,6 +41,7 @@ class TradePairSeeder extends Seeder
 
         foreach ($stockPairs as $pair) {
             DB::table('trade_pairs')->insert([
+                'id' => Str::uuid(),
                 'type' => 'stock',
                 'pair' => $pair,
                 'created_at' => now(),
@@ -48,6 +51,7 @@ class TradePairSeeder extends Seeder
 
         foreach ($forexPairs as $pair) {
             DB::table('trade_pairs')->insert([
+                'id' => Str::uuid(),
                 'type' => 'forex',
                 'pair' => $pair,
                 'created_at' => now(),

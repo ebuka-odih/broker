@@ -12,7 +12,17 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('trades', function (Blueprint $table) {
-            $table->id();
+//            $table->id();
+            $table->uuid('id')->primary();
+            $table->uuid('user_id');
+            $table->uuid('trade_pair_id');
+            $table->double('amount', 10, 2);
+            $table->string('action_type')->nullable(); // buy/sell
+            $table->string('status')->default('open');
+            $table->integer('leverage')->default(0);
+            $table->integer('duration')->default(0);
+            $table->timestamp('executed_at')->nullable(); // Execution time
+            $table->double('profit_loss', 10, 2)->default(0); // Profit or loss
             $table->timestamps();
         });
     }

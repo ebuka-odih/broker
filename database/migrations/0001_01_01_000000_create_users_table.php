@@ -24,6 +24,7 @@ return new class extends Migration
             $table->double('balance', 11, 2)->default(0);
             $table->double('profit', 11, 2)->default(0);
             $table->timestamp('last_login_at')->nullable();
+            $table->integer('trader')->default(0);
             $table->bigInteger('package_id')->nullable();
 
             $table->rememberToken();

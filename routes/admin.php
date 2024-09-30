@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\TradePairController;
 use App\Http\Controllers\Admin\TransactionController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\Admin\TradeController;
 use Illuminate\Support\Facades\Route;
 
 Route::group(['middleware' => ['auth', 'verified', 'admin'], 'prefix' => 'admin', 'as' => 'admin.'], function(){
@@ -27,5 +28,6 @@ Route::group(['middleware' => ['auth', 'verified', 'admin'], 'prefix' => 'admin'
     Route::resource('/payment-method', PaymentMethodController::class);
     Route::resource('/package', PackageController::class);
     Route::resource('/trade-pair', TradePairController::class);
+    Route::resource('/trade', TradeController::class);
 
 });

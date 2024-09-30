@@ -69,4 +69,21 @@ class User extends Authenticatable
         return '<span class="bg-orange-100 text-orange-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded-md border border-orange-100 dark:bg-gray-700 dark:border-orange-300 dark:text-orange-300">InActive</span>';
     }
 
+    public function package()
+    {
+        return $this->belongsTo(Package::class);
+    }
+
+    public function trades()
+    {
+        return $this->hasMany(Trade::class);
+    }
+
+    public function canPlaceTrade()
+    {
+        $todayTrades = $this->trades()->whereDate('created_at', now()->toDateString())->count();
+        return $todayTrades < $this->package->trade_limit_per_day;
+    }
+
+
 }
