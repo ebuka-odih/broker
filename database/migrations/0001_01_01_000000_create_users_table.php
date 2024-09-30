@@ -14,7 +14,8 @@ return new class extends Migration
         Schema::create('users', function (Blueprint $table) {
 //            $table->id();
             $table->uuid('id')->primary();
-            $table->string('name');
+            $table->string('first_name');
+            $table->string('last_name');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
@@ -25,6 +26,8 @@ return new class extends Migration
             $table->double('profit', 11, 2)->default(0);
             $table->timestamp('last_login_at')->nullable();
             $table->integer('trader')->default(0);
+            $table->string('phone')->nullable();
+            $table->string('telegram')->nullable();
             $table->bigInteger('package_id')->nullable();
 
             $table->rememberToken();

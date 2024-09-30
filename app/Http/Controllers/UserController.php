@@ -15,6 +15,11 @@ class UserController extends Controller
         $user = Auth::user();
         $trades = Trade::whereUserId(auth()->id())->latest()->get();
         return view('dashboard.index', compact('pairs', 'user', 'trades'));
+    }
 
+    public function profile()
+    {
+        $user = Auth::user();
+        return view('dashboard.profile', compact('user'));
     }
 }

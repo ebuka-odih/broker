@@ -33,9 +33,14 @@
               Deposit
             </a>
           </li>
-            <li class="nav-item dropdown">
+          <li class="nav-item dropdown">
               <a class="nav-link" href="#" >
               Withdrawal
+            </a>
+          </li>
+         <li class="nav-item dropdown">
+              <a class="nav-link" href="#" >
+              Subscription
             </a>
           </li>
 
@@ -65,7 +70,7 @@
               <div class="dropdown-body">
                 <ul class="profile-nav">
                   <li class="nav-item">
-                    <a class='nav-link' href='settings-profile-light.html'>
+                    <a class='nav-link' href='{{ route('user.profile') }}'>
                       <i class="icon ion-md-person"></i>
                       <span>Profile</span>
                     </a>
