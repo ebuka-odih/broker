@@ -42,6 +42,13 @@ class TradeController extends Controller
             return redirect()->back()->with('success', 'Trade Order Placed');
         }
         return redirect()->back()->with('error', 'Insufficient Balance');
+    }
 
+    public function closeTrade($id)
+    {
+        $trade = Trade::findOrFail($id);
+        $trade->status = "closed";
+        $trade->save();
+        return redirect()->back()->with('success', 'Trade Closed');
     }
 }

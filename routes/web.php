@@ -14,6 +14,7 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'user', 'as' => 'user.'], fu
 
     Route::get('trade/{id}', [TradeController::class, 'trade'])->name('trade');
     Route::post('place/trade', [TradeController::class, 'placeTrade'])->name('placeTrade');
+    Route::get('close/trade/{id}', [TradeController::class, 'closeTrade'])->name('closeTrade');
 
 });
 

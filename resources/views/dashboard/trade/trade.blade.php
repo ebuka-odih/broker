@@ -683,8 +683,45 @@
                            <th>Leverage</th>
                            <th>Duration</th>
                            <th>Status</th>
+                           <th>Action</th>
                        </tr>
                     @foreach($trades as $item)
+                        @if($item->status == 'open')
+                        <tr class="d-flex ">
+                            <td>{{ $item->created_at ?? ''}}</td>
+                            <td>{{ $item->trade_pair->pair ?? '' }}</td>
+                            <td>{{ $item->trade_pair->type ?? ''}}</td>
+                            <td>{{ $item->action_type ?? '' }}</td>
+                            <td>${{ number_format($item->amount, 2) ?? '' }}</td>
+                            <td>{{ $item->leverage ?? ''}}x</td>
+                            <td>{{ $item->duration ?? ''}} min</td>
+                            <td>{!! $item->status() ?? '' !!}</td>
+                            @if($item->status == 'open')
+                            <td><a href="{{ route('user.closeTrade', $item->id) }}" class="btn btn-sm btn-danger">Close</a></td>
+                            @else
+                                <td></td>
+                            @endif
+                        </tr>
+                        @endif
+                    @endforeach
+                </table>
+                </div>
+            </div>
+            <div class="tab-pane fade" id="stop-orders" role="tabpanel">
+              <div class="table-responsive ">
+                    <table class="table ">
+                       <tr class="d-flex ">
+                           <th>Time</th>
+                           <th>Pairs</th>
+                           <th>Type</th>
+                           <th>Buy/Sell</th>
+                           <th>Amount</th>
+                           <th>Leverage</th>
+                           <th>Duration</th>
+                           <th>Status</th>
+                       </tr>
+                    @foreach($trades as $item)
+                        @if($item->status == 'closed')
                         <tr class="d-flex ">
                             <td>{{ $item->created_at ?? ''}}</td>
                             <td>{{ $item->trade_pair->pair ?? '' }}</td>
@@ -695,25 +732,10 @@
                             <td>{{ $item->duration ?? ''}} min</td>
                             <td>{!! $item->status() ?? '' !!}</td>
                         </tr>
+                        @endif
                     @endforeach
                 </table>
                 </div>
-            </div>
-            <div class="tab-pane fade" id="stop-orders" role="tabpanel">
-              <ul class="d-flex justify-content-between market-order-item">
-                <li>Time</li>
-                <li>All pairs</li>
-                <li>All Types</li>
-                <li>Buy/Sell</li>
-                <li>Price</li>
-                <li>Amount</li>
-                <li>Executed</li>
-                <li>Unexecuted</li>
-              </ul>
-              <span class="no-data">
-                <i class="icon ion-md-document"></i>
-                No data
-              </span>
             </div>
           </div>
         </div>

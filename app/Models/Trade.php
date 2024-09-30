@@ -38,7 +38,7 @@ class Trade extends Model
         {
             return '<span class="badge badge-warning">Open</span>';
         }
-        return '<span class="badge badge-closed">Closed</span>';
+        return '<span class="badge badge-success">Closed</span>';
     }
 
 }
