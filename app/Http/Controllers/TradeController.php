@@ -16,6 +16,7 @@ class TradeController extends Controller
         $user = Auth::user();
         $trades = Trade::whereUserId(auth()->id())->latest()->get();
         return view('dashboard.trade.trade', compact('pairs', 'trade_pair', 'user', 'trades'));
+
     }
 
     public function placeTrade(Request $request)

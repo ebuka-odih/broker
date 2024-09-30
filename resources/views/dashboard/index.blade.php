@@ -1,8 +1,6 @@
 @extends('dashboard.layout.app')
 @section('content')
 
-
-
 <div class="container-fluid p-0">
     <div class="row no-gutters">
       <div class="col-md-3">
@@ -14,15 +12,7 @@
             <input type="text" class="form-control" placeholder="Search" aria-describedby="inputGroup-sizing-sm">
           </div>
           <ul class="nav nav-pills" role="tablist">
-            <li class="nav-item">
-              <a class="nav-link active" data-toggle="pill" href="#BTC" role="tab" aria-selected="true">Crypto</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" data-toggle="pill" href="#ETH" role="tab" aria-selected="true">Forex</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" data-toggle="pill" href="#NEO" role="tab" aria-selected="false">Stocks</a>
-            </li>
+
           </ul>
           <div class="tab-content">
             <div class="tab-pane fade show active" id="BTC" role="tabpanel">
@@ -38,7 +28,7 @@
                 @foreach($pairs as $item)
                     @if($item->type == 'crypto')
                       <tr>
-                        <td><a href="{{ route('user.trade', $item->id) }}" wire:navigate="">{{ $item->pair }}</a></td>
+                        <td><a href="{{ route('user.trade', $item->id) }}" >{{ $item->pair }}</a></td>
                         <td>0.00020255</td>
                         <td class="red">-2.58%</td>
                       </tr>
@@ -328,271 +318,137 @@
       </div>
       <div class="col-md-6">
         <div class="main-chart">
-          <!-- TradingView Widget BEGIN -->
-          <div class="tradingview-widget-container">
-            <div id="tradingview_e8053"></div>
-            <script src="https://s3.tradingview.com/tv.js"></script>
-            <script>
-              new TradingView.widget(
-                {
-                  "width": "100%",
-                  "height": 550,
-                  "symbol": "BITSTAMP:BTCUSD",
-                  "interval": "D",
-                  "timezone": "Etc/UTC",
-                  "theme": "Light",
-                  "style": "1",
-                  "locale": "en",
-                  "toolbar_bg": "#f1f3f6",
-                  "enable_publishing": false,
-                  "withdateranges": true,
-                  "hide_side_toolbar": false,
-                  "allow_symbol_change": true,
-                  "show_popup_button": true,
-                  "popup_width": "1000",
-                  "popup_height": "650",
-                  "container_id": "tradingview_e8053"
-                }
-              );
-            </script>
-          </div>
-          <!-- TradingView Widget END -->
+            <!-- TradingView Widget BEGIN -->
+                <div class="tradingview-widget-container" style="height:100%;width:100%">
+                  <div class="tradingview-widget-container__widget" style="height:calc(100% - 32px);width:100%"></div>
+                  <div class="tradingview-widget-copyright"><a href="https://www.tradingview.com/" rel="noopener nofollow" target="_blank"></a></div>
+                  <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-advanced-chart.js" async>
+                  {
+                      "width": "100%",
+                      "height": 550,
+                      "symbol": "BINANCE:BTCUSD",
+                      "interval": "D",
+                      "timezone": "Etc/UTC",
+                      "theme": "dark",
+                      "style": "1",
+                      "locale": "en",
+                      "allow_symbol_change": true,
+                      "calendar": false,
+                      "support_host": "https://www.tradingview.com"
+                    }
+                  </script>
+                </div>
+
+                <!-- TradingView Widget END -->
         </div>
         <div class="market-trade">
-          <ul class="nav nav-pills" role="tablist">
-            <li class="nav-item">
-              <a class="nav-link active" data-toggle="pill" href="#pills-trade-limit" role="tab"
-                aria-selected="true">Limit</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" data-toggle="pill" href="#pills-market" role="tab" aria-selected="false">Market</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" data-toggle="pill" href="#pills-stop-limit" role="tab" aria-selected="false">Stop
-                Limit</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" data-toggle="pill" href="#pills-stop-market" role="tab" aria-selected="false">Stop
-                Market</a>
-            </li>
-          </ul>
+
           <div class="tab-content">
             <div class="tab-pane fade show active" id="pills-trade-limit" role="tabpanel">
-              <div class="d-flex justify-content-between">
-                <div class="market-trade-buy">
-                  <div class="input-group">
-                    <input type="number" class="form-control" placeholder="Price">
-                    <div class="input-group-append">
-                      <span class="input-group-text">BTC</span>
+                 <form action="{{ route('user.placeTrade') }}" method="POST">
+                      @csrf
+                     @if(session()->has('success'))
+                        <div class="alert alert-success">
+                            {{ session()->get('success') }}
+                        </div>
+                    @endif
+                     @if(session()->has('error'))
+                        <div class="alert alert-danger">
+                            {{ session()->get('error') }}
+                        </div>
+                    @endif
+                     @if ($errors->any())
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
+                  <div class="d-flex justify-content-between ">
+
+                     <div class="market-trade-buy col-md-12 col-lg-6">
+                      <div class="input-group">
+                        <input type="number" name="amount" class="form-control" placeholder="Amount" >
+                        <div class="input-group-append">
+                          <span class="input-group-text">USD</span>
+                        </div>
+                      </div>
+                        <div class="form-group">
+                            <label for="">Pairs</label>
+                            <select name="trade_pair_id" id="" class="form-control">
+                                @foreach($pairs as $item)
+                                    @if($item->type == 'crypto')
+                                        <option value="{{ $item->id }}">{{ $item->pair }}</option>
+                                    @endif
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="row">
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <label>Leverage</label>
+                                    <select class="custom-select" name="leverage" id="leverage" >
+                                        <option value="10">1:10</option><option value="20">1:20</option><option value="30">1:30</option><option value="40">1:40</option><option value="50">1:50</option><option value="60">1:60</option><option value="70">1:70</option><option value="80">1:80</option><option value="90">1:90</option><option value="100">1:100</option><option value="110">1:110</option><option value="120">1:120</option><option value="130">1:130</option><option value="140">1:140</option><option value="150">1:150</option><option value="160">1:160</option><option value="170">1:170</option><option value="180">1:180</option><option value="190">1:190</option><option value="200">1:200</option><option value="210">1:210</option><option value="220">1:220</option><option value="230">1:230</option><option value="240">1:240</option><option value="250">1:250</option><option value="260">1:260</option><option value="270">1:270</option><option value="280">1:280</option><option value="290">1:290</option><option value="300">1:300</option><option value="310">1:310</option><option value="320">1:320</option><option value="330">1:330</option><option value="340">1:340</option><option value="350">1:350</option><option value="360">1:360</option><option value="370">1:370</option><option value="380">1:380</option><option value="390">1:390</option><option value="400">1:400</option><option value="410">1:410</option><option value="420">1:420</option><option value="430">1:430</option><option value="440">1:440</option><option value="450">1:450</option><option value="460">1:460</option><option value="470">1:470</option><option value="480">1:480</option><option value="490">1:490</option><option value="500">1:500</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <label>Duration</label>
+                                    <select class="custom-select" name="duration" id="expire" ><option value="1">1 Minute</option><option value="2">2 Minutes</option><option value="3">3 Minutes</option><option value="4">4 Minutes</option><option value="5">5 Minutes</option><option value="10">10 Minutes</option><option value="15">15 Minutes</option><option value="30">30 Minutes</option><option value="60">1 Hour</option><option value="120">2 Hours</option><option value="180">4 Hours</option><option value="360">6 Hours</option><option value="720">12 Hours</option><option value="1440">1 Day</option><option value="2880">2 Days</option><option value="5320">3 Days</option><option value="7200">5 Days</option><option value="10080">7 Days</option></select>
+                                </div>
+                            </div>
+
+                        </div>
+                      <p>Bal: <span>{{ number_format($user->balance, 2) }} USD</span></p>
+                      <button class="btn buy" type="submit" name="action_type" value="buy">Buy</button>
                     </div>
-                  </div>
-                  <div class="input-group">
-                    <input type="number" class="form-control" placeholder="Amount">
-                    <div class="input-group-append">
-                      <span class="input-group-text">ETH</span>
+                      <div class="market-trade-sell col-md-12 col-lg-6">
+                      <div class="input-group">
+                        <input type="number" name="amount" class="form-control" placeholder="Amount" >
+                        <div class="input-group-append">
+                          <span class="input-group-text">USD</span>
+                        </div>
+                      </div>
+                        <div class="form-group">
+                            <label for="">Pairs</label>
+                            <select name="trade_pair_id" id="" class="form-control">
+                                @foreach($pairs as $item)
+                                    @if($item->type == 'crypto')
+                                        <option value="{{ $item->id }}">{{ $item->pair }}</option>
+                                    @endif
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="row">
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <label>Leverage</label>
+                                    <select class="custom-select" name="leverage" id="leverage" >
+                                        <option value="10">1:10</option><option value="20">1:20</option><option value="30">1:30</option><option value="40">1:40</option><option value="50">1:50</option><option value="60">1:60</option><option value="70">1:70</option><option value="80">1:80</option><option value="90">1:90</option><option value="100">1:100</option><option value="110">1:110</option><option value="120">1:120</option><option value="130">1:130</option><option value="140">1:140</option><option value="150">1:150</option><option value="160">1:160</option><option value="170">1:170</option><option value="180">1:180</option><option value="190">1:190</option><option value="200">1:200</option><option value="210">1:210</option><option value="220">1:220</option><option value="230">1:230</option><option value="240">1:240</option><option value="250">1:250</option><option value="260">1:260</option><option value="270">1:270</option><option value="280">1:280</option><option value="290">1:290</option><option value="300">1:300</option><option value="310">1:310</option><option value="320">1:320</option><option value="330">1:330</option><option value="340">1:340</option><option value="350">1:350</option><option value="360">1:360</option><option value="370">1:370</option><option value="380">1:380</option><option value="390">1:390</option><option value="400">1:400</option><option value="410">1:410</option><option value="420">1:420</option><option value="430">1:430</option><option value="440">1:440</option><option value="450">1:450</option><option value="460">1:460</option><option value="470">1:470</option><option value="480">1:480</option><option value="490">1:490</option><option value="500">1:500</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <label>Duration</label>
+                                    <select class="custom-select" name="duration" id="expire" >
+                                        <option value="1">1 Minute</option>
+                                        <option value="2">2 Minutes</option><option value="3">3 Minutes</option><option value="4">4 Minutes</option><option value="5">5 Minutes</option><option value="10">10 Minutes</option><option value="15">15 Minutes</option><option value="30">30 Minutes</option><option value="60">1 Hour</option><option value="120">2 Hours</option><option value="180">4 Hours</option><option value="360">6 Hours</option><option value="720">12 Hours</option><option value="1440">1 Day</option><option value="2880">2 Days</option><option value="5320">3 Days</option><option value="7200">5 Days</option><option value="10080">7 Days</option></select>
+                                </div>
+                            </div>
+
+                        </div>
+                      <p>Bal: <span>{{ number_format($user->balance, 2) }} USD</span></p>
+                      <button class="btn sell" type="submit" name="action_type" value="sell">Sell</button>
                     </div>
+
                   </div>
-                  <ul class="market-trade-list">
-                    <li><a href="#!">25%</a></li>
-                    <li><a href="#!">50%</a></li>
-                    <li><a href="#!">75%</a></li>
-                    <li><a href="#!">100%</a></li>
-                  </ul>
-                  <p>Available: <span>0 BTC = 0 USD</span></p>
-                  <p>Volume: <span>0 BTC = 0 USD</span></p>
-                  <p>Margin: <span>0 BTC = 0 USD</span></p>
-                  <p>Fee: <span>0 BTC = 0 USD</span></p>
-                  <button class="btn buy">Buy</button>
-                </div>
-                <div class="market-trade-sell">
-                  <div class="input-group">
-                    <input type="number" class="form-control" placeholder="Price">
-                    <div class="input-group-append">
-                      <span class="input-group-text">BTC</span>
-                    </div>
-                  </div>
-                  <div class="input-group">
-                    <input type="number" class="form-control" placeholder="Amount">
-                    <div class="input-group-append">
-                      <span class="input-group-text">ETH</span>
-                    </div>
-                  </div>
-                  <ul class="market-trade-list">
-                    <li><a href="#!">25%</a></li>
-                    <li><a href="#!">50%</a></li>
-                    <li><a href="#!">75%</a></li>
-                    <li><a href="#!">100%</a></li>
-                  </ul>
-                  <p>Available: <span>0 BTC = 0 USD</span></p>
-                  <p>Volume: <span>0 BTC = 0 USD</span></p>
-                  <p>Margin: <span>0 BTC = 0 USD</span></p>
-                  <p>Fee: <span>0 BTC = 0 USD</span></p>
-                  <button class="btn sell">Sell</button>
-                </div>
-              </div>
+                </form>
             </div>
-            <div class="tab-pane fade" id="pills-market" role="tabpanel">
-              <div class="d-flex justify-content-between">
-                <div class="market-trade-buy">
-                  <div class="input-group">
-                    <input type="number" class="form-control" placeholder="Price">
-                    <div class="input-group-append">
-                      <span class="input-group-text">BTC</span>
-                    </div>
-                  </div>
-                  <div class="input-group">
-                    <input type="number" class="form-control" placeholder="Amount">
-                    <div class="input-group-append">
-                      <span class="input-group-text">ETH</span>
-                    </div>
-                  </div>
-                  <ul class="market-trade-list">
-                    <li><a href="#!">25%</a></li>
-                    <li><a href="#!">50%</a></li>
-                    <li><a href="#!">75%</a></li>
-                    <li><a href="#!">100%</a></li>
-                  </ul>
-                  <p>Available: <span>0 BTC = 0 USD</span></p>
-                  <p>Volume: <span>0 BTC = 0 USD</span></p>
-                  <p>Margin: <span>0 BTC = 0 USD</span></p>
-                  <p>Fee: <span>0 BTC = 0 USD</span></p>
-                  <button class="btn buy">Buy</button>
-                </div>
-                <div class="market-trade-sell">
-                  <div class="input-group">
-                    <input type="number" class="form-control" placeholder="Price">
-                    <div class="input-group-append">
-                      <span class="input-group-text">BTC</span>
-                    </div>
-                  </div>
-                  <div class="input-group">
-                    <input type="number" class="form-control" placeholder="Amount">
-                    <div class="input-group-append">
-                      <span class="input-group-text">ETH</span>
-                    </div>
-                  </div>
-                  <ul class="market-trade-list">
-                    <li><a href="#!">25%</a></li>
-                    <li><a href="#!">50%</a></li>
-                    <li><a href="#!">75%</a></li>
-                    <li><a href="#!">100%</a></li>
-                  </ul>
-                  <p>Available: <span>0 BTC = 0 USD</span></p>
-                  <p>Volume: <span>0 BTC = 0 USD</span></p>
-                  <p>Margin: <span>0 BTC = 0 USD</span></p>
-                  <p>Fee: <span>0 BTC = 0 USD</span></p>
-                  <button class="btn sell">Sell</button>
-                </div>
-              </div>
-            </div>
-            <div class="tab-pane fade" id="pills-stop-limit" role="tabpanel">
-              <div class="d-flex justify-content-between">
-                <div class="market-trade-buy">
-                  <div class="input-group">
-                    <input type="number" class="form-control" placeholder="Price">
-                    <div class="input-group-append">
-                      <span class="input-group-text">BTC</span>
-                    </div>
-                  </div>
-                  <div class="input-group">
-                    <input type="number" class="form-control" placeholder="Amount">
-                    <div class="input-group-append">
-                      <span class="input-group-text">ETH</span>
-                    </div>
-                  </div>
-                  <ul class="market-trade-list">
-                    <li><a href="#!">25%</a></li>
-                    <li><a href="#!">50%</a></li>
-                    <li><a href="#!">75%</a></li>
-                    <li><a href="#!">100%</a></li>
-                  </ul>
-                  <p>Available: <span>0 BTC = 0 USD</span></p>
-                  <p>Volume: <span>0 BTC = 0 USD</span></p>
-                  <p>Margin: <span>0 BTC = 0 USD</span></p>
-                  <p>Fee: <span>0 BTC = 0 USD</span></p>
-                  <button class="btn buy">Buy</button>
-                </div>
-                <div class="market-trade-sell">
-                  <div class="input-group">
-                    <input type="number" class="form-control" placeholder="Price">
-                    <div class="input-group-append">
-                      <span class="input-group-text">BTC</span>
-                    </div>
-                  </div>
-                  <div class="input-group">
-                    <input type="number" class="form-control" placeholder="Amount">
-                    <div class="input-group-append">
-                      <span class="input-group-text">ETH</span>
-                    </div>
-                  </div>
-                  <ul class="market-trade-list">
-                    <li><a href="#!">25%</a></li>
-                    <li><a href="#!">50%</a></li>
-                    <li><a href="#!">75%</a></li>
-                    <li><a href="#!">100%</a></li>
-                  </ul>
-                  <p>Available: <span>0 BTC = 0 USD</span></p>
-                  <p>Volume: <span>0 BTC = 0 USD</span></p>
-                  <p>Margin: <span>0 BTC = 0 USD</span></p>
-                  <p>Fee: <span>0 BTC = 0 USD</span></p>
-                  <button class="btn sell">Sell</button>
-                </div>
-              </div>
-            </div>
-            <div class="tab-pane fade" id="pills-stop-market" role="tabpanel">
-              <div class="d-flex justify-content-between">
-                <div class="market-trade-buy">
-                  <div class="input-group">
-                    <input type="number" class="form-control" placeholder="Price">
-                    <div class="input-group-append">
-                      <span class="input-group-text">BTC</span>
-                    </div>
-                  </div>
-                  <div class="input-group">
-                    <input type="number" class="form-control" placeholder="Amount">
-                    <div class="input-group-append">
-                      <span class="input-group-text">ETH</span>
-                    </div>
-                  </div>
-                  <ul class="market-trade-list">
-                    <li><a href="#!">25%</a></li>
-                    <li><a href="#!">50%</a></li>
-                    <li><a href="#!">75%</a></li>
-                    <li><a href="#!">100%</a></li>
-                  </ul>
-                  <p>Available: <span>0 BTC = 0 USD</span></p>
-                  <p>Volume: <span>0 BTC = 0 USD</span></p>
-                  <p>Margin: <span>0 BTC = 0 USD</span></p>
-                  <p>Fee: <span>0 BTC = 0 USD</span></p>
-                  <button class="btn buy">Buy</button>
-                </div>
-                <div class="market-trade-sell">
-                  <div class="input-group">
-                    <input type="number" class="form-control" placeholder="Price">
-                    <div class="input-group-append">
-                      <span class="input-group-text">BTC</span>
-                    </div>
-                  </div>
-                  <div class="input-group">
-                    <input type="number" class="form-control" placeholder="Amount">
-                    <div class="input-group-append">
-                      <span class="input-group-text">ETH</span>
-                    </div>
-                  </div>
-                  <ul class="market-trade-list">
-                    <li><a href="#!">25%</a></li>
-                    <li><a href="#!">50%</a></li>
-                    <li><a href="#!">75%</a></li>
-                    <li><a href="#!">100%</a></li>
-                  </ul>
-                  <p>Available: <span>0 BTC = 0 USD</span></p>
-                  <p>Volume: <span>0 BTC = 0 USD</span></p>
-                  <p>Margin: <span>0 BTC = 0 USD</span></p>
-                  <p>Fee: <span>0 BTC = 0 USD</span></p>
-                  <button class="btn sell">Sell</button>
-                </div>
-              </div>
-            </div>
+
           </div>
         </div>
       </div>
@@ -799,10 +655,7 @@
         </div>
       </div>
 
-
-
-
-      <div class="col-md-12">
+      <div class="col-md-12 mt-2">
         <div class="market-history market-order">
           <ul class="nav nav-pills" role="tablist">
             <li class="nav-item">
@@ -813,78 +666,74 @@
               <a class="nav-link" data-toggle="pill" href="#stop-orders" role="tab" aria-selected="false">Closed
                 Orders</a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" data-toggle="pill" href="#order-history" role="tab" aria-selected="false">Order
-                history</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" data-toggle="pill" href="#trade-history" role="tab" aria-selected="false">Balance</a>
-            </li>
+
           </ul>
           <div class="tab-content">
             <div class="tab-pane fade show active" id="open-orders" role="tabpanel">
-              <ul class="d-flex justify-content-between market-order-item">
-                <li>Time</li>
-                <li>All pairs</li>
-                <li>All Types</li>
-                <li>Buy/Sell</li>
-                <li>Price</li>
-                <li>Amount</li>
-                <li>Executed</li>
-                <li>Unexecuted</li>
-              </ul>
-              <span class="no-data">
-                <i class="icon ion-md-document"></i>
-                No data
-              </span>
+                <div class="table-responsive ">
+                    <table class="table ">
+                       <tr class="d-flex ">
+                           <th>Time</th>
+                           <th>Pairs</th>
+                           <th>Type</th>
+                           <th>Buy/Sell</th>
+                           <th>Amount</th>
+                           <th>Leverage</th>
+                           <th>Duration</th>
+                           <th>Status</th>
+                           <th>Action</th>
+                       </tr>
+                    @foreach($trades as $item)
+                        @if($item->status == 'open')
+                        <tr class="d-flex ">
+                            <td>{{ $item->created_at ?? ''}}</td>
+                            <td>{{ $item->trade_pair->pair ?? '' }}</td>
+                            <td>{{ $item->trade_pair->type ?? ''}}</td>
+                            <td>{{ $item->action_type ?? '' }}</td>
+                            <td>${{ number_format($item->amount, 2) ?? '' }}</td>
+                            <td>{{ $item->leverage ?? ''}}x</td>
+                            <td>{{ $item->duration ?? ''}} min</td>
+                            <td>{!! $item->status() ?? '' !!}</td>
+                            @if($item->status == 'open')
+                            <td><a href="{{ route('user.closeTrade', $item->id) }}" class="btn btn-sm btn-danger">Close</a></td>
+                            @else
+                                <td></td>
+                            @endif
+                        </tr>
+                        @endif
+                    @endforeach
+                </table>
+                </div>
             </div>
             <div class="tab-pane fade" id="stop-orders" role="tabpanel">
-              <ul class="d-flex justify-content-between market-order-item">
-                <li>Time</li>
-                <li>All pairs</li>
-                <li>All Types</li>
-                <li>Buy/Sell</li>
-                <li>Price</li>
-                <li>Amount</li>
-                <li>Executed</li>
-                <li>Unexecuted</li>
-              </ul>
-              <span class="no-data">
-                <i class="icon ion-md-document"></i>
-                No data
-              </span>
-            </div>
-            <div class="tab-pane fade" id="order-history" role="tabpanel">
-              <ul class="d-flex justify-content-between market-order-item">
-                <li>Time</li>
-                <li>All pairs</li>
-                <li>All Types</li>
-                <li>Buy/Sell</li>
-                <li>Price</li>
-                <li>Amount</li>
-                <li>Executed</li>
-                <li>Unexecuted</li>
-              </ul>
-              <span class="no-data">
-                <i class="icon ion-md-document"></i>
-                No data
-              </span>
-            </div>
-            <div class="tab-pane fade" id="trade-history" role="tabpanel">
-              <ul class="d-flex justify-content-between market-order-item">
-                <li>Time</li>
-                <li>All pairs</li>
-                <li>All Types</li>
-                <li>Buy/Sell</li>
-                <li>Price</li>
-                <li>Amount</li>
-                <li>Executed</li>
-                <li>Unexecuted</li>
-              </ul>
-              <span class="no-data">
-                <i class="icon ion-md-document"></i>
-                No data
-              </span>
+              <div class="table-responsive ">
+                    <table class="table ">
+                       <tr class="d-flex ">
+                           <th>Time</th>
+                           <th>Pairs</th>
+                           <th>Type</th>
+                           <th>Buy/Sell</th>
+                           <th>Amount</th>
+                           <th>Leverage</th>
+                           <th>Duration</th>
+                           <th>Status</th>
+                       </tr>
+                    @foreach($trades as $item)
+                        @if($item->status == 'closed')
+                        <tr class="d-flex ">
+                            <td>{{ $item->created_at ?? ''}}</td>
+                            <td>{{ $item->trade_pair->pair ?? '' }}</td>
+                            <td>{{ $item->trade_pair->type ?? ''}}</td>
+                            <td>{{ $item->action_type ?? '' }}</td>
+                            <td>${{ number_format($item->amount, 2) ?? '' }}</td>
+                            <td>{{ $item->leverage ?? ''}}x</td>
+                            <td>{{ $item->duration ?? ''}} min</td>
+                            <td>{!! $item->status() ?? '' !!}</td>
+                        </tr>
+                        @endif
+                    @endforeach
+                </table>
+                </div>
             </div>
           </div>
         </div>
