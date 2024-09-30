@@ -10,6 +10,8 @@ Route::view('/', 'home')->name('index');
 Route::group(['middleware' => ['auth'], 'prefix' => 'user', 'as' => 'user.'], function(){
     Route::get('/dashboard', [UserController::class, 'dashboard'])->name('dashboard');
     Route::get('/profile', [UserController::class, 'profile'])->name('profile');
+    Route::post('update/profile/{id}', [UserController::class, 'updateProfile'])->name('updateProfile');
+    Route::post('update/password/', [UserController::class, 'updatePassword'])->name('updatePassword');
 
     Route::get('trade/{id}', [TradeController::class, 'trade'])->name('trade');
     Route::post('place/trade', [TradeController::class, 'placeTrade'])->name('placeTrade');

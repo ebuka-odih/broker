@@ -18,7 +18,24 @@
                 <div class="card-body">
                   <h5 class="card-title">General Information</h5>
                   <div class="settings-profile">
-                    <form>
+                    <form action="{{ route('user.updateProfile', $user->id) }}" method="POST">
+                        @csrf
+                        <div>
+                         @if(session()->has('success'))
+                            <div class="alert alert-success">
+                                {{ session()->get('success') }}
+                            </div>
+                        @endif
+                         @if ($errors->any())
+                            <div class="alert alert-danger">
+                                <ul>
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endif
+                     </div>
                       <img src="{{ asset($user->avatar ?? "assets/img/avatar.svg") }}" alt="avatar">
                       <div class="custom-file">
                         <input type="file" class="custom-file-input" id="fileUpload">
@@ -39,11 +56,11 @@
                         </div>
                         <div class="col-md-6">
                           <label for="phoneNumber">Phone</label>
-                          <input id="phoneNumber" type="text" class="form-control" placeholder="Enter phone number">
+                          <input id="phoneNumber" type="text" name="phone" value="{{ $user->phone ?? '' }}" class="form-control" placeholder="Enter phone number">
                         </div>
                         <div class="col-md-6">
                           <label for="phoneNumber">Telegram Username</label>
-                          <input id="phoneNumber" type="text" name="telegram" class="form-control" placeholder="Telegram Username">
+                          <input id="phoneNumber" type="text" name="telegram" value="{{ $user->telegram ?? '' }}" class="form-control" placeholder="Telegram Username">
                         </div>
                         <div class="col-md-12">
                           <input type="submit" value="Update">
@@ -57,56 +74,36 @@
                 <div class="card-body">
                   <h5 class="card-title">Security Information</h5>
                   <div class="settings-profile">
-                    <form>
+                    <form action="{{ route('user.updatePassword') }}" method="POST">
+                        @csrf
+                         <div>
+                         @if(session()->has('status'))
+                            <div class="alert alert-success">
+                                {{ session()->get('status') }}
+                            </div>
+                        @endif
+                         @if ($errors->any())
+                            <div class="alert alert-danger">
+                                <ul>
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endif
+                     </div>
                       <div class="form-row">
                         <div class="col-md-6">
                           <label for="currentPass">Current password</label>
-                          <input id="currentPass" type="text" class="form-control" placeholder="Enter your password">
+                          <input id="currentPass" type="password" name="current_password" class="form-control" placeholder="Enter your password">
                         </div>
                         <div class="col-md-6">
                           <label for="newPass">New password</label>
-                          <input id="newPass" type="text" class="form-control" placeholder="Enter new password">
+                          <input id="newPass" type="password" name="new_password" class="form-control" placeholder="Enter new password">
                         </div>
-                        <div class="col-md-6">
-                          <label for="securityOne">Security questions #1</label>
-                          <select id="securityOne" class="custom-select">
-                            <option selected="">What was the name of your first pet?</option>
-                            <option>What's your Mother's middle name?</option>
-                            <option>What was the name of your first school?</option>
-                            <option>Where did you travel for the first time?</option>
-                          </select>
-                        </div>
-                        <div class="col-md-6">
-                          <label for="securityAnsOne">Answer</label>
-                          <input id="securityAnsOne" type="text" class="form-control" placeholder="Enter your answer">
-                        </div>
-                        <div class="col-md-6">
-                          <label for="securityTwo">Security questions #2</label>
-                          <select id="securityTwo" class="custom-select">
-                            <option selected="">Choose...</option>
-                            <option>What was the name of your first pet?</option>
-                            <option>What's your Mother's middle name?</option>
-                            <option>What was the name of your first school?</option>
-                            <option>Where did you travel for the first time?</option>
-                          </select>
-                        </div>
-                        <div class="col-md-6">
-                          <label for="securityAnsTwo">Answer</label>
-                          <input id="securityAnsTwo" type="text" class="form-control" placeholder="Enter your answer">
-                        </div>
-                        <div class="col-md-6">
-                          <label for="securityThree">Security questions #3</label>
-                          <select id="securityThree" class="custom-select">
-                            <option selected="">Choose...</option>
-                            <option>What was the name of your first pet?</option>
-                            <option>What's your Mother's middle name?</option>
-                            <option>What was the name of your first school?</option>
-                            <option>Where did you travel for the first time?</option>
-                          </select>
-                        </div>
-                        <div class="col-md-6">
-                          <label for="securityFore">Answer</label>
-                          <input id="securityFore" type="text" class="form-control" placeholder="Enter your answer">
+                          <div class="col-md-6">
+                          <label for="newPass">Confirm New password</label>
+                          <input id="newPass" type="password" name="confirm_new_password" class="form-control" placeholder="Confirm new password">
                         </div>
                         <div class="col-md-12">
                           <input type="submit" value="Update">

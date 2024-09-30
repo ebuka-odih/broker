@@ -347,7 +347,8 @@
             <div class="tab-pane fade show active" id="pills-trade-limit" role="tabpanel">
                  <form action="{{ route('user.placeTrade') }}" method="POST">
                       @csrf
-                     @if(session()->has('success'))
+                     <div>
+                         @if(session()->has('success'))
                         <div class="alert alert-success">
                             {{ session()->get('success') }}
                         </div>
@@ -366,6 +367,7 @@
                             </ul>
                         </div>
                     @endif
+                     </div>
                   <div class="d-flex justify-content-between ">
 
                      <div class="market-trade-buy col-md-12 col-lg-6">
