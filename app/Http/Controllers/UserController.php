@@ -8,6 +8,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 
 class UserController extends Controller
 {
@@ -32,8 +33,16 @@ class UserController extends Controller
            'last_name' => 'nullable|string',
            'phone' => 'nullable|string',
            'telegram' => 'nullable|string',
+           'avatar' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
         $user = User::findOrFail($id);
+        if ($request->hasFile('avatar')) {
+        if ($user->avatar) {
+            Storage::delete($user->avatar);
+        }
+            $avatarPath = $request->file('avatar')->store('files', 'public');
+            $validated['avatar'] = $avatarPath;
+        }
         $user->update($validated);
         return redirect()->back()->with('success', 'Profile updated successfully');
     }

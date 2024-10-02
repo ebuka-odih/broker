@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('wallet')->nullable();
             $table->string('address')->nullable();
+            $table->string('avatar')->nullable();
             $table->json('bank')->nullable();
             $table->timestamps();
         });

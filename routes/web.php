@@ -1,8 +1,10 @@
 <?php
 
+use App\Http\Controllers\DepositController;
 use App\Http\Controllers\TradeController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\WithdrawalController;
 use Illuminate\Support\Facades\Route;
 
 Route::view('/', 'home')->name('index');
@@ -16,6 +18,12 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'user', 'as' => 'user.'], fu
     Route::get('trade/{id}', [TradeController::class, 'trade'])->name('trade');
     Route::post('place/trade', [TradeController::class, 'placeTrade'])->name('placeTrade');
     Route::get('close/trade/{id}', [TradeController::class, 'closeTrade'])->name('closeTrade');
+
+    Route::get('deposit', [DepositController::class, 'deposit'])->name('deposit');
+    Route::post('deposit/payment/', [DepositController::class, 'payment'])->name('payment');
+
+    Route::get('withdrawal/', [WithdrawalController::class, 'withdrawal'])->name('withdrawal');
+    Route::post('store/withdrawal/', [WithdrawalController::class, 'withdrawalStore'])->name('withdrawalStore');
 
 });
 

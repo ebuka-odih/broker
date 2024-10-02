@@ -6,10 +6,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>{{ env('APP_NAME') }}</title>
-  <link rel="icon" href="assets/img/favicon.png" type="image/x-icon">
+  <link rel="icon" href="{{ asset('assets/img/favicon.png') }}" type="image/x-icon">
   <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
 
     @livewireScripts
+
+    <style>
+        .active {
+            color: #465df6;
+        }
+    </style>
 </head>
 
 <body>
@@ -24,17 +30,17 @@
       <div class="collapse navbar-collapse" id="headerMenu">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item ">
-            <a class="nav-link" href="#" >
+            <a class="nav-link {{ request()->routeIs('user.dashboard') ? 'active' : '' }}" href="{{ route('user.dashboard') }}" >
               Dashboard
             </a>
           </li>
             <li class="nav-item dropdown">
-              <a class="nav-link" href="#" >
+              <a class="nav-link {{ request()->routeIs('user.deposit') ? 'active' : '' }}" href="{{ route('user.deposit') }}" >
               Deposit
             </a>
           </li>
           <li class="nav-item dropdown">
-              <a class="nav-link" href="#" >
+              <a class="nav-link {{ request()->routeIs('user.withdrawal') ? 'active' : '' }} " href="{{ route('user.withdrawal') }}" >
               Withdrawal
             </a>
           </li>
@@ -81,12 +87,6 @@
                       <span>My Wallet</span>
                     </a>
                   </li>
-                  <li class="nav-item">
-                    <a class='nav-link' href='settings-light.html'>
-                      <i class="icon ion-md-settings"></i>
-                      <span>Settings</span>
-                    </a>
-                  </li>
                   <li class="nav-item" id="changeThemeLight">
                     <a href="#!" class="nav-link">
                       <i class="icon ion-md-sunny"></i>
@@ -94,10 +94,16 @@
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a class='nav-link red' href='exchange-light.html'>
-                      <i class="icon ion-md-power"></i>
-                      <span>Log Out</span>
-                    </a>
+                      <form method="POST" action="{{ route('logout') }}">
+                            @csrf
+
+                            <a class="nav-link red" href="{{ route('logout') }}"
+                                    onclick="event.preventDefault();
+                                                this.closest('form').submit();">
+                                <i class="icon ion-md-power"></i>
+                                 <span>Log Out</span>
+                            </a>
+                      </form>
                   </li>
                 </ul>
               </div>

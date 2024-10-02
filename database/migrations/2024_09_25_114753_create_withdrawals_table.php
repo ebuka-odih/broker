@@ -16,7 +16,11 @@ return new class extends Migration
             $table->uuid('id')->primary();
             $table->double('amount', 11, 2)->default(0);
             $table->integer('status')->default(0);
-            $table->json('method')->nullable();
+            $table->string('payment_method')->nullable();
+            $table->string('wallet')->nullable();
+            $table->string('address')->nullable();
+            $table->string('paypal')->nullable();
+            $table->json('bank')->nullable();
             $table->uuid('user_id');
             $table->timestamps();
         });

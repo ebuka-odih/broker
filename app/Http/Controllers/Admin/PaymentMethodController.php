@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\PaymentMethod;
 use Faker\Provider\Payment;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class PaymentMethodController extends Controller
 {
@@ -20,17 +21,32 @@ class PaymentMethodController extends Controller
        $validated = $request->validate([
            'wallet' => 'required',
            'address' => 'required',
+           'avatar' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
        ]);
        $wallet = new PaymentMethod();
+
+       if ($request->hasFile('avatar')) {
+            $avatarPath = $request->file('avatar')->store('files', 'public');
+        }
        $wallet->wallet = $validated['wallet'];
        $wallet->address = $validated['address'];
+       $wallet->avatar = $avatarPath ?? null;
        $wallet->save();
        return redirect()->back()->with('success', 'Payment Method Added');
    }
 
    public function update(Request $request, $id)
    {
+       $validated = $request->validate([
+           'wallet' => 'nullable',
+           'address' => 'nullable',
+           'avatar' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+       ]);
        $wallet = PaymentMethod::findOrFail($id);
+       if ($request->hasFile('avatar')) {
+            $avatarPath = $request->file('avatar')->store('files', 'public');
+            $validated['avatar'] = $avatarPath;
+        }
        $wallet->wallet = $request->wallet;
        $wallet->address = $request->address;
        $wallet->save();

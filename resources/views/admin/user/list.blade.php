@@ -102,7 +102,7 @@
                       <td class="flex items-center p-4 mr-12 space-x-6 whitespace-nowrap">
                         <img class="w-10 h-10 rounded-full" style="border-radius: 50%"  height="50" width="50" src="{{ asset($item->avatar ?? '/img/trader.jpg') }}" alt="Neil Sims avatar">
                         <div class="text-sm font-normal text-gray-500 dark:text-gray-400">
-                            <div class="text-base font-semibold text-gray-900 dark:text-white">{{ $item->name ?? '' }}</div>
+                            <div class="text-base font-semibold text-gray-900 dark:text-white">{{ $item->fullname() ?? '' }}</div>
                         </div>
                     </td>
                       <td class="p-4 text-sm font-semibold text-gray-900 whitespace-nowrap dark:text-white">
