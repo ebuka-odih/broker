@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Subscription;
 use App\Models\Trade;
 use App\Models\TradePair;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -56,7 +57,7 @@ class TradeController extends Controller
             $trade->user_id = Auth::id();
             $trade->save();
 
-            $user->balance -= $trade->amount;
+            $user->balance -= $request->amount;
             $user->save();
             return redirect()->back()->with('success', 'Trade Order Placed');
         }
@@ -69,5 +70,23 @@ class TradeController extends Controller
         $trade->status = "closed";
         $trade->save();
         return redirect()->back()->with('success', 'Trade Closed Successfully');
+    }
+
+
+    public function checkTradeDuration()
+    {
+        dd("hello");
+        $openTrades = Trade::where('status', 'open')->get();
+
+        foreach ($openTrades as $trade) {
+            $tradeOpenedAt = Carbon::parse($trade->created_at);
+            $tradeDuration = $trade->duration;
+
+            if (now()->diffInMinutes($tradeOpenedAt) >= $tradeDuration) {
+                $trade->status = 'closed';
+                $trade->save();
+            }
+        }
+
     }
 }

@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Schedule;
 
 Artisan::command('inspire', function () {
     $this->comment(Inspiring::quote());
-    $this->call('App\Http\Controllers\checkTradeDuration@checkTradeDuration')->everyMinute();
 
 })->purpose('Display an inspiring quote')->hourly();
+
+Schedule::command('app:check-trade-duration')->everyMinute();
