@@ -7,10 +7,10 @@
 
 <ul class="flex text-sm font-medium text-center text-gray-500 rounded-lg shadow sm:flex dark:divide-gray-700 dark:text-gray-400">
     <li class="w-full focus-within:z-10">
-        <a href="{{ route('admin.transactions.deposits') }}" wire:navigate class="inline-block w-full p-4 text-gray-900 bg-gray-100 border-r border-gray-200 dark:border-gray-700 rounded-s-lg focus:ring-4 focus:ring-blue-300 active focus:outline-none dark:bg-gray-700 dark:text-white" aria-current="page">Deposits</a>
+        <a href="{{ route('admin.transactions.deposits') }}"  class="inline-block w-full p-4 text-gray-900 bg-gray-100 border-r border-gray-200 dark:border-gray-700 rounded-s-lg focus:ring-4 focus:ring-blue-300 active focus:outline-none dark:bg-gray-700 dark:text-white" aria-current="page">Deposits</a>
     </li>
     <li class="w-full focus-within:z-10">
-        <a href="{{ route('admin.transactions.withdrawal') }}" wire:navigate class="inline-block w-full p-4 bg-white border-r border-gray-200 dark:border-gray-700 hover:text-gray-700 hover:bg-gray-50 focus:ring-4 focus:ring-blue-300 focus:outline-none dark:hover:text-white dark:bg-gray-800 dark:hover:bg-gray-700">Withdrawal</a>
+        <a href="{{ route('admin.transactions.withdrawal') }}"  class="inline-block w-full p-4 bg-white border-r border-gray-200 dark:border-gray-700 hover:text-gray-700 hover:bg-gray-50 focus:ring-4 focus:ring-blue-300 focus:outline-none dark:hover:text-white dark:bg-gray-800 dark:hover:bg-gray-700">Withdrawal</a>
     </li>
 </ul>
 
@@ -33,10 +33,13 @@
                 <thead class="bg-gray-50 dark:bg-gray-700">
                   <tr>
                     <th scope="col" class="p-4 text-xs font-medium tracking-wider text-left text-gray-500 uppercase dark:text-white">
-                      Transaction #
+                      #
                     </th>
                     <th scope="col" class="p-4 text-xs font-medium tracking-wider text-left text-gray-500 uppercase dark:text-white">
-                      Date & Time
+                      User
+                    </th>
+                      <th scope="col" class="p-4 text-xs font-medium tracking-wider text-left text-gray-500 uppercase dark:text-white">
+                      Date
                     </th>
                     <th scope="col" class="p-4 text-xs font-medium tracking-wider text-left text-gray-500 uppercase dark:text-white">
                       Amount
@@ -56,23 +59,27 @@
                 @foreach($deposits as $index => $item)
                   <tr>
                     <td class="p-4 text-sm font-normal text-gray-900 whitespace-nowrap dark:text-white">
-                      <span class="font-semibold">#087651</span>
+                      <span class="font-semibold">#{{ $index+1 }}</span>
                     </td>
-                    <td class="p-4 text-sm font-normal text-gray-500 whitespace-nowrap dark:text-gray-400">
-                        {{ date('M d, Y', strtotime($item->created_at ?? '')) }}
+                    <td class="flex items-center p-4 mr-12 space-x-6 whitespace-nowrap">
+                        <img class="w-10 h-10 rounded-full" style="border-radius: 50%"  height="50" width="50" src="{{ asset($item->avatar ?? '/img/trader.jpg') }}" alt="Neil Sims avatar">
+                        <div class="text-sm font-normal text-gray-500 dark:text-gray-400 whitespace-nowrap">
+                            <div class="text-base font-semibold text-gray-900 dark:text-white">{{ $item->user->fullname() ?? '' }}</div>
+                        </div>
+                    </td>
+                      <td class="p-4 text-sm font-normal text-gray-500 whitespace-nowrap dark:text-gray-400">
+                        {{ date('d M, Y', strtotime($item->created_at ?? '')) }}
                     </td>
                     <td class="p-4 text-sm font-semibold text-gray-900 whitespace-nowrap dark:text-white">
-                        ${{ $item->amount ?? '' }}
+                        ${{ number_format($item->amount, 2) ?? '' }}
                     </td>
 
-                    <td class="inline-flex items-center p-4 space-x-2 text-sm font-normal text-gray-500 whitespace-nowrap dark:text-gray-400">
-                      <span>••• 826</span>
+                    <td class="p-4 text-sm font-semibold text-gray-900 whitespace-nowrap dark:text-white">
+                      <span>{{ $item->payment_method->wallet }}</span>
                     </td>
                     <td class="p-4 whitespace-nowrap">
-                      <span
-                        class="bg-red-100 text-red-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded-md border border-red-100 dark:border-red-400 dark:bg-gray-700 dark:text-red-400">
-                          Cancelled
-                      </span>
+                        {!! $item->adminStatus() !!}
+
                     </td>
                      <td class="p-4 space-x-2 whitespace-nowrap">
                          <button data-modal-target="default-modal" data-modal-toggle="default-modal" class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white rounded-lg bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">
@@ -114,38 +121,47 @@
 
                     <!-- Main modal -->
                     <div id="default-modal" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
-    <div class="relative p-4 w-full max-w-2xl max-h-full">
-        <!-- Modal content -->
-        <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
-            <!-- Modal header -->
-            <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600">
-                <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
-                    Terms of Service
-                </h3>
-                <button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-hide="default-modal">
-                    <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
-                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
-                    </svg>
-                    <span class="sr-only">Close modal</span>
-                </button>
-            </div>
-            <!-- Modal body -->
-            <div class="p-4 md:p-5 space-y-4">
-                <p class="text-base leading-relaxed text-gray-500 dark:text-gray-400">
-                    With less than a month to go before the European Union enacts new consumer privacy laws for its citizens, companies around the world are updating their terms of service agreements to comply.
-                </p>
-                <p class="text-base leading-relaxed text-gray-500 dark:text-gray-400">
-                    The European Union’s General Data Protection Regulation (G.D.P.R.) goes into effect on May 25 and is meant to ensure a common set of data rights in the European Union. It requires organizations to notify users as soon as possible of high-risk data breaches that could personally affect them.
-                </p>
-            </div>
-            <!-- Modal footer -->
-            <div class="flex items-center p-4 md:p-5 border-t border-gray-200 rounded-b dark:border-gray-600">
-                <button data-modal-hide="default-modal" type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">I accept</button>
-                <button data-modal-hide="default-modal" type="button" class="py-2.5 px-5 ms-3 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">Decline</button>
-            </div>
-        </div>
-    </div>
-</div>
+                        <div class="relative p-4 w-full max-w-2xl max-h-full">
+                            <!-- Modal content -->
+                            <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
+                                <!-- Modal header -->
+                                <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600">
+                                    <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
+                                        Deposit Details
+                                    </h3>
+                                    <button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-hide="default-modal">
+                                        <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+                                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
+                                        </svg>
+                                        <span class="sr-only">Close modal</span>
+                                    </button>
+                                </div>
+                                <!-- Modal body -->
+                                <div class="p-4 md:p-5 space-y-4">
+                                    <ul style="color: white" class="divide-y rounded-lg">
+                                    <li class="flex justify-between items-center py-4 px-6">
+                                        <strong class="text-white-700">Transaction ID:</strong>
+                                        <span>{{ $item->id."#" }}</span>
+                                    </li>
+                                    <li class="flex justify-between items-center py-4 px-6">
+                                        <strong class="text-white-700">Amount:</strong>
+                                        <span>${{ number_format($item->amount, 2) ?? '' }}</span>
+                                    </li>
+                                    <li class="flex justify-between items-center py-4 px-6">
+                                        <strong class="text-white-700">Deposit Method:</strong>
+                                        <span>{{ $item->payment_method->wallet ?? '' }}</span>
+                                    </li>
+                                </ul>
+
+                                </div>
+                                <!-- Modal footer -->
+                                <div class="flex items-center p-4 md:p-5 border-t border-gray-200 rounded-b dark:border-gray-600">
+                                    <a href="{{ route('admin.approveDeposit', $item->id) }}" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Approve</a>
+{{--                                    <a href="" class="py-2.5 px-5 ms-3 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">Decline</a>--}}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                @endforeach
                 </tbody>
               </table>

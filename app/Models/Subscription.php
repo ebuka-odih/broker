@@ -2,21 +2,21 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Package extends Model
+class Subscription extends Model
 {
-    use HasFactory;
-    protected $fillable = [];
+    use HasFactory, HasUuids;
 
     public function user()
     {
         return $this->belongsTo(User::class);
     }
 
-    public function subscriptions()
+    public function package()
     {
-        return $this->hasMany(Subscription::class);
+        return $this->belongsTo(Package::class);
     }
 }

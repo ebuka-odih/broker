@@ -39,12 +39,15 @@ class DepositController extends Controller
         $deposit->payment_method_id = $validated['payment_method_id'];
         $deposit->proof = $avatarPath ?? null;
         $deposit->save();
+
         $admin = User::where('role', 'admin')->first();
-        Mail::to(auth()->user()->email)
-        ->later(now()->addSeconds(30), new DepositMail($deposit));
-        Mail::to($admin->email)
-            ->later(now()->addSeconds(30), new AdminDepositMail($deposit));
+        Mail::to(auth()->user()->email)->send(new DepositMail($deposit));
+        Mail::to($admin->email)->send(new AdminDepositMail($deposit));
         return redirect()->back()->with('success', 'Deposit Sent, awaiting for approval');
 
     }
+
+
+
+
 }

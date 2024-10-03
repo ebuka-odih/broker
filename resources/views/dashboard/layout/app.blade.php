@@ -45,7 +45,7 @@
             </a>
           </li>
          <li class="nav-item dropdown">
-              <a class="nav-link" href="#" >
+              <a class="nav-link" href="{{ route('user.sub.plans') }}" >
               Subscription
             </a>
           </li>
@@ -113,7 +113,9 @@
       </div>
     </nav>
   </header>
+
   @yield('content')
+
 
   <script src="{{ asset('assets/js/jquery-3.4.1.min.js') }}"></script>
   <script src="{{ asset('assets/js/popper.min.js') }}"></script>

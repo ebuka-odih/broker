@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\DepositController;
+use App\Http\Controllers\SubscriptionController;
 use App\Http\Controllers\TradeController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProfileController;
@@ -25,6 +26,8 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'user', 'as' => 'user.'], fu
     Route::get('withdrawal/', [WithdrawalController::class, 'withdrawal'])->name('withdrawal');
     Route::post('store/withdrawal/', [WithdrawalController::class, 'withdrawalStore'])->name('withdrawalStore');
 
+    Route::get('subscription/plans', [SubscriptionController::class, 'index'])->name('sub.plans');
+    Route::post('activate/plan', [SubscriptionController::class, 'store'])->name('activatePlan');
 });
 
 Route::get('/dashboard', function () {

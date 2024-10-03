@@ -1,47 +1,73 @@
-<x-guest-layout>
-    <!-- Session Status -->
-    <x-auth-session-status class="mb-4" :status="session('status')" />
 
-    <form method="POST" action="{{ route('login') }}">
-        @csrf
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Crypo</title>
+  <link rel="icon" href="assets/img/favicon.png" type="image/x-icon">
+  <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
+</head>
 
-        <!-- Email Address -->
-        <div>
-            <x-input-label for="email" :value="__('Email')" />
-            <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus autocomplete="username" />
-            <x-input-error :messages="$errors->get('email')" class="mt-2" />
+<body>
+  <header class="light-bb">
+    <nav class="navbar navbar-expand-lg">
+      <a class='navbar-brand' href='{{ route('index') }}'><img src="{{ asset('assets/img/logo-dark.svg') }}" alt="logo"></a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#headerMenu"
+        aria-controls="headerMenu" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="icon ion-md-menu"></i>
+      </button>
+
+    </nav>
+  </header>
+  <div class="vh-100 d-flex justify-content-center">
+    <div class="form-access my-auto">
+        <h4 class="text-center mb-3">{{ env('APP_NAME') }}</h4>
+      <form action="{{ route('login') }}" method="POST">
+          @csrf
+        <span>Sign In</span>
+          @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
+        <div class="form-group">
+          <input type="email" name="email" class="form-control" placeholder="Email Address">
         </div>
-
-        <!-- Password -->
-        <div class="mt-4">
-            <x-input-label for="password" :value="__('Password')" />
-
-            <x-text-input id="password" class="block mt-1 w-full"
-                            type="password"
-                            name="password"
-                            required autocomplete="current-password" />
-
-            <x-input-error :messages="$errors->get('password')" class="mt-2" />
+        <div class="form-group">
+          <input type="password" name="password" class="form-control" placeholder="Password">
         </div>
-
-        <!-- Remember Me -->
-        <div class="block mt-4">
-            <label for="remember_me" class="inline-flex items-center">
-                <input id="remember_me" type="checkbox" class="rounded dark:bg-gray-900 border-gray-300 dark:border-gray-700 text-indigo-600 shadow-sm focus:ring-indigo-500 dark:focus:ring-indigo-600 dark:focus:ring-offset-gray-800" name="remember">
-                <span class="ms-2 text-sm text-gray-600 dark:text-gray-400">{{ __('Remember me') }}</span>
-            </label>
-        </div>
-
-        <div class="flex items-center justify-end mt-4">
+        <div class="text-right">
             @if (Route::has('password.request'))
                 <a class="underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800" href="{{ route('password.request') }}">
-                    {{ __('Forgot your password?') }}
+                    {{ __('Forgot password?') }}
                 </a>
             @endif
 
-            <x-primary-button class="ms-3">
-                {{ __('Log in') }}
-            </x-primary-button>
         </div>
-    </form>
-</x-guest-layout>
+        <div class="custom-control custom-checkbox">
+          <input type="checkbox" class="custom-control-input" id="form-checkbox">
+          <label class="custom-control-label" for="form-checkbox">Remember me</label>
+        </div>
+        <button type="submit" class="btn btn-primary">Sign In</button>
+      </form>
+      <h2>Don't have an account? <a href='{{ route('register') }}'>Sign up here</a></h2>
+    </div>
+  </div>
+
+  <script src="{{ asset('assets/js/jquery-3.4.1.min.js') }}"></script>
+  <script src="{{ asset('assets/js/popper.min.js') }}"></script>
+  <script src="{{ asset('assets/js/bootstrap.min.js') }}"></script>
+  <script src="{{ asset('assets/js/amcharts-core.min.js') }}"></script>
+  <script src="{{ asset('assets/js/amcharts.min.js') }}"></script>
+  <script src="{{ asset('assets/js/custom.js') }}"></script>
+</body>
+
+
+<!-- Mirrored from crypo.netlify.app/signin-light by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 21 Sep 2024 06:37:18 GMT -->
+</html>

@@ -19,8 +19,7 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'first_name',
-        'last_name',
+        'name',
         'email',
         'password',
         'role',
@@ -30,6 +29,7 @@ class User extends Authenticatable
         'phone',
         'telegram',
         'avatar',
+        'subscription'
     ];
 
     /**
@@ -55,19 +55,10 @@ class User extends Authenticatable
         ];
     }
     protected $dates = ['last_login_at'];
-    protected $keyType = 'string';
-    public $incrementing = false;
-    public static function boot() {
-        parent::boot();
-
-        static::creating(function ($model) {
-            $model->id = Str::uuid();
-        });
-    }
 
     public function fullname()
     {
-        return $this->first_name." ".$this->last_name;
+        return $this->name;
     }
 
     public function status()
@@ -97,6 +88,11 @@ class User extends Authenticatable
     public function withdrawal()
     {
         return $this->hasMany(Withdrawal::class);
+    }
+
+    public function subscription()
+    {
+        return $this->belongsTo(Package::class);
     }
 
     public function canPlaceTrade()

@@ -32,8 +32,23 @@
     </style>
 
     <div class="container mt-3">
-        <script src="https://bullxtm.com/js/validation.js"></script>
-        <h3 class="text-center">Withdrawal</h3>
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Main Balance</h5>
+                    <ul>
+                        <li class="d-flex justify-content-between align-items-center mt-3">
+                            <div class="d-flex align-items-center">
+                                <i style="color: #6c6cf3; font-size: 25px" class="icon ion-md-cash"></i>
+                                <h4 class="ml-3">{{ number_format($user->balance, 2 ?? '0') }} USD</h4>
+                            </div>
+                        </li>
+                    </ul>
+
+                </div>
+            </div>
+        </div>
+        <h3 class="text-center mt-3">Withdrawal</h3>
         <div class="card mb-3 mt-4">
             <div class="card-header"><h5 class="mb-0">Withdraw</h5></div>
             <form action="{{ route('user.withdrawalStore') }}" method="POST"
@@ -46,10 +61,12 @@
                 @endif
                 <div class="mx-auto" style="max-width: 400px">
                     <p>
-                        To make a withdrawal, select payment method, amount and verify the address/bank you wish for payment to
+                        To make a withdrawal, select payment method, amount and verify the address/bank you wish for
+                        payment to
                         be made into.
                     </p>
-                    <select id="withdrawalMethod" name="payment_method" class="form-control mb-3" onchange="toggleBeneficiaryFields()">
+                    <select id="withdrawalMethod" name="payment_method" class="form-control mb-3"
+                            onchange="toggleBeneficiaryFields()">
                         <option value="">Select Payment Method</option>
                         <option value="crypto">Crypto</option>
                         <option value="bank">Bank Transfer</option>
@@ -96,11 +113,10 @@
                             <input type="text" name="paypal" class="form-control" id="wallet">
                         </div>
                     </div>
-                     <div class="form-group">
+                    <div class="form-group">
                         <label>Amount</label>
                         <input type="number" step="0.000000000001" id="amount" name="amount" class="form-control">
                     </div>
-
 
                     <button class="btn btn-primary  btn-block" type="submit">Withdraw</button>
                 </div>
@@ -124,36 +140,35 @@
 
 
     <script>
-    function toggleBeneficiaryFields() {
-        const pairType = document.getElementById('withdrawalMethod').value;
+        function toggleBeneficiaryFields() {
+            const pairType = document.getElementById('withdrawalMethod').value;
 
-        // All fields to hide/show
-        const allFields = [
-            'beneficiaryField1', // Bank Transfer Fields
-            'beneficiaryField5', // PayPal Field
-            'beneficiaryField6', // Crypto Field
-        ];
+            // All fields to hide/show
+            const allFields = [
+                'beneficiaryField1', // Bank Transfer Fields
+                'beneficiaryField5', // PayPal Field
+                'beneficiaryField6', // Crypto Field
+            ];
 
-        // Define the fields to show for each payment method
-        const methodFields = {
-            'bank': ['beneficiaryField1'],
-            'paypal': ['beneficiaryField5'],
-            'crypto': ['beneficiaryField6']
-        };
+            // Define the fields to show for each payment method
+            const methodFields = {
+                'bank': ['beneficiaryField1'],
+                'paypal': ['beneficiaryField5'],
+                'crypto': ['beneficiaryField6']
+            };
 
-        // Hide all fields
-        allFields.forEach(function(fieldId) {
-            document.getElementById(fieldId).style.display = 'none';
-        });
-
-        // Show the fields corresponding to the selected payment method
-        if (methodFields[pairType]) {
-            methodFields[pairType].forEach(function(fieldId) {
-                document.getElementById(fieldId).style.display = 'block';
+            // Hide all fields
+            allFields.forEach(function (fieldId) {
+                document.getElementById(fieldId).style.display = 'none';
             });
-        }
-    }
-</script>
 
+            // Show the fields corresponding to the selected payment method
+            if (methodFields[pairType]) {
+                methodFields[pairType].forEach(function (fieldId) {
+                    document.getElementById(fieldId).style.display = 'block';
+                });
+            }
+        }
+    </script>
 
 @endsection

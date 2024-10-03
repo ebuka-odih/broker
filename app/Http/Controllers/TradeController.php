@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Subscription;
 use App\Models\Trade;
 use App\Models\TradePair;
 use Illuminate\Http\Request;
@@ -27,6 +28,24 @@ class TradeController extends Controller
             'duration' => 'required',
             'trade_pair_id' => 'required',
         ]);
+        $user = Auth::user();
+        $subscription = Subscription::whereUserId(auth()->id())->latest()->first();
+
+//        if (now()->greaterThanOrEqualTo($user->package->duration)) {
+//            return redirect()->back()->with('error', 'Your package duration has ended. Please renew your subscription to continue trading.');
+//        }
+
+        $tradesToday = Trade::where('user_id', $user->id)
+            ->whereDate('created_at', now()->toDateString())
+            ->count();
+
+        if ($tradesToday >= $subscription->package->trade_limit_per_day) {
+            return redirect()->back()->with('error', 'Sorry, You have reached your daily trade limit.');
+        }
+        if ($user->trader == 0)
+        {
+            return redirect()->back()->with('error', 'To initiate a trade, please subscribe to a package first.');
+        }
         if ($request->amount <= \auth()->user()->balance){
             $trade = new Trade();
             $trade->amount = $validated['amount'];
@@ -37,7 +56,6 @@ class TradeController extends Controller
             $trade->user_id = Auth::id();
             $trade->save();
 
-            $user = Auth::user();
             $user->balance -= $trade->amount;
             $user->save();
             return redirect()->back()->with('success', 'Trade Order Placed');
@@ -50,6 +68,6 @@ class TradeController extends Controller
         $trade = Trade::findOrFail($id);
         $trade->status = "closed";
         $trade->save();
-        return redirect()->back()->with('success', 'Trade Closed');
+        return redirect()->back()->with('success', 'Trade Closed Successfully');
     }
 }
