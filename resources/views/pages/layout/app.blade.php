@@ -7,9 +7,7 @@
     <link rel="profile" href="https://gmpg.org/xfn/11">
     <title>{{ env('APP_NAME') }}</title>
     <meta name='robots' content='max-image-preview:large'/>
-    <link rel="alternate" type="application/rss+xml" title="CoinOne &raquo; Feed" href="feed/index.html"/>
-    <link rel="alternate" type="application/rss+xml" title="CoinOne &raquo; Comments Feed"
-          href="comments/feed/index.html"/>
+
     <script>
         window._wpemojiSettings = {
             "baseUrl": "https:\/\/s.w.org\/images\/core\/emoji\/14.0.0\/72x72\/",
@@ -68,7 +66,7 @@
             padding: 0 !important;
         }
     </style>
-    <link rel='stylesheet' id='classic-theme-styles-css' href='wp-includes/css/classic-themes.min68b3.css?ver=1'
+    <link rel='stylesheet' id='classic-theme-styles-css' href='{{ asset('wp-includes/css/classic-themes.min68b3.css?ver=1') }}'
           media='all'/>
     <style id='global-styles-inline-css'>
         body {
@@ -403,62 +401,56 @@
             line-height: 1.6;
         }
     </style>
+
     <link rel='stylesheet' id='template-kit-export-css'
-          href='wp-content/plugins/template-kit-export/public/assets/css/template-kit-export-public.min365c.css?ver=1.0.21'
-          media='all'/>
-    <link rel='stylesheet' id='hello-elementor-css' href='wp-content/themes/hello-elementor/style.minc141.css?ver=2.6.1'
-          media='all'/>
-    <link rel='stylesheet' id='hello-elementor-theme-style-css'
-          href='wp-content/themes/hello-elementor/theme.minc141.css?ver=2.6.1' media='all'/>
-    <link rel='stylesheet' id='elementor-frontend-css'
-          href='wp-content/plugins/elementor/assets/css/frontend-lite.mind5d5.css?ver=3.23.4' media='all'/>
-    <link rel='stylesheet' id='elementor-post-3-css'
-          href='wp-content/uploads/sites/5/elementor/css/post-38b81.css?ver=1706807157' media='all'/>
-    <link rel='stylesheet' id='elementor-icons-css'
-          href='wp-content/plugins/elementor/assets/lib/eicons/css/elementor-icons.mine94d.css?ver=5.30.0' media='all'/>
-    <link rel='stylesheet' id='swiper-css'
-          href='wp-content/plugins/elementor/assets/lib/swiper/v8/css/swiper.min94a4.css?ver=8.4.5' media='all'/>
-    <link rel='stylesheet' id='elementor-pro-css'
-          href='wp-content/plugins/elementor-pro/assets/css/frontend-lite.min225e.css?ver=3.19.0' media='all'/>
-    <link rel='stylesheet' id='font-awesome-5-all-css'
-          href='wp-content/plugins/elementor/assets/lib/font-awesome/css/all.mind5d5.css?ver=3.23.4' media='all'/>
-    <link rel='stylesheet' id='font-awesome-4-shim-css'
-          href='wp-content/plugins/elementor/assets/lib/font-awesome/css/v4-shims.mind5d5.css?ver=3.23.4' media='all'/>
-    <link rel='stylesheet' id='elementor-post-6-css'
-          href='wp-content/uploads/sites/5/elementor/css/post-66fe9.css?ver=1706807158' media='all'/>
-    <link rel='stylesheet' id='elementor-post-634-css'
-          href='wp-content/uploads/sites/5/elementor/css/post-6346fe9.css?ver=1706807158' media='all'/>
-    <link rel='stylesheet' id='elementor-post-582-css'
-          href='wp-content/uploads/sites/5/elementor/css/post-5826fe9.css?ver=1706807158' media='all'/>
-    <link rel='stylesheet' id='google-fonts-1-css'
-          href='https://fonts.googleapis.com/css?family=Lexend%3A100%2C100italic%2C200%2C200italic%2C300%2C300italic%2C400%2C400italic%2C500%2C500italic%2C600%2C600italic%2C700%2C700italic%2C800%2C800italic%2C900%2C900italic%7CQuestrial%3A100%2C100italic%2C200%2C200italic%2C300%2C300italic%2C400%2C400italic%2C500%2C500italic%2C600%2C600italic%2C700%2C700italic%2C800%2C800italic%2C900%2C900italic&amp;display=auto&amp;ver=6.1.7'
-          media='all'/>
-    <link rel='stylesheet' id='elementor-icons-shared-0-css'
-          href='wp-content/plugins/elementor/assets/lib/font-awesome/css/fontawesome.min52d5.css?ver=5.15.3'
-          media='all'/>
-    <link rel='stylesheet' id='elementor-icons-fa-solid-css'
-          href='wp-content/plugins/elementor/assets/lib/font-awesome/css/solid.min52d5.css?ver=5.15.3' media='all'/>
-    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
-    <script src='wp-includes/js/jquery/jquery.mina7a0.js?ver=3.6.1' id='jquery-core-js'></script>
-    <script src='wp-includes/js/jquery/jquery-migrate.mind617.js?ver=3.3.2' id='jquery-migrate-js'></script>
-    <script
-        src='wp-content/plugins/template-kit-export/public/assets/js/template-kit-export-public.min365c.js?ver=1.0.21'
+      href='{{ asset('wp-content/plugins/template-kit-export/public/assets/css/template-kit-export-public.min365c.css?ver=1.0.21') }}'
+      media='all'/>
+<link rel='stylesheet' id='hello-elementor-css'
+      href='{{ asset('wp-content/themes/hello-elementor/style.minc141.css?ver=2.6.1') }}' media='all'/>
+<link rel='stylesheet' id='hello-elementor-theme-style-css'
+      href='{{ asset('wp-content/themes/hello-elementor/theme.minc141.css?ver=2.6.1') }}' media='all'/>
+<link rel='stylesheet' id='elementor-frontend-css'
+      href='{{ asset('wp-content/plugins/elementor/assets/css/frontend-lite.mind5d5.css?ver=3.23.4') }}' media='all'/>
+<link rel='stylesheet' id='elementor-post-3-css'
+      href='{{ asset('wp-content/uploads/sites/5/elementor/css/post-38b81.css?ver=1706807157') }}' media='all'/>
+<link rel='stylesheet' id='elementor-icons-css'
+      href='{{ asset('wp-content/plugins/elementor/assets/lib/eicons/css/elementor-icons.mine94d.css?ver=5.30.0') }}'
+      media='all'/>
+<link rel='stylesheet' id='swiper-css'
+      href='{{ asset('wp-content/plugins/elementor/assets/lib/swiper/v8/css/swiper.min94a4.css?ver=8.4.5') }}'
+      media='all'/>
+<link rel='stylesheet' id='elementor-pro-css'
+      href='{{ asset('wp-content/plugins/elementor-pro/assets/css/frontend-lite.min225e.css?ver=3.19.0') }}' media='all'/>
+<link rel='stylesheet' id='font-awesome-5-all-css'
+      href='{{ asset('wp-content/plugins/elementor/assets/lib/font-awesome/css/all.mind5d5.css?ver=3.23.4') }}'
+      media='all'/>
+<link rel='stylesheet' id='font-awesome-4-shim-css'
+      href='{{ asset('wp-content/plugins/elementor/assets/lib/font-awesome/css/v4-shims.mind5d5.css?ver=3.23.4') }}'
+      media='all'/>
+<link rel='stylesheet' id='elementor-post-6-css'
+      href='{{ asset('wp-content/uploads/sites/5/elementor/css/post-66fe9.css?ver=1706807158') }}' media='all'/>
+<link rel='stylesheet' id='elementor-post-634-css'
+      href='{{ asset('wp-content/uploads/sites/5/elementor/css/post-6346fe9.css?ver=1706807158') }}' media='all'/>
+<link rel='stylesheet' id='elementor-post-582-css'
+      href='{{ asset('wp-content/uploads/sites/5/elementor/css/post-5826fe9.css?ver=1706807158') }}' media='all'/>
+<link rel='stylesheet' id='google-fonts-1-css'
+      href='https://fonts.googleapis.com/css?family=Lexend%3A100%2C100italic%2C200%2C200italic%2C300%2C300italic%2C400%2C400italic%2C500%2C500italic%2C600%2C600italic%2C700%2C700italic%2C800%2C800italic%2C900%2C900italic%7CQuestrial%3A100%2C100italic%2C200%2C200italic%2C300%2C300italic%2C400%2C400italic%2C500%2C500italic%2C600%2C600italic%2C700%2C700italic%2C800%2C800italic%2C900%2C900italic&amp;display=auto&amp;ver=6.1.7'
+      media='all'/>
+<link rel='stylesheet' id='elementor-icons-shared-0-css'
+      href='{{ asset('wp-content/plugins/elementor/assets/lib/font-awesome/css/fontawesome.min52d5.css?ver=5.15.3') }}'
+      media='all'/>
+<link rel='stylesheet' id='elementor-icons-fa-solid-css'
+      href='{{ asset('wp-content/plugins/elementor/assets/lib/font-awesome/css/solid.min52d5.css?ver=5.15.3') }}'
+      media='all'/>
+<link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
+<script src='{{ asset('wp-includes/js/jquery/jquery.mina7a0.js?ver=3.6.1') }}' id='jquery-core-js'></script>
+<script src='{{ asset('wp-includes/js/jquery/jquery-migrate.mind617.js?ver=3.3.2') }}' id='jquery-migrate-js'></script>
+<script src='{{ asset('wp-content/plugins/template-kit-export/public/assets/js/template-kit-export-public.min365c.js?ver=1.0.21') }}'
         id='template-kit-export-js'></script>
-    <script src='wp-content/plugins/elementor/assets/lib/font-awesome/js/v4-shims.mind5d5.js?ver=3.23.4'
-            id='font-awesome-4-shim-js'></script>
-    <link rel="https://api.w.org/" href="wp-json/index.html"/>
-    <link rel="alternate" type="application/json" href="wp-json/wp/v2/pages/6.json"/>
-    <link rel="EditURI" type="application/rsd+xml" title="RSD" href="xmlrpc0db0.html?rsd"/>
-    <link rel="wlwmanifest" type="application/wlwmanifest+xml" href="wp-includes/wlwmanifest.xml"/>
-    <meta name="generator" content="WordPress 6.1.7"/>
-    <link rel="canonical" href="index.html"/>
-    <link rel='shortlink' href='index.html'/>
-    <link rel="alternate" type="application/json+oembed"
-          href="wp-json/oembed/1.0/embed6136.json?url=https%3A%2F%2Fdemo2.strongtheme.com%2Fcoinone%2F"/>
-    <link rel="alternate" type="text/xml+oembed"
-          href="wp-json/oembed/1.0/embed4d0c?url=https%3A%2F%2Fdemo2.strongtheme.com%2Fcoinone%2F&amp;format=xml"/>
-    <meta name="generator"
-          content="Elementor 3.23.4; features: e_optimized_css_loading, additional_custom_breakpoints, e_lazyload; settings: css_print_method-external, google_font-enabled, font_display-auto">
+<script src='{{ asset('wp-content/plugins/elementor/assets/lib/font-awesome/js/v4-shims.mind5d5.js?ver=3.23.4') }}'
+        id='font-awesome-4-shim-js'></script>
+
+    
     <style>
         .e-con.e-parent:nth-of-type(n+4):not(.e-lazyloaded):not(.e-no-lazyload),
         .e-con.e-parent:nth-of-type(n+4):not(.e-lazyloaded):not(.e-no-lazyload) * {
