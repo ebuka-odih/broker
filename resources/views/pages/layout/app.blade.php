@@ -633,6 +633,7 @@
                     <div class="elementor-element elementor-element-5e03de4 elementor-widget elementor-widget-image"
                          data-id="5e03de4" data-element_type="widget" data-widget_type="image.default">
                         <div class="elementor-widget-container">
+                            <h3>{{ env('APP_NAME') }}</h3>
                             <style>/*! elementor - v3.23.0 - 05-08-2024 */
                                 .elementor-widget-image {
                                     text-align: center
@@ -650,11 +651,12 @@
                                     vertical-align: middle;
                                     display: inline-block
                                 }</style>
-                            <img fetchpriority="high" width="800" height="207"
-                                 src="wp-content/uploads/sites/5/2021/08/Logo-1024x265.png"
-                                 class="attachment-large size-large wp-image-613" alt=""
-                                 srcset="https://demo2.strongtheme.com/coinone/wp-content/uploads/sites/5/2021/08/Logo-1024x265.png 1024w, https://demo2.strongtheme.com/coinone/wp-content/uploads/sites/5/2021/08/Logo-300x78.png 300w, https://demo2.strongtheme.com/coinone/wp-content/uploads/sites/5/2021/08/Logo-768x199.png 768w, https://demo2.strongtheme.com/coinone/wp-content/uploads/sites/5/2021/08/Logo-800x207.png 800w, https://demo2.strongtheme.com/coinone/wp-content/uploads/sites/5/2021/08/Logo.png 1276w"
-                                 sizes="(max-width: 800px) 100vw, 800px"/></div>
+{{--                            <img fetchpriority="high" width="800" height="207"--}}
+{{--                                 src="wp-content/uploads/sites/5/2021/08/Logo-1024x265.png"--}}
+{{--                                 class="attachment-large size-large wp-image-613" alt=""--}}
+{{--                                 srcset="https://demo2.strongtheme.com/coinone/wp-content/uploads/sites/5/2021/08/Logo-1024x265.png 1024w, https://demo2.strongtheme.com/coinone/wp-content/uploads/sites/5/2021/08/Logo-300x78.png 300w, https://demo2.strongtheme.com/coinone/wp-content/uploads/sites/5/2021/08/Logo-768x199.png 768w, https://demo2.strongtheme.com/coinone/wp-content/uploads/sites/5/2021/08/Logo-800x207.png 800w, https://demo2.strongtheme.com/coinone/wp-content/uploads/sites/5/2021/08/Logo.png 1276w"--}}
+{{--                                 sizes="(max-width: 800px) 100vw, 800px"/>--}}
+                        </div>
                     </div>
                 </div>
             </div>
@@ -669,7 +671,7 @@
                         data-widget_type="nav-menu.default">
                         <div class="elementor-widget-container">
                             <link rel="stylesheet"
-                                  href="wp-content/plugins/elementor-pro/assets/css/widget-nav-menu.min.css">
+                                  href="{{ asset('wp-content/plugins/elementor-pro/assets/css/widget-nav-menu.min.css') }}">
                             <nav
                                 class="elementor-nav-menu--main elementor-nav-menu__container elementor-nav-menu--layout-horizontal e--pointer-none">
                                 <ul id="menu-1-a9c9edf" class="elementor-nav-menu">
