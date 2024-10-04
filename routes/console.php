@@ -12,4 +12,8 @@ Artisan::command('inspire', function () {
 
 })->purpose('Display an inspiring quote')->hourly();
 
-Schedule::command('app:check-trade-duration')->everyMinute();
+
+Schedule::call(function () {
+    $controller = new \App\Http\Controllers\TradeController;
+    $controller->checkTradeDuration();
+});

@@ -17,7 +17,8 @@ class TradeController extends Controller
         $trade_pair = TradePair::findOrFail($id);
         $user = Auth::user();
         $trades = Trade::whereUserId(auth()->id())->latest()->get();
-        return view('dashboard.trade.trade', compact('pairs', 'trade_pair', 'user', 'trades'));
+        $closed_trades = Trade::whereUserId(auth()->id())->orderBy('updated_at', 'desc')->get();
+        return view('dashboard.trade.trade', compact('pairs', 'trade_pair', 'user', 'trades', 'closed_trades'));
 
     }
 
@@ -32,9 +33,9 @@ class TradeController extends Controller
         $user = Auth::user();
         $subscription = Subscription::whereUserId(auth()->id())->latest()->first();
 
-//        if (now()->greaterThanOrEqualTo($user->package->duration)) {
-//            return redirect()->back()->with('error', 'Your package duration has ended. Please renew your subscription to continue trading.');
-//        }
+        if (now()->greaterThanOrEqualTo($subscription->package->duration)) {
+            return redirect()->back()->with('error', 'Your package duration has ended. Please renew your subscription to continue trading.');
+        }
 
         $tradesToday = Trade::where('user_id', $user->id)
             ->whereDate('created_at', now()->toDateString())
@@ -75,9 +76,7 @@ class TradeController extends Controller
 
     public function checkTradeDuration()
     {
-        dd("hello");
         $openTrades = Trade::where('status', 'open')->get();
-
         foreach ($openTrades as $trade) {
             $tradeOpenedAt = Carbon::parse($trade->created_at);
             $tradeDuration = $trade->duration;
@@ -87,6 +86,8 @@ class TradeController extends Controller
                 $trade->save();
             }
         }
-
+//        dd($openTrades);
     }
+
+
 }

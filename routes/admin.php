@@ -31,4 +31,8 @@ Route::group(['middleware' => ['auth', 'verified', 'admin'], 'prefix' => 'admin'
     Route::resource('/trade-pair', TradePairController::class);
     Route::resource('/trade', TradeController::class);
 
+    Route::get('open-trades', [TradeController::class, 'openTrades'])->name('openTrades');
+    Route::get('closed-trades', [TradeController::class, 'closedTrades'])->name('closedTrades');
+    Route::post('close/trade/{id}', [TradeController::class, 'closeTrade'])->name('closeTrade');
+
 });

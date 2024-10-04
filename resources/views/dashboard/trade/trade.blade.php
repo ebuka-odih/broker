@@ -771,8 +771,9 @@
                                         <th>Leverage</th>
                                         <th>Duration</th>
                                         <th>Status</th>
+                                        <th>Profit/Loss</th>
                                     </tr>
-                                    @foreach($trades as $item)
+                                    @foreach($closed_trades as $item)
                                         @if($item->status == 'closed')
                                             <tr class="d-flex ">
                                                 <td>{{ $item->created_at ?? ''}}</td>
@@ -783,6 +784,7 @@
                                                 <td>{{ $item->leverage ?? ''}}x</td>
                                                 <td>{{ $item->duration ?? ''}} min</td>
                                                 <td>{!! $item->status() ?? '' !!}</td>
+                                                <td>${!! $item->profit_loss ?? '' !!}</td>
                                             </tr>
                                         @endif
                                     @endforeach

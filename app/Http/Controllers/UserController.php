@@ -17,7 +17,8 @@ class UserController extends Controller
         $pairs = TradePair::all();
         $user = Auth::user();
         $trades = Trade::whereUserId(auth()->id())->latest()->get();
-        return view('dashboard.index', compact('pairs', 'user', 'trades'));
+        $closed_trades = Trade::whereUserId(auth()->id())->orderBy('updated_at', 'desc')->get();
+        return view('dashboard.index', compact('pairs', 'user', 'trades', 'closed_trades'));
     }
 
     public function profile()

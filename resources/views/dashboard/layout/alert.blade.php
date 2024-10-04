@@ -1,8 +1,8 @@
 
 <!-- Toast container in the layout -->
 {{--<div id="toast-container" style="position: fixed; top: 50px; right: 100px; z-index: 9999;"></div>--}}
-{{--<div id="toast-container" style="position: fixed; bottom: 40px; right: 70px; z-index: 9999;"></div>--}}
-<div id="toast-container" style="position: fixed; bottom: 50%; left: 50%; transform: translate(-50%, 50%); z-index: 9999;"></div>
+<div id="toast-container" style="position: fixed; bottom: 40px; right: 70px; z-index: 9999;"></div>
+{{--<div id="toast-container" style="position: fixed; bottom: 50%; left: 50%; transform: translate(-50%, 50%); z-index: 9999;"></div>--}}
 
 <style>
     /* Toast styling */

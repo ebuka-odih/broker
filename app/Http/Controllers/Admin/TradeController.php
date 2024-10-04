@@ -36,4 +36,29 @@ class TradeController extends Controller
         return back()->with('success', 'Trade placed successfully!');
     }
 
+    public function  openTrades(){
+        $trades = Trade::latest()->get();
+        return view('admin.trade.open-trades', compact('trades'));
+    }
+    public function  closedTrades(){
+        $trades = Trade::orderBy('updated_at', 'desc')->get();
+        return view('admin.trade.closed-trades', compact('trades'));
+    }
+
+    public function closeTrade(Request $request, $id)
+    {
+        $trade = Trade::findOrFail($id);
+        $trade->profit_loss = $request->get('profit_loss');
+        $trade->status = 'closed';
+        $trade->save();
+        return redirect()->route('admin.closedTrades')->with('success', 'Trade closed successfully!');
+    }
+
+    public function destroy($id)
+    {
+        $trades = Trade::findOrFail($id);
+        $trades->delete();
+        return back()->with('success', 'Trade deleted successfully!');
+    }
+
 }
