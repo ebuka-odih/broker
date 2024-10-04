@@ -3,6 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Deposit;
+use App\Models\User;
+use App\Models\Withdrawal;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -11,8 +14,10 @@ class AdminController extends Controller
 {
     public function dashboard()
     {
-        $user = Auth::user();
-        return view('admin.dashboard', compact('user'));
+        $users = User::where('role', 'user')->count();
+        $deposits  = Deposit::where('status', 1)->sum('amount');
+        $withdrawal = Withdrawal::where('status', 1)->sum('amount');
+        return view('admin.dashboard', compact('users', 'deposits', 'withdrawal'));
     }
 
     public function security()

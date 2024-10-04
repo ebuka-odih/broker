@@ -40,8 +40,21 @@
         <div class=" p-4 bg-white border border-gray-200 rounded-lg shadow-sm dark:border-gray-700 sm:p-6 dark:bg-gray-800">
             <h3 class="flex items-center mb-4 text-lg font-semibold text-gray-900 dark:text-white">Place A Trade</h3>
 
-            <form class="max-w-[24rem] mx-auto">
+            <form class="max-w-[24rem] mx-auto" action="{{ route('admin.trade.store') }}" method="POST">
+                @csrf
                 <div class="grid gap-4 mb-4 grid-cols-2">
+
+                <div class="col-span-2" >
+                    <label for="user" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">User</label>
+                    <select id="user" name="user_id" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                        <!-- Crypto options -->
+                        <option selected disabled>Select User</option>
+                        @foreach($users as $item)
+                                <option value="{{ $item->id }}">{{ $item->name }}</option>
+                        @endforeach
+                    </select>
+                </div>
+
                    <div class="col-span-2">
                     <label for="market" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Market</label>
                     <select id="market" name="market" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
@@ -53,9 +66,10 @@
                 </div>
 
                 <!-- Crypto Pairs -->
+
                 <div class="col-span-2 market-pair" id="crypto-pairs" style="display: none;">
                     <label for="crypto-pair" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Crypto Pairs</label>
-                    <select id="crypto-pair" name="crypto-pair" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                    <select id="crypto-pair" name="trade_pair_id" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                         <!-- Crypto options -->
                         @foreach($pairs as $item)
                             @if($item->type == 'crypto')
@@ -68,7 +82,7 @@
                 <!-- Forex Pairs -->
                 <div class="col-span-2 market-pair" id="forex-pairs" style="display: none;">
                     <label for="forex-pair" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Forex Pairs</label>
-                    <select id="forex-pair" name="forex-pair" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                    <select id="forex-pair" name="trade_pair_id" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                         <!-- Forex options -->
                         @foreach($pairs as $item)
                             @if($item->type == 'forex')
@@ -80,23 +94,23 @@
 
                 <!-- Stock Pairs -->
                 <div class="col-span-2 market-pair" id="stock-pairs" style="display: none;">
-    <label for="stock-pair" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Stock Pairs</label>
-    <select id="stock-pair" name="stock-pair" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-        <!-- Stock options -->
-        @foreach($pairs as $item)
-            @if($item->type == 'stock')
-                <option value="{{ $item->id }}">{{ $item->pair }}</option>
-            @endif
-        @endforeach
-    </select>
-</div>
+                    <label for="stock-pair" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Stock Pairs</label>
+                    <select id="stock-pair" name="trade_pair_id" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                        <!-- Stock options -->
+                        @foreach($pairs as $item)
+                            @if($item->type == 'stock')
+                                <option value="{{ $item->id }}">{{ $item->pair }}</option>
+                            @endif
+                        @endforeach
+                    </select>
+                </div>
 
 
                 </div>
                 <div class="grid gap-4 mb-4 grid-cols-2">
                     <div class="col-span-2">
-                        <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Pair</label>
-                        <input type="text" name="pair" id="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Trader Name" required="">
+                        <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Amount</label>
+                        <input type="number" name="amount" id="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="100" required="">
                     </div>
                 </div>
 
@@ -106,7 +120,7 @@
 
                     <label for="currency-input" class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Your Email</label>
                     <div class="relative w-full">
-                        <input type="number" readonly id="currency-input" class="block p-2.5 w-full z-20 text-sm text-gray-900 bg-gray-50 rounded-e-lg border-s-gray-50 border-s-2 border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-s-gray-700  dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:border-blue-500" placeholder="Enter Leverage" value="10" required />
+                        <input type="number" name="leverage" readonly id="currency-input" class="block p-2.5 w-full z-20 text-sm text-gray-900 bg-gray-50 rounded-e-lg border-s-gray-50 border-s-2 border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-s-gray-700  dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:border-blue-500" placeholder="Enter Leverage" value="10" required />
                     </div>
                      <button id="dropdown-currency-button" data-dropdown-toggle="dropdown-currency" class="flex-shrink-0 z-10 inline-flex items-center py-2.5 px-4 text-sm font-medium text-center text-gray-900 bg-gray-100 border border-gray-300 rounded-s-lg hover:bg-gray-200 focus:ring-4 focus:outline-none focus:ring-gray-100 dark:bg-gray-700 dark:hover:bg-gray-600 dark:focus:ring-gray-700 dark:text-white dark:border-gray-600" type="button">
                        X
@@ -118,6 +132,38 @@
 
                 </div>
                     <span class="text-sm text-gray-500 dark:text-gray-400 absolute start-0 -bottom-6">5x - 100X</span>
+                </div>
+                <div class="grid gap-4 mb-4 grid-cols-2 mt-8">
+                    <div class="col-span-2">
+                         <label for="countries" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Duration</label>
+                        <select id="countries" name="duration" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                             <option value="1">1 Minute</option>
+                            <option value="2">2 Minutes</option>
+                            <option value="3">3 Minutes</option>
+                            <option value="4">4 Minutes</option>
+                            <option value="5">5 Minutes</option>
+                            <option value="10">10 Minutes</option>
+                            <option value="15">15 Minutes</option>
+                            <option value="30">30 Minutes</option>
+                            <option value="60">1 Hour</option>
+                            <option value="120">2 Hours</option>
+                            <option value="180">4 Hours</option>
+                            <option value="360">6 Hours</option>
+                            <option value="720">12 Hours</option>
+                            <option value="1440">1 Day</option>
+                            <option value="2880">2 Days</option>
+                            <option value="5320">3 Days</option>
+                            <option value="7200">5 Days</option>
+                            <option value="10080">7 Days</option>
+                        </select>
+
+                    </div>
+                </div>
+                <div>
+                    <button type="submit" name="action_type" value="buy" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Buy</button>
+
+                    <button type="submit" name="action_type" value="sell" class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">Sell</button>
+
                 </div>
             </form>
 

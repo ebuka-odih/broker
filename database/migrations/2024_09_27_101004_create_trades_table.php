@@ -16,6 +16,7 @@ return new class extends Migration
             $table->uuid('id')->primary();
             $table->uuid('user_id');
             $table->uuid('trade_pair_id');
+            $table->string('market')->nullable();
             $table->double('amount', 10, 2);
             $table->string('action_type')->nullable(); // buy/sell
             $table->string('status')->default('open');

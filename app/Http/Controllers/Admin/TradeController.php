@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Trade;
 use App\Models\TradePair;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class TradeController extends Controller
@@ -13,34 +14,38 @@ class TradeController extends Controller
     {
         $trades = Trade::all();
         $pairs = TradePair::all();
-        return view('admin.trade.trade', compact('trades', 'pairs'));
+        $users = User::where('role', 'user')->get();
+        return view('admin.trade.trade', compact('trades', 'pairs', 'users'));
     }
 
     public function store(Request $request)
     {
+
         $user = $request->get('user_id');
         $amount = $request->input('amount');
 
-        if (!$user->canPlaceTrade()) {
-            return back()->withErrors(['error' => 'You have reached your daily trade limit.']);
-        }
-
-        Trade::create([
-            'user_id' => $user->id,
+        $trade = Trade::create([
+            'user_id' => $user,
             'amount' => $amount,
-            'status' => 'pending',
+            'status' => 'open',
+            'trade_pair_id' => $request->get('trade_pair_id'),
             'leverage' => $request->get('leverage'),
-            'interval' => $request->get('interval'),
+            'duration' => $request->get('duration'),
+            'action_type' => $request->get('action_type'),
         ]);
 
-        return back()->with('success', 'Trade placed successfully!');
+        $user = User::findOrFail($user);
+        $user->balance -= $trade->amount;
+        $user->save();
+
+        return redirect()->route('admin.openTrades')->with('success', 'Trade placed successfully!');
     }
 
-    public function  openTrades(){
+    public function openTrades(){
         $trades = Trade::latest()->get();
         return view('admin.trade.open-trades', compact('trades'));
     }
-    public function  closedTrades(){
+    public function closedTrades(){
         $trades = Trade::orderBy('updated_at', 'desc')->get();
         return view('admin.trade.closed-trades', compact('trades'));
     }
