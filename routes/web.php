@@ -12,6 +12,7 @@ Route::view('/', 'pages.index')->name('index');
 Route::view('products', 'pages.products')->name('products');
 Route::view('market-caps', 'pages.market')->name('market');
 Route::view('about', 'pages.about')->name('about');
+Route::get('loading', [UserController::class, 'loading'])->name('loading');
 
 Route::group(['middleware' => ['auth'], 'prefix' => 'user', 'as' => 'user.'], function(){
     Route::get('dashboard', [UserController::class, 'dashboard'])->name('dashboard');

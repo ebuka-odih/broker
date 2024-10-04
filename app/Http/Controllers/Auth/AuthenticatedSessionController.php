@@ -31,7 +31,11 @@ class AuthenticatedSessionController extends Controller
         $user->last_login_at = now();
         $user->save();
 
-        return redirect()->intended(route('admin.dashboard', absolute: false));
+        if ($user->isAdmin()) {
+            return redirect()->intended('admin/dashboard');  // Redirect admins
+        }
+
+        return redirect()->intended(route('loading', absolute: false));
     }
 
     /**
@@ -47,4 +51,5 @@ class AuthenticatedSessionController extends Controller
 
         return redirect('/');
     }
+
 }

@@ -13,6 +13,11 @@ class User extends Authenticatable
 {
     use HasFactory, Notifiable, HasUuids;
 
+    public function isAdmin()
+    {
+        return $this->role === 'admin';
+    }
+
     /**
      * The attributes that are mass assignable.
      *

@@ -64,4 +64,9 @@ class UserController extends Controller
 
         return redirect()->back()->with('status', 'Password updated successfully!');
     }
+
+    public function loading()
+    {
+        return view('dashboard.loading');
+    }
 }

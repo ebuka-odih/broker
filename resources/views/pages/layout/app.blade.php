@@ -450,7 +450,7 @@
 <script src='{{ asset('wp-content/plugins/elementor/assets/lib/font-awesome/js/v4-shims.mind5d5.js?ver=3.23.4') }}'
         id='font-awesome-4-shim-js'></script>
 
-    
+
     <style>
         .e-con.e-parent:nth-of-type(n+4):not(.e-lazyloaded):not(.e-no-lazyload),
         .e-con.e-parent:nth-of-type(n+4):not(.e-lazyloaded):not(.e-no-lazyload) * {
@@ -472,11 +472,7 @@
         }
     </style>
     <meta name="theme-color" content="#F1F8FF">
-    <link rel="icon" href="wp-content/uploads/sites/5/2021/07/Path-876.png" sizes="32x32"/>
-    <link rel="icon" href="wp-content/uploads/sites/5/2021/07/Path-876.png" sizes="192x192"/>
-    <link rel="apple-touch-icon" href="wp-content/uploads/sites/5/2021/07/Path-876.png"/>
-    <meta name="msapplication-TileImage"
-          content="https://demo2.strongtheme.com/coinone/wp-content/uploads/sites/5/2021/07/Path-876.png"/>
+
 </head>
 <body
     class="home page-template page-template-elementor_header_footer page page-id-6 wp-custom-logo elementor-default elementor-template-full-width elementor-kit-3 elementor-page elementor-page-6">
