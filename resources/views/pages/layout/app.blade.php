@@ -676,12 +676,12 @@
                                 class="elementor-nav-menu--main elementor-nav-menu__container elementor-nav-menu--layout-horizontal e--pointer-none">
                                 <ul id="menu-1-a9c9edf" class="elementor-nav-menu">
                                     <li class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item current_page_item menu-item-home menu-item-1394">
-                                        <a href="index.html" aria-current="page"
+                                        <a href="{{ route('index') }}" aria-current="page"
                                            class="elementor-item elementor-item-active">Home</a></li>
                                     <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1391">
-                                        <a href="products/index.html" class="elementor-item">Products</a></li>
+                                        <a href="{{ route('products') }}" class="elementor-item">Products</a></li>
                                     <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1388">
-                                        <a href="market-cap/index.html" class="elementor-item">Market Coin</a></li>
+                                        <a href="{{ route('market') }}" class="elementor-item">Market Coin</a></li>
                                     <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1382">
                                         <a href="about/index.html" class="elementor-item">About</a></li>
                                     <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1385">
@@ -691,21 +691,22 @@
                             <div class="elementor-menu-toggle" role="button" tabindex="0" aria-label="Menu Toggle"
                                  aria-expanded="false">
                                 <i aria-hidden="true" role="presentation"
-                                   class="elementor-menu-toggle__icon--open eicon-menu-bar"></i><i aria-hidden="true"
-                                                                                                   role="presentation"
-                                                                                                   class="elementor-menu-toggle__icon--close eicon-close"></i>
+                                   class="elementor-menu-toggle__icon--open eicon-menu-bar"></i>
+                                <i aria-hidden="true"
+                                                   role="presentation"
+                                                   class="elementor-menu-toggle__icon--close eicon-close"></i>
                                 <span class="elementor-screen-only">Menu</span>
                             </div>
                             <nav class="elementor-nav-menu--dropdown elementor-nav-menu__container" aria-hidden="true">
                                 <ul id="menu-2-a9c9edf" class="elementor-nav-menu">
                                     <li class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item current_page_item menu-item-home menu-item-1394">
-                                        <a href="index.html" aria-current="page"
+                                        <a href="{{ route('index') }}" aria-current="page"
                                            class="elementor-item elementor-item-active" tabindex="-1">Home</a></li>
                                     <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1391">
-                                        <a href="products/index.html" class="elementor-item" tabindex="-1">Products</a>
+                                        <a href="{{ route('products') }}" class="elementor-item" tabindex="-1">Products</a>
                                     </li>
                                     <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1388">
-                                        <a href="market-cap/index.html" class="elementor-item" tabindex="-1">Market
+                                        <a href="{{ route('market') }}" class="elementor-item" tabindex="-1">Market
                                             Coin</a></li>
                                     <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1382">
                                         <a href="about/index.html" class="elementor-item" tabindex="-1">About</a></li>
