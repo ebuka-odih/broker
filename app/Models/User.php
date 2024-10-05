@@ -13,7 +13,7 @@ class User extends Authenticatable
 {
     use HasFactory, Notifiable, HasUuids;
 
-    public function IsAdmin()
+    public function isAdmin()
     {
         return $this->role === 'admin';
     }
