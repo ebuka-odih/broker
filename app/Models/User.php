@@ -13,10 +13,10 @@ class User extends Authenticatable
 {
     use HasFactory, Notifiable, HasUuids;
 
-    public function IsAdmin()
-    {
-        return $this->role === 'admin';
-    }
+//    public function IsAdmin()
+//    {
+//        return $this->role === 'admin';
+//    }
 
     /**
      * The attributes that are mass assignable.
@@ -98,12 +98,6 @@ class User extends Authenticatable
     public function subscription()
     {
         return $this->belongsTo(Package::class);
-    }
-
-    public function canPlaceTrade()
-    {
-        $todayTrades = $this->trades()->whereDate('created_at', now()->toDateString())->count();
-        return $todayTrades < $this->package->trade_limit_per_day;
     }
 
 
