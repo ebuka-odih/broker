@@ -13,7 +13,6 @@ Route::view('products', 'pages.products')->name('products');
 Route::view('market-caps', 'pages.market')->name('market');
 Route::view('about', 'pages.about')->name('about');
 Route::get('loading', [UserController::class, 'loading'])->name('loading');
-Route::view('dashboard', 'dashboard')->name('dashboard');
 
 Route::group(['middleware' => ['auth'], 'prefix' => 'user', 'as' => 'user.'], function(){
     Route::get('dashboard', [UserController::class, 'dashboard'])->name('dashboard');
@@ -38,7 +37,7 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'user', 'as' => 'user.'], fu
 
 Route::get('/dashboard', function () {
     return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+})->middleware(['auth'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

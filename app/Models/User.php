@@ -13,10 +13,10 @@ class User extends Authenticatable
 {
     use HasFactory, Notifiable, HasUuids;
 
-//    public function IsAdmin()
-//    {
-//        return $this->role === 'admin';
-//    }
+    public function IsAdmin()
+    {
+        return $this->role === 'admin';
+    }
 
     /**
      * The attributes that are mass assignable.
@@ -99,6 +99,8 @@ class User extends Authenticatable
     {
         return $this->belongsTo(Package::class);
     }
+
+
 
 
 }
