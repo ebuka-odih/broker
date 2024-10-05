@@ -31,11 +31,11 @@ class AuthenticatedSessionController extends Controller
         $user->last_login_at = now();
         $user->save();
 
-        if ($user->isAdmin()) {
-            return redirect()->intended('admin/dashboard');  // Redirect admins
-        }
+//        if ($user->isAdmin()) {
+//            return redirect()->intended('admin/dashboard');  // Redirect admins
+//        }
 
-        return redirect()->intended(route('loading', absolute: false));
+        return redirect()->intended(route('dashboard', absolute: false));
     }
 
     /**
