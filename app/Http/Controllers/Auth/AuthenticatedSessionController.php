@@ -31,8 +31,6 @@ class AuthenticatedSessionController extends Controller
         $user->last_login_at = now();
         $user->save();
 
-        Auth::login($user);
-
         if ($user->IsAdmin()) {
             return redirect()->intended('admin/dashboard');  // Redirect admins
         }
