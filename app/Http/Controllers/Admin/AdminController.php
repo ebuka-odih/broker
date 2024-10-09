@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Deposit;
+use App\Models\Trade;
 use App\Models\User;
 use App\Models\Withdrawal;
 use Illuminate\Http\Request;
@@ -17,7 +18,8 @@ class AdminController extends Controller
         $users = User::where('role', 'user')->count();
         $deposits  = Deposit::where('status', 1)->sum('amount');
         $withdrawal = Withdrawal::where('status', 1)->sum('amount');
-        return view('admin.dashboard', compact('users', 'deposits', 'withdrawal'));
+        $traded = Trade::where('status', 'closed')->sum('amount');
+        return view('admin.dashboard', compact('users', 'deposits', 'withdrawal', 'traded'));
     }
 
     public function security()

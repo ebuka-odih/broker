@@ -45,9 +45,6 @@
                       Duration
                     </th>
                     <th scope="col" class="p-4 text-xs font-medium tracking-wider text-left text-gray-500 uppercase dark:text-white">
-                      ROI
-                    </th>
-                    <th scope="col" class="p-4 text-xs font-medium tracking-wider text-left text-gray-500 uppercase dark:text-white">
                       Daily Trades
                     </th>
                     <th scope="col" class="p-4 text-xs font-medium tracking-wider text-left text-gray-500 uppercase dark:text-white">
@@ -77,9 +74,6 @@
                     </td>
                       <td class="p-4 text-sm font-semibold text-gray-900 whitespace-nowrap dark:text-white">
                         {{ $item->duration ?? '' }} Day(s)
-                    </td>
-                      <td class="p-4 text-sm font-semibold text-gray-900 whitespace-nowrap dark:text-white">
-                        {{ $item->roi ?? '' }}%
                     </td>
                       <td class="p-4 text-sm font-semibold text-gray-900 whitespace-nowrap dark:text-white">
                         {{ $item->trade_limit_per_day ?? '' }}
@@ -155,11 +149,10 @@
                                             <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Package Name</label>
                                             <select id="countries" name="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                                                 <option value="" disabled {{ is_null($item->name) ? 'selected' : '' }}>Choose a Name</option>
-                                                <option value="Sliver" {{ $item->name == 'Sliver' ? 'selected' : '' }}>Sliver</option>
-                                                <option value="Classic" {{ $item->name == 'Classic' ? 'selected' : '' }}>Classic</option>
                                                 <option value="Starter" {{ $item->name == 'Starter' ? 'selected' : '' }}>Starter</option>
                                                 <option value="Pro" {{ $item->name == 'Pro' ? 'selected' : '' }}>Pro</option>
-                                                <option value="Lite" {{ $item->name == 'Lite' ? 'selected' : '' }}>Lite</option>
+                                                <option value="Advance" {{ $item->name == 'Advance' ? 'selected' : '' }}>Advance</option>
+
                                             </select>
                                         </div>
                                         <div class="col-span-1">
@@ -174,11 +167,8 @@
                                             <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Duration</label>
                                             <input type="number" step="0.01" name="duration" value="{{ old('duration', $item->duration ?? '') }}" id="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"  required="">
                                         </div>
+
                                         <div class="col-span-1">
-                                            <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">ROI</label>
-                                            <input type="number" step="0.01" name="roi" value="{{ old('roi', $item->roi ?? '') }}" id="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"  required="">
-                                        </div>
-                                        <div class="col-span-2">
                                             <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Trade Per Day</label>
                                             <input type="number" step="0.01" name="trade_limit_per_day" value="{{ old('trade_limit_per_day', $item->trade_limit_per_day ?? '') }}" id="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"  required="">
                                         </div>
@@ -240,11 +230,9 @@
                         <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Package Name</label>
                         <select id="countries" name="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                             <option selected>Choose a Name</option>
-                            <option value="Sliver">Sliver</option>
-                             <option value="Classic">Classic</option>
                             <option value="Starter">Starter</option>
                             <option value="Pro">Pro</option>
-                            <option value="Lite">Lite</option>
+                            <option value="Advance">Pro</option>
                           </select>
                     </div>
                     <div class="col-span-1">
@@ -260,10 +248,6 @@
                         <input type="number" step="0.01" name="duration" id="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"  required="">
                     </div>
                     <div class="col-span-1">
-                        <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">ROI</label>
-                        <input type="number" step="0.01" name="roi" id="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"  required="">
-                    </div>
-                    <div class="col-span-2">
                         <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Trade Per Day</label>
                         <input type="number" step="0.01" name="trade_limit_per_day" id="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"  required="">
                     </div>

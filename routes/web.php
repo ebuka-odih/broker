@@ -21,7 +21,8 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'user', 'as' => 'user.'], fu
     Route::post('update/password/', [UserController::class, 'updatePassword'])->name('updatePassword');
 
     Route::get('trade/{id}', [TradeController::class, 'trade'])->name('trade');
-    Route::post('place/trade', [TradeController::class, 'placeTrade'])->name('placeTrade');
+    Route::post('place/buy/trade', [TradeController::class, 'placeBuyTrade'])->name('placeBuyTrade');
+    Route::post('place/sell/trade', [TradeController::class, 'placeSellTrade'])->name('placeSellTrade');
     Route::get('close/trade/{id}', [TradeController::class, 'closeTrade'])->name('closeTrade');
 
     Route::get('deposit', [DepositController::class, 'deposit'])->name('deposit');

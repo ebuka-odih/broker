@@ -24,9 +24,12 @@ return new class extends Migration
             $table->double('balance', 11, 2)->default(0);
             $table->double('profit', 11, 2)->default(0);
             $table->timestamp('last_login_at')->nullable();
-            $table->integer('trader')->default(0);
             $table->string('phone')->nullable();
             $table->string('telegram')->nullable();
+
+            $table->uuid('package_id')->nullable();
+            $table->integer('trader')->default(0);
+            $table->integer('trade_count')->default(5);
 
             $table->rememberToken();
             $table->timestamps();

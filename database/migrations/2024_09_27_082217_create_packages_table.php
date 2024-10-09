@@ -17,7 +17,6 @@ return new class extends Migration
             $table->double('min_amount', 11, 2);
             $table->double('max_amount', 11, 2)->nullable();
             $table->integer('duration')->nullable();
-            $table->integer('roi')->nullable();
             $table->integer('trade_limit_per_day')->default(5);
             $table->timestamps();
         });
