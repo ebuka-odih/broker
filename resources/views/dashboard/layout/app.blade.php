@@ -115,6 +115,7 @@
   </header>
 
   @yield('content')
+   @include('dashboard.layout.alert')
 
 
   <script src="{{ asset('assets/js/jquery-3.4.1.min.js') }}"></script>

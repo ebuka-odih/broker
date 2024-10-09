@@ -1,35 +1,42 @@
 @extends('dashboard.layout.app')
 @section('content')
-        <style>
-        .payment-grid {
-            display: grid;
-            grid-template-columns: 1fr 2fr 3fr 2fr;
-            grid-gap: 10px;
-            width: 100%;
-        }
+     <style>
+    .payment-grid {
+        display: grid;
+        grid-template-columns: 2fr 2fr 2fr 2fr 2fr 1fr; /* Added one more 2fr for the "Ending" column */
+        grid-gap: 10px;
+        width: 100%;
+    }
 
-        .payment-grid-header, .payment-grid-row {
-            display: contents;
-        }
+    .payment-grid-header, .payment-grid-row {
+        display: contents;
+    }
 
-        .payment-grid div {
-            padding: 10px;
-            border-bottom: 1px solid #ddd;
-        }
+    .payment-grid div {
+        padding: 10px;
+        border-bottom: 1px solid #ddd;
+        text-align: center; /* Center text in each grid cell */
+    }
 
-        .payment-grid-header div {
-            font-weight: bold;
-        }
+    .payment-grid-header div {
+        font-weight: bold;
+        text-align: center; /* Ensure header text is centered */
+    }
 
-        .payment-grid-row div {
-            padding: 10px;
-        }
+    .payment-grid-row div {
+        padding: 10px;
+    }
 
-        .payment-grid-row:last-child div {
-            border-bottom: none;
-        }
+    .payment-grid-row:last-child div {
+        border-bottom: none;
+    }
 
-    </style>
+    .badge {
+        padding: 0.3rem 0.6rem; /* Adjust badge padding for smaller display */
+        font-size: 0.875rem;
+    }
+</style>
+
 
     <div class="container">
         <div class="col-12">
@@ -72,10 +79,10 @@
                                 <h3 class="mb-0">{{ $item->name }}</h3>
                             </div>
                         </div>
-                        <form class="card-body text-dark" action="{{ route('user.activatePlan') }}" method="POST"
-                              >
+                        <form class="card-body text-dark" action="{{ route('user.activatePlan') }}" method="POST">
                             @csrf
                             <input type="hidden" name="plan_id" value="{{ $item->id }}">
+                            <input type="hidden" name="trade_limit_per_day" value="{{ $item->trade_limit_per_day }}">
                             <div class="mb-4">
                                 {{--                                    <p class="mb-0 text-dark">Min</p>--}}
                                 <span style="font-size: 20px; font-weight: bolder"
@@ -89,10 +96,6 @@
 									<span class="flex-fill p-2 mr-2 mb-2 rounded border">
 										<p class="text-primary mb-0">DURATION</p>
 										<p class="font-weight-bold text-dark mb-0" style="font-size: 16px">{{ $item->duration }} DAYS</p>
-									</span>
-                                <span class="flex-fill p-2 mr-2 mb-2 rounded border">
-										<p class="text-primary mb-0">ROI</p>
-										<p class="font-weight-bold text-dark mb-0" style="font-size: 16px">{{ $item->roi }}%</p>
 									</span>
                                 <span class="flex-fill p-2 mb-2 rounded border">
 										<p class="text-primary mb-0">DAILY TRADES</p>
@@ -118,15 +121,18 @@
             <div class="col-md-12 py-3">
                 <div class="card my-2">
                     <div class="card-header">
-                        <h4 class="mb-0">Subscriptions</h4>
+                        <h4 class="mb-0">Active Subscription</h4>
                     </div>
                     <div class="card-body px-3 py-3">
+
                          <div class="payment-grid">
                                 <div class="payment-grid-header">
                                     <div>Date</div>
                                     <div>Amount</div>
                                     <div>Package</div>
                                     <div>Status</div>
+                                    <div>Ending</div>
+                                    <div>Trade Count</div>
                                 </div>
 
                                 @foreach($subscription as $index => $item)
@@ -135,12 +141,14 @@
                                         <div>${{ number_format($item->amount, 2) ?? '' }}</div>
                                         <div>{{ $item->package->name ?? '' }}</div>
                                         <div>
-                                            @if($item->status == "pending")
-                                                <span class="badge bg-warning">Pending</span>
+                                            @if($item->status == 0)
+                                                <span class="badge bg-warning text-white">Pending</span>
                                             @else
-                                                <span class="badge bg-success">Successful</span>
+                                                <span class="badge bg-success text-white">Active</span>
                                             @endif
                                         </div>
+                                        <div>{{ date('d M, Y', strtotime($item->ending_date)) ?? '' }}</div>
+                                        <div>{{ $item->user->trade_count ?? '' }}</div>
                                     </div>
                                 @endforeach
                             </div>

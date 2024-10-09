@@ -28,85 +28,88 @@ class TradeController extends Controller
             'amount' => 'required|numeric|min:0',
             'leverage' => 'required',
             'duration' => 'required',
+            'stop_loss' => 'nullable',
+            'take_profit' => 'nullable',
+            'action_type' => 'nullable',
             'trade_pair_id' => 'required',
         ]);
-        $user = Auth::user();
-        $subscription = Subscription::whereUserId(auth()->id())->latest()->first();
 
-        if (now()->greaterThanOrEqualTo($subscription->package->duration)) {
+        $user = Auth::user();
+
+        if (!$user->trader) {
+            return redirect()->back()->with('error', 'To initiate a trade, please subscribe to a package first.');
+        }
+
+        $subscription = Subscription::whereUserId($user->id)->latest()->first();
+        $endingDate = Carbon::parse($subscription->ending_date);
+
+        if (now()->greaterThanOrEqualTo($endingDate)) {
             return redirect()->back()->with('error', 'Your package duration has ended. Please renew your subscription to continue trading.');
         }
 
-        $tradesToday = Trade::where('user_id', $user->id)
-            ->whereDate('created_at', now()->toDateString())
-            ->count();
+        $tradesToday = Trade::where('user_id', $user->id)->whereDate('created_at', now()->toDateString())->count();
 
-        if ($tradesToday >= $subscription->package->trade_limit_per_day) {
-            return redirect()->back()->with('error', 'Sorry, You have reached your daily trade limit.');
+        if ($tradesToday >= $user->trade_count) {
+            return redirect()->back()->with('error', 'You have reached your daily trade limit.');
         }
-        if ($user->trader == 0)
-        {
-            return redirect()->back()->with('error', 'To initiate a trade, please subscribe to a package first.');
-        }
-        if ($request->amount <= \auth()->user()->balance){
-            $trade = new Trade();
-            $trade->amount = $validated['amount'];
-            $trade->leverage = $validated['leverage'];
-            $trade->duration = $validated['duration'];
-            $trade->trade_pair_id = $validated['trade_pair_id'];
-            $trade->action_type = $request->get("action_type");
-            $trade->user_id = Auth::id();
-            $trade->save();
 
-            $user->balance -= $request->amount;
-            $user->save();
-            return redirect()->back()->with('success', 'Buy Order Placed Successfully.');
+        if ($request->amount > $user->balance) {
+            return redirect()->back()->with('error', 'Insufficient Balance');
         }
-        return redirect()->back()->with('error', 'Insufficient Balance');
+
+        $validated['user_id'] = $user->id;
+        Trade::create($validated);
+
+        $user->balance -= $request->amount;
+        $user->save();
+
+        return redirect()->back()->with('success', 'Buy Order Placed Successfully.');
     }
 
-     public function placeSellTrade(Request $request)
+    public function placeSellTrade(Request $request)
     {
         $validated = $request->validate([
             'amount' => 'required|numeric|min:0',
             'leverage' => 'required',
             'duration' => 'required',
+            'stop_loss' => 'nullable',
+            'take_profit' => 'nullable',
+            'action_type' => 'nullable',
             'trade_pair_id' => 'required',
         ]);
-        $user = Auth::user();
-        $subscription = Subscription::whereUserId(auth()->id())->latest()->first();
 
-        if (now()->greaterThanOrEqualTo($subscription->package->duration)) {
+        $user = Auth::user();
+
+        if (!$user->trader) {
+            return redirect()->back()->with('error', 'To initiate a trade, please subscribe to a package first.');
+        }
+
+        $subscription = Subscription::whereUserId($user->id)->latest()->first();
+        $endingDate = Carbon::parse($subscription->ending_date);
+
+        if (now()->greaterThanOrEqualTo($endingDate)) {
             return redirect()->back()->with('error', 'Your package duration has ended. Please renew your subscription to continue trading.');
         }
 
-        $tradesToday = Trade::where('user_id', $user->id)
-            ->whereDate('created_at', now()->toDateString())
-            ->count();
+        $tradesToday = Trade::where('user_id', $user->id)->whereDate('created_at', now()->toDateString())->count();
 
-        if ($tradesToday >= $subscription->package->trade_limit_per_day) {
-            return redirect()->back()->with('error', 'Sorry, You have reached your daily trade limit.');
+        if ($tradesToday >= $user->trade_count) {
+            return redirect()->back()->with('error', 'You have reached your daily trade limit.');
         }
-        if ($user->trader == 0)
-        {
-            return redirect()->back()->with('error', 'To initiate a trade, please subscribe to a package first.');
-        }
-        if ($request->amount <= \auth()->user()->balance){
-            $trade = new Trade();
-            $trade->amount = $validated['amount'];
-            $trade->leverage = $validated['leverage'];
-            $trade->duration = $validated['duration'];
-            $trade->trade_pair_id = $validated['trade_pair_id'];
-            $trade->action_type = $request->get("action_type");
-            $trade->user_id = Auth::id();
-            $trade->save();
 
-            $user->balance -= $request->amount;
-            $user->save();
-            return redirect()->back()->with('success', 'Buy Order Placed Successfully.');
+        if ($request->amount > $user->balance) {
+            return redirect()->back()->with('error', 'Insufficient Balance');
         }
-        return redirect()->back()->with('error', 'Insufficient Balance');
+
+        $validated['user_id'] = $user->id;
+        Trade::create($validated);
+
+        $user->balance -= $request->amount;
+        $user->save();
+
+        return redirect()->back()->with('success', 'Sell Order Placed Successfully.');
     }
+
 
     public function closeTrade($id)
     {

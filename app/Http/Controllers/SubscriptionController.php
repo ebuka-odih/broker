@@ -17,29 +17,41 @@ class SubscriptionController extends Controller
         return view('dashboard.subscription', compact('plans', 'user', 'subscription'));
     }
 
-    public function store(Request $request)
+   public function store(Request $request)
     {
         $user = Auth::user();
         $package = Package::findOrFail($request->plan_id);
-        if ($request->amount < $package->min_amount || $request->amount > $package->max_amount){
+
+        // Validate the amount within the min/max package limit
+        if ($request->amount < $package->min_amount || $request->amount > $package->max_amount) {
             return redirect()->back()->with('error', 'Enter an amount within Min/Max Plan amount');
         }
-        if ($request->amount <= $user->balance)
-        {
-            $sub = new Subscription();
-            $sub->amount = $request->amount;
-            $sub->user_id = Auth::id();
-            $sub->package_id = $request->plan_id;
-            $sub->status = 'successful';
-            $sub->save();
 
-            $user->balance -= $request->amount;
-            $user->trader = 1;
-            $user->save();
-            return redirect()->back()->with('success', 'Subscription Activated Successful');
+        // Check if the user has sufficient balance
+        if ($request->amount > $user->balance) {
+            return redirect()->back()->with('error', 'Insufficient balance');
         }
-         return redirect()->back()->with('error', 'insufficient balance');
 
+        Subscription::updateOrCreate(
+            [
+                'user_id' => $user->id,
+                'package_id' => $package->id
+            ],
+            [
+                'amount' => $request->amount,
+                'status' => 1
+            ]
+        );
+
+        $user->update([
+            'balance' => $user->balance - $request->amount,
+            'trader' => 1,
+            'package_id' => $request->plan_id,
+            'trade_count' => $user->trade_count + $request->trade_limit_per_day,
+        ]);
+
+        return redirect()->back()->with('success', 'Subscription Activated Successfully');
     }
+
 
 }

@@ -17,7 +17,7 @@ return new class extends Migration
             $table->uuid('user_id');
             $table->bigInteger('package_id');
             $table->double('amount', 11, 2);
-            $table->string('status')->default('pending');
+            $table->integer('status')->default(0);
             $table->timestamps();
         });
     }

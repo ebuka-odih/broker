@@ -21,18 +21,10 @@ class PackageController extends Controller
             'min_amount' => 'required|numeric',
             'max_amount' => 'required|numeric',
             'duration' => 'required',
-            'roi' => 'required',
             'trade_limit_per_day' => 'required',
         ]);
 
-        $package = new Package();
-        $package->name = $validated['name'];
-        $package->min_amount = $validated['min_amount'];
-        $package->max_amount = $validated['max_amount'];
-        $package->duration = $validated['duration'];
-        $package->roi = $validated['roi'];
-        $package->trade_limit_per_day = $validated['trade_limit_per_day'];
-        $package->save();
+        Package::create($validated);
         return redirect()->back()->with('success', 'Package created successfully');
     }
 
@@ -43,17 +35,10 @@ class PackageController extends Controller
             'min_amount' => 'required|numeric',
             'max_amount' => 'required|numeric',
             'duration' => 'required',
-            'roi' => 'required',
             'trade_limit_per_day' => 'required',
         ]);
         $package = Package::findOrFail($id);
-        $package->name = $validated['name'];
-        $package->min_amount = $validated['min_amount'];
-        $package->max_amount = $validated['max_amount'];
-        $package->duration = $validated['duration'];
-        $package->roi = $validated['roi'];
-        $package->trade_limit_per_day = $validated['trade_limit_per_day'];
-        $package->save();
+        $package->update($validated);
         return redirect()->back()->with('success', 'Package updated successfully');
     }
 

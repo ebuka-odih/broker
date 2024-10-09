@@ -1,6 +1,6 @@
 @extends('dashboard.layout.app')
 @section('content')
- @include('dashboard.layout.alert')
+
     <div class="container-fluid p-0">
         <div class="row no-gutters">
             <div class="col-md-3">
@@ -374,125 +374,253 @@
                     <div style="height: 500px" class="tab-content">
                         <div class="tab-pane fade show active" id="pills-trade-limit" role="tabpanel">
 
-
-
                             <div class="d-flex justify-content-between ">
-                                <div class="col-lg-8 offset-lg-2">
-                                    <form action="{{ route('user.placeTrade') }}" method="POST">
+                                 <div class="market-trade-buy col-md-12 col-lg-6">
+                                    <form action="{{ route('user.placeBuyTrade') }}" method="POST">
                                         @csrf
-
-                                        <div class="market-trade-buy col-md-12 col-lg-12">
-                                            <div class="input-group">
-                                                <input type="number" name="amount" class="form-control"
-                                                       placeholder="Amount">
-                                                <div class="input-group-append">
-                                                    <span class="input-group-text">USD</span>
-                                                </div>
+                                        <div class="input-group">
+                                            <input type="number" name="amount" class="form-control"
+                                                   placeholder="Amount" required>
+                                            <div class="input-group-append">
+                                                <span class="input-group-text">USD</span>
                                             </div>
-                                            <div class="form-group">
-                                                <label for="">Pairs</label>
-                                                <select name="trade_pair_id" id="" class="form-control">
-                                                    <option selected
-                                                            value="{{ $trade_pair->id }}">{{ $trade_pair->pair }}</option>
-                                                    @foreach($pairs as $item)
-                                                        @if($item->type == 'crypto')
-                                                            <option value="{{ $item->id }}">{{ $item->pair }}</option>
-                                                        @endif
-                                                    @endforeach
-                                                </select>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-6">
-                                                    <div class="form-group">
-                                                        <label>Leverage</label>
-                                                        <select class="custom-select" name="leverage" id="leverage">
-                                                            <option value="10">1:10</option>
-                                                            <option value="20">1:20</option>
-                                                            <option value="30">1:30</option>
-                                                            <option value="40">1:40</option>
-                                                            <option value="50">1:50</option>
-                                                            <option value="60">1:60</option>
-                                                            <option value="70">1:70</option>
-                                                            <option value="80">1:80</option>
-                                                            <option value="90">1:90</option>
-                                                            <option value="100">1:100</option>
-                                                            <option value="110">1:110</option>
-                                                            <option value="120">1:120</option>
-                                                            <option value="130">1:130</option>
-                                                            <option value="140">1:140</option>
-                                                            <option value="150">1:150</option>
-                                                            <option value="160">1:160</option>
-                                                            <option value="170">1:170</option>
-                                                            <option value="180">1:180</option>
-                                                            <option value="190">1:190</option>
-                                                            <option value="200">1:200</option>
-                                                            <option value="210">1:210</option>
-                                                            <option value="220">1:220</option>
-                                                            <option value="230">1:230</option>
-                                                            <option value="240">1:240</option>
-                                                            <option value="250">1:250</option>
-                                                            <option value="260">1:260</option>
-                                                            <option value="270">1:270</option>
-                                                            <option value="280">1:280</option>
-                                                            <option value="290">1:290</option>
-                                                            <option value="300">1:300</option>
-                                                            <option value="310">1:310</option>
-                                                            <option value="320">1:320</option>
-                                                            <option value="330">1:330</option>
-                                                            <option value="340">1:340</option>
-                                                            <option value="350">1:350</option>
-                                                            <option value="360">1:360</option>
-                                                            <option value="370">1:370</option>
-                                                            <option value="380">1:380</option>
-                                                            <option value="390">1:390</option>
-                                                            <option value="400">1:400</option>
-                                                            <option value="410">1:410</option>
-                                                            <option value="420">1:420</option>
-                                                            <option value="430">1:430</option>
-                                                            <option value="440">1:440</option>
-                                                            <option value="450">1:450</option>
-                                                            <option value="460">1:460</option>
-                                                            <option value="470">1:470</option>
-                                                            <option value="480">1:480</option>
-                                                            <option value="490">1:490</option>
-                                                            <option value="500">1:500</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                                <div class="col-6">
-                                                    <div class="form-group">
-                                                        <label>Duration</label>
-                                                        <select class="custom-select" name="duration" id="expire">
-                                                            <option value="1">1 Minute</option>
-                                                            <option value="2">2 Minutes</option>
-                                                            <option value="3">3 Minutes</option>
-                                                            <option value="4">4 Minutes</option>
-                                                            <option value="5">5 Minutes</option>
-                                                            <option value="10">10 Minutes</option>
-                                                            <option value="15">15 Minutes</option>
-                                                            <option value="30">30 Minutes</option>
-                                                            <option value="60">1 Hour</option>
-                                                            <option value="120">2 Hours</option>
-                                                            <option value="180">4 Hours</option>
-                                                            <option value="360">6 Hours</option>
-                                                            <option value="720">12 Hours</option>
-                                                            <option value="1440">1 Day</option>
-                                                            <option value="2880">2 Days</option>
-                                                            <option value="5320">3 Days</option>
-                                                            <option value="7200">5 Days</option>
-                                                            <option value="10080">7 Days</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-
-                                            </div>
-                                            <p>Bal: <span>{{ number_format($user->balance, 2) }} USD</span></p>
-                                            <button class="btn buy" type="submit" name="action_type" value="buy">Buy
-                                            </button>
-                                            <button class="btn sell" type="submit" name="action_type" value="sell">
-                                                Sell
-                                            </button>
                                         </div>
+                                        <div class="form-group">
+                                            <label for="">Pairs</label>
+                                            <select name="trade_pair_id" id="" class="form-control">
+                                                 <option value="{{ $trade_pair->pair }}">{{ $trade_pair->pair }}</option>
+                                                @foreach($pairs as $item)
+                                                    @if($item->type == 'crypto')
+                                                        <option value="{{ $item->id }}">{{ $item->pair }}</option>
+                                                    @endif
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-6">
+                                                <div class="form-group">
+                                                    <label>Leverage</label>
+                                                    <select class="custom-select" name="leverage" id="leverage">
+                                                        <option value="10">1:10</option>
+                                                        <option value="20">1:20</option>
+                                                        <option value="30">1:30</option>
+                                                        <option value="40">1:40</option>
+                                                        <option value="50">1:50</option>
+                                                        <option value="60">1:60</option>
+                                                        <option value="70">1:70</option>
+                                                        <option value="80">1:80</option>
+                                                        <option value="90">1:90</option>
+                                                        <option value="100">1:100</option>
+                                                        <option value="110">1:110</option>
+                                                        <option value="120">1:120</option>
+                                                        <option value="130">1:130</option>
+                                                        <option value="140">1:140</option>
+                                                        <option value="150">1:150</option>
+                                                        <option value="160">1:160</option>
+                                                        <option value="170">1:170</option>
+                                                        <option value="180">1:180</option>
+                                                        <option value="190">1:190</option>
+                                                        <option value="200">1:200</option>
+                                                        <option value="210">1:210</option>
+                                                        <option value="220">1:220</option>
+                                                        <option value="230">1:230</option>
+                                                        <option value="240">1:240</option>
+                                                        <option value="250">1:250</option>
+                                                        <option value="260">1:260</option>
+                                                        <option value="270">1:270</option>
+                                                        <option value="280">1:280</option>
+                                                        <option value="290">1:290</option>
+                                                        <option value="300">1:300</option>
+                                                        <option value="310">1:310</option>
+                                                        <option value="320">1:320</option>
+                                                        <option value="330">1:330</option>
+                                                        <option value="340">1:340</option>
+                                                        <option value="350">1:350</option>
+                                                        <option value="360">1:360</option>
+                                                        <option value="370">1:370</option>
+                                                        <option value="380">1:380</option>
+                                                        <option value="390">1:390</option>
+                                                        <option value="400">1:400</option>
+                                                        <option value="410">1:410</option>
+                                                        <option value="420">1:420</option>
+                                                        <option value="430">1:430</option>
+                                                        <option value="440">1:440</option>
+                                                        <option value="450">1:450</option>
+                                                        <option value="460">1:460</option>
+                                                        <option value="470">1:470</option>
+                                                        <option value="480">1:480</option>
+                                                        <option value="490">1:490</option>
+                                                        <option value="500">1:500</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-6">
+                                                <div class="form-group">
+                                                    <label>Duration</label>
+                                                    <select class="custom-select" name="duration" id="expire">
+                                                        <option value="1">1 Minute</option>
+                                                        <option value="2">2 Minutes</option>
+                                                        <option value="3">3 Minutes</option>
+                                                        <option value="4">4 Minutes</option>
+                                                        <option value="5">5 Minutes</option>
+                                                        <option value="10">10 Minutes</option>
+                                                        <option value="15">15 Minutes</option>
+                                                        <option value="30">30 Minutes</option>
+                                                        <option value="60">1 Hour</option>
+                                                        <option value="120">2 Hours</option>
+                                                        <option value="180">4 Hours</option>
+                                                        <option value="360">6 Hours</option>
+                                                        <option value="720">12 Hours</option>
+                                                        <option value="1440">1 Day</option>
+                                                        <option value="2880">2 Days</option>
+                                                        <option value="5320">3 Days</option>
+                                                        <option value="7200">5 Days</option>
+                                                        <option value="10080">7 Days</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-lg-6">
+                                                <label>Stop Loss</label>
+                                                <input type="number" step="0.0001" name="stop_loss"
+                                                       class="form-control">
+                                            </div>
+                                            <div class="col-lg-6">
+                                                <label>Take Profit</label>
+                                                <input type="number" step="0.0001" name="take_profit"
+                                                       class="form-control">
+                                            </div>
+                                        </div>
+                                        <p>Bal: <span>{{ number_format($user->balance, 2) }} USD</span></p>
+                                        <button class="btn buy" type="submit" name="action_type" value="buy">Buy
+                                        </button>
+                                    </form>
+                                </div>
+
+                                <div class="market-trade-sell col-md-12 col-lg-6">
+                                    <form action="{{ route('user.placeSellTrade') }}" method="POST">
+                                        @csrf
+                                        <div class="input-group">
+                                            <input type="number" name="amount" class="form-control"
+                                                   placeholder="Amount" required>
+                                            <div class="input-group-append">
+                                                <span class="input-group-text">USD</span>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="">Pairs</label>
+                                            <select name="trade_pair_id" id="" class="form-control">
+                                                <option value="{{ $trade_pair->pair }}">{{ $trade_pair->pair }}</option>
+                                                @foreach($pairs as $item)
+                                                    @if($item->type == 'crypto')
+                                                        <option value="{{ $item->id }}">{{ $item->pair }}</option>
+                                                    @endif
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-6">
+                                                <div class="form-group">
+                                                    <label>Leverage</label>
+                                                    <select class="custom-select" name="leverage" id="leverage">
+                                                        <option value="10">1:10</option>
+                                                        <option value="20">1:20</option>
+                                                        <option value="30">1:30</option>
+                                                        <option value="40">1:40</option>
+                                                        <option value="50">1:50</option>
+                                                        <option value="60">1:60</option>
+                                                        <option value="70">1:70</option>
+                                                        <option value="80">1:80</option>
+                                                        <option value="90">1:90</option>
+                                                        <option value="100">1:100</option>
+                                                        <option value="110">1:110</option>
+                                                        <option value="120">1:120</option>
+                                                        <option value="130">1:130</option>
+                                                        <option value="140">1:140</option>
+                                                        <option value="150">1:150</option>
+                                                        <option value="160">1:160</option>
+                                                        <option value="170">1:170</option>
+                                                        <option value="180">1:180</option>
+                                                        <option value="190">1:190</option>
+                                                        <option value="200">1:200</option>
+                                                        <option value="210">1:210</option>
+                                                        <option value="220">1:220</option>
+                                                        <option value="230">1:230</option>
+                                                        <option value="240">1:240</option>
+                                                        <option value="250">1:250</option>
+                                                        <option value="260">1:260</option>
+                                                        <option value="270">1:270</option>
+                                                        <option value="280">1:280</option>
+                                                        <option value="290">1:290</option>
+                                                        <option value="300">1:300</option>
+                                                        <option value="310">1:310</option>
+                                                        <option value="320">1:320</option>
+                                                        <option value="330">1:330</option>
+                                                        <option value="340">1:340</option>
+                                                        <option value="350">1:350</option>
+                                                        <option value="360">1:360</option>
+                                                        <option value="370">1:370</option>
+                                                        <option value="380">1:380</option>
+                                                        <option value="390">1:390</option>
+                                                        <option value="400">1:400</option>
+                                                        <option value="410">1:410</option>
+                                                        <option value="420">1:420</option>
+                                                        <option value="430">1:430</option>
+                                                        <option value="440">1:440</option>
+                                                        <option value="450">1:450</option>
+                                                        <option value="460">1:460</option>
+                                                        <option value="470">1:470</option>
+                                                        <option value="480">1:480</option>
+                                                        <option value="490">1:490</option>
+                                                        <option value="500">1:500</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-6">
+                                                <div class="form-group">
+                                                    <label>Duration</label>
+                                                    <select class="custom-select" name="duration" id="expire">
+                                                        <option value="1">1 Minute</option>
+                                                        <option value="2">2 Minutes</option>
+                                                        <option value="3">3 Minutes</option>
+                                                        <option value="4">4 Minutes</option>
+                                                        <option value="5">5 Minutes</option>
+                                                        <option value="10">10 Minutes</option>
+                                                        <option value="15">15 Minutes</option>
+                                                        <option value="30">30 Minutes</option>
+                                                        <option value="60">1 Hour</option>
+                                                        <option value="120">2 Hours</option>
+                                                        <option value="180">4 Hours</option>
+                                                        <option value="360">6 Hours</option>
+                                                        <option value="720">12 Hours</option>
+                                                        <option value="1440">1 Day</option>
+                                                        <option value="2880">2 Days</option>
+                                                        <option value="5320">3 Days</option>
+                                                        <option value="7200">5 Days</option>
+                                                        <option value="10080">7 Days</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-lg-6">
+                                                <label>Stop Loss</label>
+                                                <input type="number" step="0.0001" name="stop_loss"
+                                                       class="form-control">
+                                            </div>
+                                            <div class="col-lg-6">
+                                                <label>Take Profit</label>
+                                                <input type="number" step="0.0001" name="take_profit"
+                                                       class="form-control">
+                                            </div>
+                                        </div>
+                                        <p>Bal: <span>{{ number_format($user->balance, 2) }} USD</span></p>
+                                        <button class="btn sell" type="submit" name="action_type" value="sell">
+                                            Sell
+                                        </button>
                                     </form>
                                 </div>
                             </div>
@@ -707,7 +835,7 @@
                 </div>
             </div>
 
-            <div class="col-md-12 mt-2">
+             <div class="col-md-12 mt-2">
                 <div class="market-history market-order">
                     <ul class="nav nav-pills" role="tablist">
                         <li class="nav-item">
@@ -733,6 +861,8 @@
                                         <th>Amount</th>
                                         <th>Leverage</th>
                                         <th>Duration</th>
+                                        <th>Stop Loss</th>
+                                        <th>Take Profit</th>
                                         <th>Status</th>
                                         <th>Action</th>
                                     </tr>
@@ -742,17 +872,23 @@
                                                 <td>{{ $item->created_at ?? ''}}</td>
                                                 <td>{{ $item->trade_pair->pair ?? '' }}</td>
                                                 <td>{{ $item->trade_pair->type ?? ''}}</td>
-                                                <td>{{ $item->action_type ?? '' }}</td>
+                                                <td>
+                                                    @if($item->action_type == "buy")
+                                                        <span class="badge bg-primary text-white">buy</span>
+                                                    @else
+                                                        <span class="badge bg-danger text-white">sell</span>
+                                                    @endif
+                                                </td>
                                                 <td>${{ number_format($item->amount, 2) ?? '' }}</td>
                                                 <td>{{ $item->leverage ?? ''}}x</td>
                                                 <td>{{ $item->duration ?? ''}} min</td>
+                                                <td>{{ $item->stop_loss ?? 'N/A'}}</td>
+                                                <td>{{ $item->take_profit ?? 'N/A'}}</td>
                                                 <td>{!! $item->status() ?? '' !!}</td>
-                                                @if($item->status == 'open')
-                                                    <td><a href="{{ route('user.closeTrade', $item->id) }}"
-                                                           class="btn btn-sm btn-danger">Close</a></td>
-                                                @else
-                                                    <td></td>
-                                                @endif
+                                                <td>
+                                                    <a href="{{ route('user.closeTrade', $item->id) }}"
+                                                       class="btn btn-sm btn-danger">Close</a>
+                                                </td>
                                             </tr>
                                         @endif
                                     @endforeach
@@ -770,6 +906,8 @@
                                         <th>Amount</th>
                                         <th>Leverage</th>
                                         <th>Duration</th>
+                                        <th>Stop Loss</th>
+                                        <th>Take Profit</th>
                                         <th>Status</th>
                                         <th>Profit/Loss</th>
                                     </tr>
@@ -779,10 +917,18 @@
                                                 <td>{{ $item->created_at ?? ''}}</td>
                                                 <td>{{ $item->trade_pair->pair ?? '' }}</td>
                                                 <td>{{ $item->trade_pair->type ?? ''}}</td>
-                                                <td>{{ $item->action_type ?? '' }}</td>
+                                                <td>
+                                                    @if($item->action_type == "buy")
+                                                        <span class="badge bg-primary text-white">buy</span>
+                                                    @else
+                                                        <span class="badge bg-danger text-white">sell</span>
+                                                    @endif
+                                                </td>
                                                 <td>${{ number_format($item->amount, 2) ?? '' }}</td>
                                                 <td>{{ $item->leverage ?? ''}}x</td>
                                                 <td>{{ $item->duration ?? ''}} min</td>
+                                                <td>{{ $item->stop_loss ?? 'N/A'}}</td>
+                                                <td>{{ $item->take_profit ?? 'N/A'}}</td>
                                                 <td>{!! $item->status() ?? '' !!}</td>
                                                 <td>${!! $item->profit_loss ?? '' !!}</td>
                                             </tr>
@@ -794,6 +940,7 @@
                     </div>
                 </div>
             </div>
+
         </div>
     </div>
     <script>

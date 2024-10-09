@@ -34,7 +34,10 @@ class User extends Authenticatable
         'phone',
         'telegram',
         'avatar',
-        'subscription'
+        'subscription',
+        'package_id',
+        'trader',
+        'trade_count',
     ];
 
     /**

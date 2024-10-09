@@ -28,7 +28,7 @@ return new class extends Migration
             $table->string('telegram')->nullable();
 
             $table->uuid('package_id')->nullable();
-            $table->integer('trader')->default(0);
+            $table->integer('trader')->default(1);
             $table->integer('trade_count')->default(5);
 
             $table->rememberToken();
