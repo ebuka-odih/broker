@@ -17,7 +17,9 @@ Route::group(['middleware' => ['auth', 'verified', 'admin'], 'prefix' => 'admin'
     Route::get('user/security/', [AdminController::class, 'security'])->name('security');
     Route::post('change/password', [AdminController::class, 'resetPassword'])->name('resetPassword');
 
-    Route::get('/users', [UserController::class, 'users'])->name('user.index');
+    Route::get('/users', [UserController::class, 'index'])->name('user.index');
+    Route::get('/show/user/{id}', [UserController::class, 'show'])->name('user.show');
+    Route::post('/update/account/user/{id}', [UserController::class, 'updateBalance'])->name('updateBalance');
     Route::delete('delete/user/{id}', [UserController::class, 'deleteUser'])->name('deleteUser');
 
     Route::get('/transactions/deposits', [TransactionController::class, 'deposits'])->name('transactions.deposits');

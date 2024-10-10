@@ -21,7 +21,7 @@
                                 <thead>
                                 <tr>
                                     <th>Pairs</th>
-                                    <th>Last Price</th>
+                                    <th>Quantity</th>
                                     <th>Change</th>
                                 </tr>
                                 </thead>
