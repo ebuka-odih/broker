@@ -65,7 +65,7 @@
                                                data-toggle="collapse" href="#collapse-{{ $item->id }}"
                                                aria-expanded="false">
                                                 <div class="mr-2">
-                                                    <img src="{{ asset($item->avatar ?? 'img/wallet.png') }}"
+                                                    <img src="{{  asset('storage/'.$item->avatar ?? '/img/wallet.png') }}"
                                                          style="width: 30px; border-radius: 50%">
                                                 </div>
                                                 <div class="text-capitalize text-black">{{ $item->wallet }}</div>

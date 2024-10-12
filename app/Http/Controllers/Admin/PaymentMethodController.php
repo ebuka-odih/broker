@@ -45,7 +45,6 @@ class PaymentMethodController extends Controller
        $wallet = PaymentMethod::findOrFail($id);
        if ($request->hasFile('avatar')) {
             $avatarPath = $request->file('avatar')->store('files', 'public');
-            $validated['avatar'] = $avatarPath;
         }
        $wallet->avatar = $avatarPath ?? null;
        $wallet->wallet = $request->wallet;
