@@ -41,6 +41,11 @@ class TradeController extends Controller
         }
 
         $subscription = Subscription::whereUserId($user->id)->latest()->first();
+
+         if (!$subscription) {
+            return redirect()->back()->with('error', 'You do not have an active subscription. Please subscribe to continue trading.');
+        }
+
         $endingDate = Carbon::parse($subscription->ending_date);
 
         if (now()->greaterThanOrEqualTo($endingDate)) {
@@ -85,6 +90,11 @@ class TradeController extends Controller
         }
 
         $subscription = Subscription::whereUserId($user->id)->latest()->first();
+
+        if (!$subscription) {
+            return redirect()->back()->with('error', 'You do not have an active subscription. Please subscribe to continue trading.');
+        }
+
         $endingDate = Carbon::parse($subscription->ending_date);
 
         if (now()->greaterThanOrEqualTo($endingDate)) {

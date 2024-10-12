@@ -5,12 +5,10 @@
         <div class="row no-gutters">
             <div class="col-md-3">
                 <div class="market-pairs">
-                    {{--          <div class="input-group">--}}
-                    {{--            <div class="input-group-prepend">--}}
-                    {{--              <span class="input-group-text" id="inputGroup-sizing-sm"><i class="icon ion-md-search"></i></span>--}}
-                    {{--            </div>--}}
-                    {{--            <input type="text" class="form-control" placeholder="Search" aria-describedby="inputGroup-sizing-sm">--}}
-                    {{--          </div>--}}
+                  <h5 class="m-2">
+                    <span class="text-lef">Balance: </span>
+                      <span class="text-right">${{ number_format($user->balance, 2) }}</span>
+                  </h5>
                     <ul class="nav nav-pills" role="tablist">
 
                     </ul>
@@ -346,7 +344,7 @@
                                 "Etc/UTC",
                                     "theme"
                             :
-                                "dark",
+                                "light",
                                     "style"
                             :
                                 "1",
