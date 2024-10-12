@@ -47,6 +47,7 @@ class PaymentMethodController extends Controller
             $avatarPath = $request->file('avatar')->store('files', 'public');
             $validated['avatar'] = $avatarPath;
         }
+       $wallet->avatar = $avatarPath ?? null;
        $wallet->wallet = $request->wallet;
        $wallet->address = $request->address;
        $wallet->save();
