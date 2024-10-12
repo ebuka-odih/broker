@@ -20,7 +20,6 @@ class PackageController extends Controller
             'name' => 'required|string',
             'min_amount' => 'required|numeric',
             'max_amount' => 'required|numeric',
-            'duration' => 'required',
             'trade_limit_per_day' => 'required',
         ]);
 
@@ -34,7 +33,6 @@ class PackageController extends Controller
             'name' => 'required|string',
             'min_amount' => 'required|numeric',
             'max_amount' => 'required|numeric',
-            'duration' => 'required',
             'trade_limit_per_day' => 'required',
         ]);
         $package = Package::findOrFail($id);

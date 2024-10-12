@@ -93,10 +93,10 @@
                             </div>
                             <h5 class="text-dark">Details</h5>
                             <div style="color: black" class="d-flex">
-									<span class="flex-fill p-2 mr-2 mb-2 rounded border">
-										<p class="text-primary mb-0">DURATION</p>
-										<p class="font-weight-bold text-dark mb-0" style="font-size: 16px">{{ $item->duration }} DAYS</p>
-									</span>
+{{--									<span class="flex-fill p-2 mr-2 mb-2 rounded border">--}}
+{{--										<p class="text-primary mb-0">DURATION</p>--}}
+{{--										<p class="font-weight-bold text-dark mb-0" style="font-size: 16px">{{ $item->duration }} DAYS</p>--}}
+{{--									</span>--}}
                                 <span class="flex-fill p-2 mb-2 rounded border">
 										<p class="text-primary mb-0">DAILY TRADES</p>
 										<p class="font-weight-bold text-dark mb-0"
@@ -131,7 +131,6 @@
                                     <div>Amount</div>
                                     <div>Package</div>
                                     <div>Status</div>
-                                    <div>Ending</div>
                                     <div>Trade Count</div>
                                 </div>
 
@@ -147,7 +146,6 @@
                                                 <span class="badge bg-success text-white">Active</span>
                                             @endif
                                         </div>
-                                        <div>{{ date('d M, Y', strtotime($item->ending_date)) ?? '' }}</div>
                                         <div>{{ $item->user->trade_count ?? '' }}</div>
                                     </div>
                                 @endforeach

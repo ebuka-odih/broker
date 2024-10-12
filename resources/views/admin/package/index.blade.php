@@ -42,9 +42,6 @@
                       Max Amount
                     </th>
                     <th scope="col" class="p-4 text-xs font-medium tracking-wider text-left text-gray-500 uppercase dark:text-white">
-                      Duration
-                    </th>
-                    <th scope="col" class="p-4 text-xs font-medium tracking-wider text-left text-gray-500 uppercase dark:text-white">
                       Daily Trades
                     </th>
                     <th scope="col" class="p-4 text-xs font-medium tracking-wider text-left text-gray-500 uppercase dark:text-white">
@@ -71,9 +68,6 @@
                     </td>
                       <td class="p-4 text-sm font-semibold text-gray-900 whitespace-nowrap dark:text-white">
                         ${{ number_format($item->max_amount ?? '', 2) }}
-                    </td>
-                      <td class="p-4 text-sm font-semibold text-gray-900 whitespace-nowrap dark:text-white">
-                        {{ $item->duration ?? '' }} Day(s)
                     </td>
                       <td class="p-4 text-sm font-semibold text-gray-900 whitespace-nowrap dark:text-white">
                         {{ $item->trade_limit_per_day ?? '' }}
@@ -163,12 +157,7 @@
                                             <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Max Amount</label>
                                             <input type="number" step="0.01" name="max_amount" value="{{ old('max_amount', $item->max_amount ?? '') }}" id="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"  required="">
                                         </div>
-                                        <div class="col-span-1">
-                                            <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Duration</label>
-                                            <input type="number" step="0.01" name="duration" value="{{ old('duration', $item->duration ?? '') }}" id="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"  required="">
-                                        </div>
-
-                                        <div class="col-span-1">
+                                        <div class="col-span-2">
                                             <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Trade Per Day</label>
                                             <input type="number" step="0.01" name="trade_limit_per_day" value="{{ old('trade_limit_per_day', $item->trade_limit_per_day ?? '') }}" id="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"  required="">
                                         </div>
@@ -243,11 +232,11 @@
                         <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Max Amount</label>
                         <input type="number" step="0.01" name="max_amount" id="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"  required="">
                     </div>
-                    <div class="col-span-1">
-                        <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Duration</label>
-                        <input type="number" step="0.01" name="duration" id="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"  required="">
-                    </div>
-                    <div class="col-span-1">
+{{--                    <div class="col-span-1">--}}
+{{--                        <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Duration</label>--}}
+{{--                        <input type="number" step="0.01" name="duration" id="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"  required="">--}}
+{{--                    </div>--}}
+                    <div class="col-span-2">
                         <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Trade Per Day</label>
                         <input type="number" step="0.01" name="trade_limit_per_day" id="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"  required="">
                     </div>
