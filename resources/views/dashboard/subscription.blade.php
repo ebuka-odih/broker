@@ -84,19 +84,11 @@
                             <input type="hidden" name="plan_id" value="{{ $item->id }}">
                             <input type="hidden" name="trade_limit_per_day" value="{{ $item->trade_limit_per_day }}">
                             <div class="mb-4">
-                                {{--                                    <p class="mb-0 text-dark">Min</p>--}}
-                                <span style="font-size: 20px; font-weight: bolder"
-                                      class="mb-4 text-dark ">Min: ${{ number_format($item->min_amount, 2) }}</span>
-                                <span class="mx-1">-</span>
                                 <span style="font-size: 20px; font-weight: bolder; white-space: none"
-                                      class="mb-4 text-dark ">Max: ${{ number_format($item->max_amount, 2) }}</span>
+                                      class="mb-4 text-dark ">Amount: ${{ number_format($item->max_amount, 2) }}</span>
                             </div>
                             <h5 class="text-dark">Details</h5>
                             <div style="color: black" class="d-flex">
-{{--									<span class="flex-fill p-2 mr-2 mb-2 rounded border">--}}
-{{--										<p class="text-primary mb-0">DURATION</p>--}}
-{{--										<p class="font-weight-bold text-dark mb-0" style="font-size: 16px">{{ $item->duration }} DAYS</p>--}}
-{{--									</span>--}}
                                 <span class="flex-fill p-2 mb-2 rounded border">
 										<p class="text-primary mb-0">DAILY TRADES</p>
 										<p class="font-weight-bold text-dark mb-0"
@@ -105,9 +97,8 @@
                             </div>
 
                             <div class="form-group mt-4">
-                                <label class="text-dark">Amount</label>
-                                <input type="number" name="amount" class="form-control amount" placeholder="100"
-                                       min="{{ $item->min_deposit }}" max="{{ $item->min_deposit }}" data-id="4">
+                                <input type="hidden" name="max_amount" class="form-control amount" placeholder="100"
+                                      value="{{ $item->max_amount }}" data-id="4">
                             </div>
                             <p class="text-danger exceedInfo" style="display:none">Amount value cannot exceed current
                                 balance.</p>

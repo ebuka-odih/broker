@@ -13,12 +13,6 @@ class Subscription extends Model
 
     protected $guarded;
 
-    protected $appends = ['ending_date'];
-
-    public function getEndingDateAttribute()
-    {
-        return Carbon::parse($this->created_at)->addDays($this->package->duration)->toDateString();
-    }
 
     public function user()
     {

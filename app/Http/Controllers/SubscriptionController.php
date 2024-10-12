@@ -19,17 +19,12 @@ class SubscriptionController extends Controller
 
    public function store(Request $request)
     {
+
         $user = Auth::user();
         $package = Package::findOrFail($request->plan_id);
 
-        // Validate the amount within the min/max package limit
-        if ($request->amount < $package->min_amount || $request->amount > $package->max_amount) {
-            return redirect()->back()->with('error', 'Enter an amount within Min/Max Plan amount');
-        }
-
-        // Check if the user has sufficient balance
-        if ($request->amount > $user->balance) {
-            return redirect()->back()->with('error', 'Insufficient balance');
+        if ($user->balance < $package->max_amount) {
+            return redirect()->back()->with('error', 'You are not eligible for this plan');
         }
 
         Subscription::updateOrCreate(
@@ -38,13 +33,13 @@ class SubscriptionController extends Controller
                 'package_id' => $package->id
             ],
             [
-                'amount' => $request->amount,
+                'amount' => $request->max_amount,
                 'status' => 1
             ]
         );
 
         $user->update([
-            'balance' => $user->balance - $request->amount,
+            'balance' => $user->balance - $request->max_amount,
             'trader' => 1,
             'package_id' => $request->plan_id,
             'trade_count' => $user->trade_count + $request->trade_limit_per_day,

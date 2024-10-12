@@ -18,7 +18,6 @@ class PackageController extends Controller
     {
         $validated = $request->validate([
             'name' => 'required|string',
-            'min_amount' => 'required|numeric',
             'max_amount' => 'required|numeric',
             'trade_limit_per_day' => 'required',
         ]);
@@ -31,7 +30,6 @@ class PackageController extends Controller
     {
         $validated = $request->validate([
             'name' => 'required|string',
-            'min_amount' => 'required|numeric',
             'max_amount' => 'required|numeric',
             'trade_limit_per_day' => 'required',
         ]);
