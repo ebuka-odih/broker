@@ -145,7 +145,7 @@
                                                 <option value="" disabled {{ is_null($item->name) ? 'selected' : '' }}>Choose a Name</option>
                                                 <option value="Starter" {{ $item->name == 'Starter' ? 'selected' : '' }}>Starter</option>
                                                 <option value="Pro" {{ $item->name == 'Pro' ? 'selected' : '' }}>Pro</option>
-                                                <option value="Advance" {{ $item->name == 'Advance' ? 'selected' : '' }}>Advance</option>
+                                                <option value="Advance" {{ $item->name == 'Advanced' ? 'selected' : '' }}>Advanced</option>
 
                                             </select>
                                         </div>
@@ -221,7 +221,7 @@
                             <option selected>Choose a Name</option>
                             <option value="Starter">Starter</option>
                             <option value="Pro">Pro</option>
-                            <option value="Advance">Pro</option>
+                            <option value="Advanced">Advanced</option>
                           </select>
                     </div>
                     <div class="col-span-1">
