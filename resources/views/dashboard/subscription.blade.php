@@ -3,7 +3,7 @@
      <style>
     .payment-grid {
         display: grid;
-        grid-template-columns: 2fr 2fr 2fr 2fr 2fr 1fr; /* Added one more 2fr for the "Ending" column */
+        grid-template-columns: 2fr 2fr 2fr 2fr 2fr ; /* Added one more 2fr for the "Ending" column */
         grid-gap: 10px;
         width: 100%;
     }
