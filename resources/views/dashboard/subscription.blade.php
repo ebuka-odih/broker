@@ -3,7 +3,7 @@
      <style>
     .payment-grid {
         display: grid;
-        grid-template-columns: 2fr 2fr 2fr 2fr 2fr ; /* Added one more 2fr for the "Ending" column */
+        grid-template-columns: 2fr 2fr 2fr 2fr ; /* Added one more 2fr for the "Ending" column */
         grid-gap: 10px;
         width: 100%;
     }
@@ -36,6 +36,14 @@
         font-size: 0.875rem;
     }
 </style>
+     <style>
+          .icon {
+              color: green;
+          }
+          li {
+              margin-top: 10px
+          }
+      </style>
 
 
     <div class="container">
@@ -72,44 +80,46 @@
 
 
             @foreach($plans as $item)
-                <div class="col-md-4 py-3">
-                    <div class="card">
-                        <div class="card-header">
-                            <div class="section_title">
-                                <h3 class="mb-0">{{ $item->name }}</h3>
-                            </div>
-                        </div>
-                        <form class="card-body text-dark" action="{{ route('user.activatePlan') }}" method="POST">
-                            @csrf
-                            <input type="hidden" name="plan_id" value="{{ $item->id }}">
-                            <input type="hidden" name="trade_limit_per_day" value="{{ $item->trade_limit_per_day }}">
-                            <div class="mb-4">
-                                <span style="font-size: 20px; font-weight: bolder; white-space: none"
-                                      class="mb-4 text-dark ">Amount: ${{ number_format($item->max_amount, 2) }}</span>
-                            </div>
-                            <h5 class="text-dark">Details</h5>
-                            <div style="color: black" class="d-flex">
-                                <span class="flex-fill p-2 mb-2 rounded border">
-										<p class="text-primary mb-0">DAILY TRADES</p>
-										<p class="font-weight-bold text-dark mb-0"
-                                           style="font-size: 16px">{{ $item->trade_limit_per_day }}</p>
-									</span>
-                            </div>
+                 <div  class="col-md-4">
+                  <div style="border: 1px solid green" class="landing-feature-item">
+                    <h3 class="text-center mb-3"><strong>{{ $item->name }}</strong></h3>
+                      <hr>
 
-                            <div class="form-group mt-4">
-                                <input type="hidden" name="max_amount" class="form-control amount" placeholder="100"
-                                      value="{{ $item->max_amount }}" data-id="4">
-                            </div>
-                            <p class="text-danger exceedInfo" style="display:none">Amount value cannot exceed current
-                                balance.</p>
-                            <button class="btn btn-primary btn-block submit-with mt-3" type="submit">Subscribe</button>
-                        </form>
+                    <div class="cad">
+                        <div class=" m-3">
+                            <h3>
+                                <strong class="text-primary">${{ $item->min_amount }}</strong>/<small>Min</small>
+                                <strong class="text-primary ml-5">${{ $item->max_amount }}</strong>/ <small>Max</small>
+                            </h3>
+                        </div>
+                        <div  class="card-body">
+                         <ul >
+                            <li><i class="icon ion-ios-checkmark-circle"></i> Daily Trades: <span class="badge badge-sm bg-success text-white">{{ $item->trade_limit_per_day }}</span></li>
+                            <li><i class="icon ion-ios-checkmark-circle"></i> Live Trading</li>
+                            <li><i class="icon ion-ios-checkmark-circle"></i> Live Tracking</li>
+                            <li><i class="icon ion-ios-checkmark-circle"></i> Live Market Data</li>
+                            <li><i class="icon ion-ios-checkmark-circle"></i> Live Cryptocurrency Price</li>
+                          </ul>
+                            <form  action="{{ route('user.activatePlan') }}" method="POST">
+                                @csrf
+                                <input type="hidden" name="plan_id" value="{{ $item->id }}">
+                                <input type="hidden" name="trade_limit_per_day" value="{{ $item->trade_limit_per_day }}">
+                                <input type="hidden" name="max_amount" value="{{ $item->max_amount }}">
+                                <input type="hidden" name="min_amount" value="{{ $item->min_amount }}" >
+
+                                <button class="btn btn-success btn-block submit-with mt-3" type="submit">Subscribe</button>
+                            </form>
+                        </div>
                     </div>
+                  </div>
                 </div>
+
             @endforeach
 
+        </div>
 
-            <div class="col-md-12 py-3">
+        <div class="row">
+             <div class="col-md-12 py-3">
                 <div class="card my-2">
                     <div class="card-header">
                         <h4 class="mb-0">Active Subscription</h4>
@@ -119,7 +129,7 @@
                          <div class="payment-grid">
                                 <div class="payment-grid-header">
                                     <div>Date</div>
-                                    <div>Amount</div>
+{{--                                    <div>Amount</div>--}}
                                     <div>Package</div>
                                     <div>Status</div>
                                     <div>Trade Count</div>
@@ -128,7 +138,7 @@
                                 @foreach($subscription as $index => $item)
                                     <div class="payment-grid-row">
                                         <div>{{ date('d M, Y', strtotime($item->created_at)) }}</div>
-                                        <div>${{ number_format($item->amount, 2) ?? '' }}</div>
+{{--                                        <div>${{ number_format($item->amount, 2) ?? '' }}</div>--}}
                                         <div>{{ $item->package->name ?? '' }}</div>
                                         <div>
                                             @if($item->status == 0)

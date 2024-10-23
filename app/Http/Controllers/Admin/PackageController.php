@@ -18,6 +18,7 @@ class PackageController extends Controller
     {
         $validated = $request->validate([
             'name' => 'required|string',
+            'min_amount' => 'required|numeric',
             'max_amount' => 'required|numeric',
             'trade_limit_per_day' => 'required',
         ]);
@@ -29,9 +30,10 @@ class PackageController extends Controller
     public function update(Request $request, $id)
     {
         $validated = $request->validate([
-            'name' => 'required|string',
-            'max_amount' => 'required|numeric',
-            'trade_limit_per_day' => 'required',
+            'name' => 'nullable|string',
+            'min_amount' => 'nullable|numeric',
+            'max_amount' => 'nullable|numeric',
+            'trade_limit_per_day' => 'nullable',
         ]);
         $package = Package::findOrFail($id);
         $package->update($validated);

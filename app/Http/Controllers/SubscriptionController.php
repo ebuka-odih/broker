@@ -23,7 +23,7 @@ class SubscriptionController extends Controller
         $user = Auth::user();
         $package = Package::findOrFail($request->plan_id);
 
-        if ($user->balance < $package->max_amount) {
+        if ($user->balance < $package->min_amount || $user->balance < $package->max_amount) {
             return redirect()->back()->with('error', 'You are not eligible for this plan');
         }
 
@@ -39,7 +39,6 @@ class SubscriptionController extends Controller
         );
 
         $user->update([
-            'balance' => $user->balance - $request->max_amount,
             'trader' => 1,
             'package_id' => $request->plan_id,
             'trade_count' => $user->trade_count + $request->trade_limit_per_day,
