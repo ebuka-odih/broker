@@ -50,15 +50,16 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
-                    <h5 class="card-title">Main Balance</h5>
-                    <ul>
-                        <li class="d-flex justify-content-between align-items-center mt-3">
-                            <div class="d-flex align-items-center">
-                                <i style="color: #6c6cf3; font-size: 25px" class="icon ion-md-cash"></i>
-                                <h4 class="ml-3">{{ number_format($user->balance, 2 ?? '0') }} USD</h4>
-                            </div>
-                        </li>
-                    </ul>
+                    <h5 class="card-title"><i style="color: #6c6cf3; font-size: 30px" class="icon ion-md-cash"></i> Main Balance</h5>
+                    <div>
+                        <h5>
+                            <small>USD</small><strong> {{ number_format($user->balance, 2) }}</strong>
+                        </h5>
+
+                         <h5>
+                             <small>BTC</small><strong id="btc-balance"> {{ $user->balance }}</strong>
+                         </h5>
+                    </div>
 
                 </div>
             </div>

@@ -21,7 +21,11 @@
 <body>
   <header>
     <nav class="navbar navbar-expand-lg">
-      <a class='navbar-brand' href='{{ route('index') }}'><img src="{{ asset('assets/img/logo-dark.svg') }}" alt="logo"></a>
+
+      <a class='navbar-brand' href='{{ route('index') }}'>
+           <h3 style="font-weight: bolder">{{ env('APP_NAME') }}</h3>
+{{--          <img src="{{ asset('assets/img/logo-dark.svg') }}" alt="logo">--}}
+      </a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#headerMenu"
         aria-controls="headerMenu" aria-expanded="false" aria-label="Toggle navigation">
         <i class="icon ion-md-menu"></i>
@@ -132,6 +136,37 @@
   </script>
 
 @livewireScripts
+
+<script>
+async function convertUsdToBtc(usdBalance) {
+    try {
+        // Fetch the current BTC price in USD from CoinGecko API
+        const response = await fetch('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=usd');
+        const data = await response.json();
+
+        // Get the current BTC price in USD
+        const btcPriceInUsd = data.bitcoin.usd;
+
+        // Convert the user's USD balance to BTC
+        const btcBalance = usdBalance / btcPriceInUsd;
+
+        return btcBalance;
+    } catch (error) {
+        console.error('Error fetching BTC price:', error);
+        return null;
+    }
+}
+
+// Call the function and update the span element with the BTC balance
+const usdBalance = {{ $user->balance }}; // Pass the user's USD balance from Blade to JS
+
+convertUsdToBtc(usdBalance).then(btcBalance => {
+    if (btcBalance !== null) {
+        // Format the BTC balance to 8 decimal places for precision
+        document.getElementById('btc-balance').textContent = ` ${btcBalance.toFixed(8)}`;
+    }
+});
+</script>
 </body>
 
 

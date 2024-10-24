@@ -5,10 +5,15 @@
         <div class="row no-gutters">
             <div class="col-md-3">
                 <div class="market-pairs">
-                  <h5 class="m-2">
-                    <span class="text-lef">Balance: </span>
-                      <span class="text-right">${{ number_format($user->balance, 2) }}</span>
-                  </h5>
+                  <div class="m-2">
+                    <h6>
+                        <span class="text-lef">Balance: </span>
+                      <strong>${{ number_format($user->balance, 2) }}</strong>
+                    </h6>
+                     <h6>
+                         <span>BTC</span><strong class="" id="btc-balance"> {{ $user->balance }}</strong>
+                     </h6>
+                  </div>
                     <ul class="nav nav-pills" role="tablist">
 
                     </ul>
@@ -1088,5 +1093,10 @@
         }, 1000);
 
     </script>
+
+    <!-- HTML element where the BTC price will be displayed -->
+
+
+
 
 @endsection
