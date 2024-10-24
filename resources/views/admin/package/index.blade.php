@@ -70,7 +70,7 @@
                         ${{ number_format($item->max_amount ?? '', 2) }}
                     </td>
                       <td class="p-4 text-sm font-semibold text-gray-900 whitespace-nowrap dark:text-white">
-                        {{ $item->trade_limit_per_day ?? '' }}
+                        {{ $item->maxTrade() ?? '' }}
                     </td>
                      <td class="p-4 space-x-2 whitespace-nowrap">
                          <button data-modal-target="default-modal" data-modal-toggle="default-modal-{{ $item->id }}" class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white rounded-lg bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">

@@ -19,7 +19,7 @@ class SubscriptionController extends Controller
 
    public function store(Request $request)
     {
-
+//        return $request;
         $user = Auth::user();
         $package = Package::findOrFail($request->plan_id);
 
@@ -28,13 +28,11 @@ class SubscriptionController extends Controller
         }
 
         Subscription::updateOrCreate(
+            ['user_id' => auth()->id()],
             [
-                'user_id' => $user->id,
-                'package_id' => $package->id
-            ],
-            [
-                'amount' => $request->max_amount,
-                'status' => 1
+                'package_id' => $package->id,
+                'status' => 1,
+                'amount' => $request->max_amount
             ]
         );
 

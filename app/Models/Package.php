@@ -19,4 +19,13 @@ class Package extends Model
     {
         return $this->hasMany(Subscription::class);
     }
+
+    public function maxTrade()
+    {
+        if ($this->trade_limit_per_day > 100)
+        {
+            return "UNLIMITED";
+        }
+        return $this->trade_limit_per_day;
+    }
 }

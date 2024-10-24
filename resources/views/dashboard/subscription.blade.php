@@ -94,7 +94,7 @@
                         </div>
                         <div  class="card-body">
                          <ul >
-                            <li><i class="icon ion-ios-checkmark-circle"></i> Daily Trades: <span class="badge badge-sm bg-success text-white">{{ $item->trade_limit_per_day }}</span></li>
+                            <li><i class="icon ion-ios-checkmark-circle"></i> Daily Trades: <span class="badge badge-sm bg-success text-white">{{ $item->maxTrade() }}</span></li>
                             <li><i class="icon ion-ios-checkmark-circle"></i> Live Trading</li>
                             <li><i class="icon ion-ios-checkmark-circle"></i> Live Tracking</li>
                             <li><i class="icon ion-ios-checkmark-circle"></i> Live Market Data</li>
@@ -147,7 +147,14 @@
                                                 <span class="badge bg-success text-white">Active</span>
                                             @endif
                                         </div>
-                                        <div>{{ $item->user->trade_count ?? '' }}</div>
+                                        <div>
+                                            @if($item->user->trade_count > 1000)
+                                                UNLIMITED
+                                            @else
+                                                {{ $item->user->trade_count ?? '' }}
+                                            @endif
+
+                                        </div>
                                     </div>
                                 @endforeach
                             </div>
