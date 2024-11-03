@@ -77,7 +77,7 @@
                         data-widget_type="button.default">
                         <div class="elementor-widget-container">
                             <div class="elementor-button-wrapper">
-                                <a class="elementor-button elementor-button-link elementor-size-sm" href="#">
+                                <a class="elementor-button elementor-button-link elementor-size-sm" href="{{ route('register') }}">
 						<span class="elementor-button-content-wrapper">
 									<span class="elementor-button-text">Get Started</span>
 					</span>
@@ -193,7 +193,7 @@
                     <div class="elementor-element elementor-element-351838d elementor-widget elementor-widget-heading"
                          data-id="351838d" data-element_type="widget" data-widget_type="heading.default">
                         <div class="elementor-widget-container">
-                            <h3 class="elementor-heading-title elementor-size-default">Earn up from cryptocurrency</h3>
+                            <h3 class="elementor-heading-title elementor-size-default">Zero trading fees, more rewards</h3>
                         </div>
                     </div>
                     <div
@@ -231,8 +231,8 @@
                                 .elementor-widget-text-editor .elementor-drop-cap-letter {
                                     display: inline-block
                                 }</style>
-                            <p>Lacinia maecenas rhoncus aliquet ultrices massa taciti aenean vitae etiam luctus
-                                velit</p></div>
+                            <p>Maximize your crypto experience with an all-in-one membership: enjoy zero trading fees, enhanced rewards, priority support, and more.
+                            </p></div>
                     </div>
                     <div
                         class="elementor-element elementor-element-6f99068 elementor-invisible elementor-widget elementor-widget-button"
@@ -241,9 +241,9 @@
                         data-widget_type="button.default">
                         <div class="elementor-widget-container">
                             <div class="elementor-button-wrapper">
-                                <a class="elementor-button elementor-button-link elementor-size-sm" href="#">
+                                <a class="elementor-button elementor-button-link elementor-size-sm" href="{{ route('register') }}">
 						<span class="elementor-button-content-wrapper">
-									<span class="elementor-button-text">Get Started</span>
+									<span class="elementor-button-text">Start Trading</span>
 					</span>
                                 </a>
                             </div>
@@ -273,7 +273,7 @@
                         data-settings="{&quot;_animation&quot;:&quot;fadeInUp&quot;,&quot;_animation_delay&quot;:200}"
                         data-widget_type="heading.default">
                         <div class="elementor-widget-container">
-                            <h2 class="elementor-heading-title elementor-size-default">we provide services</h2></div>
+                            <h2 class="elementor-heading-title elementor-size-default">Explore the crypto world with {{ env('APP_NAME') }}</h2></div>
                     </div>
                     <section
                         class="elementor-section elementor-inner-section elementor-element elementor-element-ef38b02 elementor-section-boxed elementor-section-height-default elementor-section-height-default"
@@ -361,9 +361,9 @@
                                                                                              sizes="(max-width: 512px) 100vw, 512px"/>
                                                 </figure>
                                                 <div class="elementor-image-box-content"><h3
-                                                        class="elementor-image-box-title">Buy Crypto Assets</h3>
-                                                    <p class="elementor-image-box-description">Justo malesuada nunc enim
-                                                        himenaeos pellentesque </p></div>
+                                                        class="elementor-image-box-title">We hold customer assets 1:1</h3>
+                                                    <p class="elementor-image-box-description">Access your crypto anytime, anywhere.
+                                                    </p></div>
                                             </div>
                                         </div>
                                     </div>
@@ -391,9 +391,11 @@
                                                                                              sizes="(max-width: 512px) 100vw, 512px"/>
                                                 </figure>
                                                 <div class="elementor-image-box-content"><h3
-                                                        class="elementor-image-box-title">Sell Crypto Assets</h3>
-                                                    <p class="elementor-image-box-description">Justo malesuada nunc enim
-                                                        himenaeos pellentesque </p></div>
+                                                        class="elementor-image-box-title">Explore derivatives</h3>
+                                                    <p class="elementor-image-box-description">
+                                                        Trade derivatives, built for the retail investor.
+                                                    </p>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -421,9 +423,8 @@
                                                                                              sizes="(max-width: 512px) 100vw, 512px"/>
                                                 </figure>
                                                 <div class="elementor-image-box-content"><h3
-                                                        class="elementor-image-box-title">24 Hours Transaction</h3>
-                                                    <p class="elementor-image-box-description">Justo malesuada nunc enim
-                                                        himenaeos pellentesque </p></div>
+                                                        class="elementor-image-box-title">24 Hours Security</h3>
+                                                    <p class="elementor-image-box-description">State-of-the-art security and multifaceted risk management programs</p></div>
                                             </div>
                                         </div>
                                     </div>
@@ -447,24 +448,23 @@
                     <div class="elementor-element elementor-element-c1bcbb8 elementor-widget elementor-widget-heading"
                          data-id="c1bcbb8" data-element_type="widget" data-widget_type="heading.default">
                         <div class="elementor-widget-container">
-                            <h2 class="elementor-heading-title elementor-size-default">Find the crypto </h2></div>
+                            <h2 class="elementor-heading-title elementor-size-default">ADVANCED</h2></div>
                     </div>
                     <div class="elementor-element elementor-element-d183fc9 elementor-widget elementor-widget-heading"
                          data-id="d183fc9" data-element_type="widget" data-widget_type="heading.default">
                         <div class="elementor-widget-container">
-                            <h2 class="elementor-heading-title elementor-size-default">data you need</h2></div>
+                            <h2 class="elementor-heading-title elementor-size-default">POWERFUL TOOLS</h2></div>
                     </div>
                     <div
                         class="elementor-element elementor-element-9557597 elementor-widget elementor-widget-text-editor"
                         data-id="9557597" data-element_type="widget" data-widget_type="text-editor.default">
                         <div class="elementor-widget-container">
-                            <p>Mi feugiat dignissim dis pulvinar mollis, imperdiet congue maecenas tortor vel porta,
-                                duis potenti nisl conubia.</p></div>
+                            <p>Designed for the advanced trader, Powerful analytical tools with the safety and security of Coincachex deliver the ultimate trading experience. Tap into sophisticated charting capabilities, real-time order books, and deep liquidity across hundreds of markets.</p></div>
                     </div>
                     <div class="elementor-element elementor-element-ea3e871 elementor-widget elementor-widget-heading"
                          data-id="ea3e871" data-element_type="widget" data-widget_type="heading.default">
                         <div class="elementor-widget-container">
-                            <h6 class="elementor-heading-title elementor-size-default">Download our platfom on </h6>
+                            <h6 class="elementor-heading-title elementor-size-default">Download our platform on </h6>
                         </div>
                     </div>
                     <section
@@ -732,8 +732,7 @@
                         class="elementor-element elementor-element-e7a350a elementor-widget elementor-widget-text-editor"
                         data-id="e7a350a" data-element_type="widget" data-widget_type="text-editor.default">
                         <div class="elementor-widget-container">
-                            <p>Accumsan dignissim at sollicitudin congue luctus nisl praesent proin scelerisque massa
-                                feugiat dictumst</p></div>
+                            <p>Thousands of assets in the palm of your hand Powering 10,000 transactions per second In-depth market analysis</p></div>
                     </div>
                     <div
                         class="elementor-element elementor-element-86544f1 elementor-widget elementor-widget-price-list"
@@ -1006,11 +1005,11 @@
                                         <div class="elementor-price-list-text">
                                             <div class="elementor-price-list-header">
 											<span class="elementor-price-list-title">
-							Manage  Crypto						</span>
+							Futures Trading						</span>
                                                 <span class="elementor-price-list-separator"></span>
                                             </div>
                                             <p class="elementor-price-list-description">
-                                                Pharetra cum massa maecenas aenean </p>
+                                                Optimize for dual profit strategies.</p>
                                         </div>
                                     </a></li>
                                 <li><a class="elementor-price-list-item" href="#">
@@ -1022,11 +1021,11 @@
                                         <div class="elementor-price-list-text">
                                             <div class="elementor-price-list-header">
 											<span class="elementor-price-list-title">
-							Mobile Apps						</span>
+							Beginner-friendly features</span>
                                                 <span class="elementor-price-list-separator"></span>
                                             </div>
                                             <p class="elementor-price-list-description">
-                                                Pharetra cum massa maecenas aenean </p>
+                                                Supporting languages in 200+ countries/regions</p>
                                         </div>
                                     </a></li>
                                 <li><a class="elementor-price-list-item" href="#">
@@ -1038,11 +1037,12 @@
                                         <div class="elementor-price-list-text">
                                             <div class="elementor-price-list-header">
 											<span class="elementor-price-list-title">
-							Capital Market						</span>
+                                                Copy Trading
+                                                </span>
                                                 <span class="elementor-price-list-separator"></span>
                                             </div>
                                             <p class="elementor-price-list-description">
-                                                Pharetra cum massa maecenas aenean </p>
+                                               Easily replicate trading strategies with precision.</p>
                                         </div>
                                     </a></li>
                             </ul>
@@ -1079,21 +1079,14 @@
                 class="elementor-column elementor-col-50 elementor-top-column elementor-element elementor-element-7dba2c7"
                 data-id="7dba2c7" data-element_type="column">
                 <div class="elementor-widget-wrap elementor-element-populated">
-                    <div
-                        class="elementor-element elementor-element-e903384 elementor-invisible elementor-widget elementor-widget-heading"
-                        data-id="e903384" data-element_type="widget"
-                        data-settings="{&quot;_animation&quot;:&quot;fadeInUp&quot;,&quot;_animation_delay&quot;:200}"
-                        data-widget_type="heading.default">
-                        <div class="elementor-widget-container">
-                            <h5 class="elementor-heading-title elementor-size-default">Our Mission</h5></div>
-                    </div>
+
                     <div
                         class="elementor-element elementor-element-e044d1f elementor-invisible elementor-widget elementor-widget-heading"
                         data-id="e044d1f" data-element_type="widget"
                         data-settings="{&quot;_animation&quot;:&quot;fadeInUp&quot;,&quot;_animation_delay&quot;:400}"
                         data-widget_type="heading.default">
                         <div class="elementor-widget-container">
-                            <h2 class="elementor-heading-title elementor-size-default">Creating the Future </h2></div>
+                            <h2 class="elementor-heading-title elementor-size-default">The freedom of crypto for</h2></div>
                     </div>
                     <div
                         class="elementor-element elementor-element-deb05b1 elementor-invisible elementor-widget elementor-widget-heading"
@@ -1101,7 +1094,7 @@
                         data-settings="{&quot;_animation&quot;:&quot;fadeInUp&quot;,&quot;_animation_delay&quot;:400}"
                         data-widget_type="heading.default">
                         <div class="elementor-widget-container">
-                            <h2 class="elementor-heading-title elementor-size-default">of Finance Today</h2></div>
+                            <h2 class="elementor-heading-title elementor-size-default">everyone, everywhere</h2></div>
                     </div>
                     <div class="elementor-element elementor-element-887bea1 elementor-widget elementor-widget-spacer"
                          data-id="887bea1" data-element_type="widget" data-widget_type="spacer.default">
@@ -1162,10 +1155,10 @@
                         data-settings="{&quot;_animation&quot;:&quot;fadeInUp&quot;,&quot;_animation_delay&quot;:600}"
                         data-widget_type="text-editor.default">
                         <div class="elementor-widget-container">
-                            <p>Nunc suscipit cras nibh vel nisi imperdiet convallis leo cubilia  sollicitudin, urna
-                                curae integer  condimentum velit semper mattis aenean montes.</p>
-                            <p>Imper accumsan nisi etiam nibh eget curabitur aliquam  duis in praesent, facilisis
-                                venenatis orci taciti lobortis vestibulum vivamus eleifend.</p></div>
+                            <p>We’re committed to creating more economic freedom through accessible, safe, and secure financial tools for everyone.
+</p>
+                            <p>Making Crypto Trading Easier & trading with users in mind as the number 1 Global Cryptocurrency Exchange
+                            </p></div>
                     </div>
                     <div
                         class="elementor-element elementor-element-6fbbcd0 elementor-widget-divider--view-line elementor-widget elementor-widget-divider"
@@ -1406,7 +1399,7 @@
                                                 <div class="elementor-counter-number-wrapper">
                                                     <span class="elementor-counter-number-prefix"></span>
                                                     <span class="elementor-counter-number" data-duration="2000"
-                                                          data-to-value="65" data-from-value="0"
+                                                          data-to-value="500" data-from-value="0"
                                                           data-delimiter=",">0</span>
                                                     <span class="elementor-counter-number-suffix">+</span>
                                                 </div>
@@ -1446,13 +1439,13 @@
                                         data-id="0551d08" data-element_type="widget" data-widget_type="counter.default">
                                         <div class="elementor-widget-container">
                                             <div class="elementor-counter">
-                                                <div class="elementor-counter-title">volume Traded</div>
+                                                <div class="elementor-counter-title">Quarterly volume Traded</div>
                                                 <div class="elementor-counter-number-wrapper">
                                                     <span class="elementor-counter-number-prefix">$</span>
                                                     <span class="elementor-counter-number" data-duration="2000"
-                                                          data-to-value="400" data-from-value="0"
+                                                          data-to-value="105" data-from-value="0"
                                                           data-delimiter=",">0</span>
-                                                    <span class="elementor-counter-number-suffix">M</span>
+                                                    <span class="elementor-counter-number-suffix">B</span>
                                                 </div>
                                             </div>
                                         </div>
@@ -1472,7 +1465,7 @@
                                                 <div class="elementor-counter-number-wrapper">
                                                     <span class="elementor-counter-number-prefix"></span>
                                                     <span class="elementor-counter-number" data-duration="2000"
-                                                          data-to-value="98" data-from-value="0"
+                                                          data-to-value="200" data-from-value="0"
                                                           data-delimiter=",">0</span>
                                                     <span class="elementor-counter-number-suffix">+</span>
                                                 </div>
@@ -1500,14 +1493,18 @@
                     <div class="elementor-element elementor-element-d8546c8 elementor-widget elementor-widget-heading"
                          data-id="d8546c8" data-element_type="widget" data-widget_type="heading.default">
                         <div class="elementor-widget-container">
-                            <h2 class="elementor-heading-title elementor-size-default">Trusted crypto<br> platform</h2>
+                            <h2 class="elementor-heading-title elementor-size-default">
+                                Low fees.
+                                <br> Powerful trading.</h2>
                         </div>
                     </div>
                     <div
                         class="elementor-element elementor-element-8cc8df8 elementor-widget elementor-widget-text-editor"
                         data-id="8cc8df8" data-element_type="widget" data-widget_type="text-editor.default">
                         <div class="elementor-widget-container">
-                            <p>Nunc suscipit cras nibh vel nisi imperdiet convallis leo cubilia  </p></div>
+                            <p>
+                                Fast-track to as low as 0.0% maker fees on spot pairs. Your CoinCacheX account lets you trade, earn, spend, send, and withdraw. When you aren’t trading, earn 5%* rewards automatically just by holding USDC¹, ETH, ADA, SOL, ATOM or XRP to earn up to 32% APY².
+                            </p></div>
                     </div>
                     <section
                         class="elementor-section elementor-inner-section elementor-element elementor-element-9089766 elementor-section-boxed elementor-section-height-default elementor-section-height-default"
@@ -1576,8 +1573,7 @@
                                                                                              loading="lazy"/></figure>
                                                 <div class="elementor-image-box-content"><h3
                                                         class="elementor-image-box-title">Safe and Secure</h3>
-                                                    <p class="elementor-image-box-description">Nunc suscipit cras nibh
-                                                        vel nisi imperdiet convallis leo cubilia  </p></div>
+                                                    <p class="elementor-image-box-description">We prudently manages assets for our customers with state-of-the-art encryption and security programs.</p></div>
                                             </div>
                                         </div>
                                     </div>
@@ -1605,8 +1601,7 @@
                                                 </figure>
                                                 <div class="elementor-image-box-content"><h3
                                                         class="elementor-image-box-title">Real-time Data</h3>
-                                                    <p class="elementor-image-box-description">Nunc suscipit cras nibh
-                                                        vel nisi imperdiet convallis leo cubilia  </p></div>
+                                                    <p class="elementor-image-box-description">unlock real-time market data with high throughput APIs.</p></div>
                                             </div>
                                         </div>
                                     </div>
@@ -1635,8 +1630,7 @@
                                                                                              loading="lazy"/></figure>
                                                 <div class="elementor-image-box-content"><h3
                                                         class="elementor-image-box-title">Track Profit</h3>
-                                                    <p class="elementor-image-box-description">Nunc suscipit cras nibh
-                                                        vel nisi imperdiet convallis leo cubilia  </p></div>
+                                                    <p class="elementor-image-box-description">Manage risk in volatile markets with limit orders and stop-limit orders.</p></div>
                                             </div>
                                         </div>
                                     </div>
@@ -1664,8 +1658,7 @@
                                                 </figure>
                                                 <div class="elementor-image-box-content"><h3
                                                         class="elementor-image-box-title">Customizable Charts</h3>
-                                                    <p class="elementor-image-box-description">Nunc suscipit cras nibh
-                                                        vel nisi imperdiet convallis leo cubilia  </p></div>
+                                                    <p class="elementor-image-box-description">Get ahead of the game with TradingView charts, technical indicators, and custom watchlist.</p></div>
                                             </div>
                                         </div>
                                     </div>
