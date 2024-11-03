@@ -50,7 +50,7 @@
                                 .elementor-widget-heading .elementor-heading-title.elementor-size-xxl {
                                     font-size: 59px
                                 }</style>
-                            <h1 class="elementor-heading-title elementor-size-default">buy and sell </h1></div>
+                            <h1 class="elementor-heading-title elementor-size-default">Trade crypto.</h1></div>
                     </div>
                     <div
                         class="elementor-element elementor-element-f5bc79d elementor-invisible elementor-widget elementor-widget-heading"
@@ -58,7 +58,7 @@
                         data-settings="{&quot;_animation&quot;:&quot;fadeIn&quot;,&quot;_animation_delay&quot;:400}"
                         data-widget_type="heading.default">
                         <div class="elementor-widget-container">
-                            <h1 class="elementor-heading-title elementor-size-default">Cryptocurrency</h1></div>
+                            <h1 class="elementor-heading-title elementor-size-default">Anytime, Anywhere.</h1></div>
                     </div>
                     <div
                         class="elementor-element elementor-element-06a5288 elementor-invisible elementor-widget elementor-widget-heading"
@@ -66,8 +66,9 @@
                         data-settings="{&quot;_animation&quot;:&quot;fadeIn&quot;,&quot;_animation_delay&quot;:600}"
                         data-widget_type="heading.default">
                         <div class="elementor-widget-container">
-                            <h5 class="elementor-heading-title elementor-size-default">With our application platform.
-                                Sign up and get started today.</h5></div>
+                            <h5 class="elementor-heading-title elementor-size-default">
+                               Choose from over 500 spot pairs with maker fees starting at 0.0%, enjoy advanced charting capabilities powered by TradingView, and leverage robust APIs.
+                            </h5></div>
                     </div>
                     <div
                         class="elementor-element elementor-element-deafccb elementor-invisible elementor-widget elementor-widget-button"
@@ -108,11 +109,8 @@
                         data-settings="{&quot;_animation&quot;:&quot;fadeIn&quot;,&quot;_animation_delay&quot;:400}"
                         data-widget_type="image.default">
                         <div class="elementor-widget-container">
-                            <img decoding="async" width="800" height="775"
-                                 src="wp-content/uploads/sites/5/2021/07/coinonehome03-1024x992.png"
-                                 class="attachment-large size-large wp-image-94" alt=""
-                                 srcset="https://demo2.strongtheme.com/coinone/wp-content/uploads/sites/5/2021/07/coinonehome03-1024x992.png 1024w, https://demo2.strongtheme.com/coinone/wp-content/uploads/sites/5/2021/07/coinonehome03-300x291.png 300w, https://demo2.strongtheme.com/coinone/wp-content/uploads/sites/5/2021/07/coinonehome03-768x744.png 768w, https://demo2.strongtheme.com/coinone/wp-content/uploads/sites/5/2021/07/coinonehome03-800x775.png 800w, https://demo2.strongtheme.com/coinone/wp-content/uploads/sites/5/2021/07/coinonehome03.png 1115w"
-                                 sizes="(max-width: 800px) 100vw, 800px"/></div>
+                            <img width="800" height="775" src="{{ asset('img/3.png') }}"/>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -533,11 +531,8 @@
                     <div class="elementor-element elementor-element-face4bc elementor-widget elementor-widget-image"
                          data-id="face4bc" data-element_type="widget" data-widget_type="image.default">
                         <div class="elementor-widget-container">
-                            <img loading="lazy" decoding="async" width="800" height="545"
-                                 src="wp-content/uploads/sites/5/2021/07/coinonehome07-1024x697.png"
-                                 class="attachment-large size-large wp-image-309" alt=""
-                                 srcset="https://demo2.strongtheme.com/coinone/wp-content/uploads/sites/5/2021/07/coinonehome07-1024x697.png 1024w, https://demo2.strongtheme.com/coinone/wp-content/uploads/sites/5/2021/07/coinonehome07-300x204.png 300w, https://demo2.strongtheme.com/coinone/wp-content/uploads/sites/5/2021/07/coinonehome07-768x523.png 768w, https://demo2.strongtheme.com/coinone/wp-content/uploads/sites/5/2021/07/coinonehome07-800x545.png 800w, https://demo2.strongtheme.com/coinone/wp-content/uploads/sites/5/2021/07/coinonehome07.png 1200w"
-                                 sizes="(max-width: 800px) 100vw, 800px"/></div>
+                            <img loading="lazy" decoding="async" width="800" height="545" src="{{ asset('img/4.png') }}"/>
+                        </div>
                     </div>
                 </div>
             </div>
