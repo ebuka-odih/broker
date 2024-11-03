@@ -919,10 +919,8 @@
                         data-settings="{&quot;_animation&quot;:&quot;fadeInUp&quot;,&quot;_animation_delay&quot;:100}"
                         data-widget_type="image.default">
                         <div class="elementor-widget-container">
-                            <img width="800" height="207" src="wp-content/uploads/sites/5/2021/08/Logo-1024x265.png"
-                                 class="attachment-large size-large wp-image-613" alt=""
-                                 srcset="https://demo2.strongtheme.com/coinone/wp-content/uploads/sites/5/2021/08/Logo-1024x265.png 1024w, https://demo2.strongtheme.com/coinone/wp-content/uploads/sites/5/2021/08/Logo-300x78.png 300w, https://demo2.strongtheme.com/coinone/wp-content/uploads/sites/5/2021/08/Logo-768x199.png 768w, https://demo2.strongtheme.com/coinone/wp-content/uploads/sites/5/2021/08/Logo-800x207.png 800w, https://demo2.strongtheme.com/coinone/wp-content/uploads/sites/5/2021/08/Logo.png 1276w"
-                                 sizes="(max-width: 800px) 100vw, 800px"/></div>
+                            <h4>{{ env('APP_NAME') }}</h4>
+                        </div>
                     </div>
                     <div
                         class="elementor-element elementor-element-1c2b30e elementor-invisible elementor-widget elementor-widget-text-editor"
@@ -930,7 +928,8 @@
                         data-settings="{&quot;_animation&quot;:&quot;fadeInUp&quot;,&quot;_animation_delay&quot;:400}"
                         data-widget_type="text-editor.default">
                         <div class="elementor-widget-container">
-                            <p>Accumsan dignissim at sollicitudin congue luctus</p></div>
+                            <p>Trade crypto.
+Anytime, Anywhere.</p></div>
                     </div>
                     <div
                         class="elementor-element elementor-element-2baed1f elementor-invisible elementor-widget elementor-widget-image"
@@ -967,19 +966,16 @@
                                   href="wp-content/plugins/elementor/assets/css/widget-icon-list.min.css">
                             <ul class="elementor-icon-list-items">
                                 <li class="elementor-icon-list-item">
-                                    <span class="elementor-icon-list-text">Buy Cypto</span>
+                                    <span class="elementor-icon-list-text">Buy Crypto</span>
                                 </li>
                                 <li class="elementor-icon-list-item">
-                                    <span class="elementor-icon-list-text">Sell Cypto</span>
+                                    <span class="elementor-icon-list-text">Sell Crypto</span>
                                 </li>
                                 <li class="elementor-icon-list-item">
                                     <span class="elementor-icon-list-text">Track Profit</span>
                                 </li>
                                 <li class="elementor-icon-list-item">
                                     <span class="elementor-icon-list-text">Realtime Data</span>
-                                </li>
-                                <li class="elementor-icon-list-item">
-                                    <span class="elementor-icon-list-text">Referral Program</span>
                                 </li>
                             </ul>
                         </div>
@@ -1007,12 +1003,6 @@
                             <ul class="elementor-icon-list-items">
                                 <li class="elementor-icon-list-item">
                                     <span class="elementor-icon-list-text">About Us</span>
-                                </li>
-                                <li class="elementor-icon-list-item">
-                                    <span class="elementor-icon-list-text">Blog</span>
-                                </li>
-                                <li class="elementor-icon-list-item">
-                                    <span class="elementor-icon-list-text">Career</span>
                                 </li>
                                 <li class="elementor-icon-list-item">
                                     <span class="elementor-icon-list-text">Community</span>
@@ -1051,12 +1041,6 @@
                                     <span class="elementor-icon-list-text">Desktop Application</span>
                                 </li>
                                 <li class="elementor-icon-list-item">
-                                    <span class="elementor-icon-list-text">Affiliate</span>
-                                </li>
-                                <li class="elementor-icon-list-item">
-                                    <span class="elementor-icon-list-text">Trading Rules</span>
-                                </li>
-                                <li class="elementor-icon-list-item">
                                     <span class="elementor-icon-list-text">Referral</span>
                                 </li>
                             </ul>
@@ -1087,12 +1071,6 @@
                                     <span class="elementor-icon-list-text">Help Center</span>
                                 </li>
                                 <li class="elementor-icon-list-item">
-                                    <span class="elementor-icon-list-text">Apply to List</span>
-                                </li>
-                                <li class="elementor-icon-list-item">
-                                    <span class="elementor-icon-list-text">Contact Us</span>
-                                </li>
-                                <li class="elementor-icon-list-item">
                                     <span class="elementor-icon-list-text">Privacy</span>
                                 </li>
                                 <li class="elementor-icon-list-item">
@@ -1121,7 +1099,7 @@
                         data-settings="{&quot;_animation&quot;:&quot;fadeInUp&quot;,&quot;_animation_delay&quot;:400}"
                         data-widget_type="heading.default">
                         <div class="elementor-widget-container">
-                            <h6 class="elementor-heading-title elementor-size-default">© 2021 CoinOne is proudly powered
+                            <h6 class="elementor-heading-title elementor-size-default">© {{ Date('Y') }} {{ env('APP_NAME') }} is proudly powered
                                 by Onecontributor</h6></div>
                     </div>
                 </div>
