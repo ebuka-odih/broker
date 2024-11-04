@@ -1,8 +1,17 @@
 @extends('pages.layout.app')
 @section('content')
+    <style>
+        @media (max-width: 767px) {
+            .elementor-6 .elementor-element.elementor-element-93685ed img {
+                width: 1000px;
+                max-width: 374px;
+                margin-left: 60px;
+            }
+        }
+    </style>
 
 <div data-elementor-type="wp-page" data-elementor-id="6" class="elementor elementor-6" data-elementor-post-type="page">
-    <section
+    <section style="margin-bottom: 50px"
         class="elementor-section elementor-top-section elementor-element elementor-element-b63fbaf elementor-section-height-min-height elementor-section-boxed elementor-section-height-default elementor-section-items-middle"
         data-id="b63fbaf" data-element_type="section"
         data-settings="{&quot;background_background&quot;:&quot;classic&quot;}">
@@ -109,7 +118,7 @@
                         data-settings="{&quot;_animation&quot;:&quot;fadeIn&quot;,&quot;_animation_delay&quot;:400}"
                         data-widget_type="image.default">
                         <div class="elementor-widget-container">
-                            <img width="800" height="775" src="{{ asset('img/3.png') }}"/>
+                            <img width="800" height="775" src="{{ asset('img/hero_3x_B.webp') }}"/>
                         </div>
                     </div>
                 </div>
@@ -119,7 +128,7 @@
     <section
         class="elementor-section elementor-top-section elementor-element elementor-element-b30fbaa elementor-section-boxed elementor-section-height-default elementor-section-height-default"
         data-id="b30fbaa" data-element_type="section">
-        <div class="elementor-container elementor-column-gap-default">
+        <div  class="elementor-container elementor-column-gap-default">
             <div
                 class="elementor-column elementor-col-33 elementor-top-column elementor-element elementor-element-fadb85a elementor-invisible"
                 data-id="fadb85a" data-element_type="column"
@@ -181,6 +190,7 @@
                 </div>
             </div>
         </div>
+        <script type="text/javascript" src="https://files.coinmarketcap.com/static/widget/coinPriceBlock.js"></script><div id="coinmarketcap-widget-coin-price-block" coins="1,1027,825,5426,1839,3408,52,1958" currency="USD" theme="light" transparent="false" show-symbol-logo="true"></div>
     </section>
     <section
         class="elementor-section elementor-top-section elementor-element elementor-element-8e33f15 elementor-section-boxed elementor-section-height-default elementor-section-height-default"
@@ -384,10 +394,9 @@
                                                 <figure class="elementor-image-box-img"><img loading="lazy"
                                                                                              decoding="async"
                                                                                              width="512" height="512"
-                                                                                             src="wp-content/uploads/sites/5/2021/07/Bag.png"
+                                                                                             src="wp-content/uploads/sites/5/2021/07/Select.png"
                                                                                              class="attachment-full size-full wp-image-234"
-                                                                                             alt=""
-                                                                                             srcset="https://demo2.strongtheme.com/coinone/wp-content/uploads/sites/5/2021/07/Bag.png 512w, https://demo2.strongtheme.com/coinone/wp-content/uploads/sites/5/2021/07/Bag-300x300.png 300w, https://demo2.strongtheme.com/coinone/wp-content/uploads/sites/5/2021/07/Bag-150x150.png 150w"
+
                                                                                              sizes="(max-width: 512px) 100vw, 512px"/>
                                                 </figure>
                                                 <div class="elementor-image-box-content"><h3

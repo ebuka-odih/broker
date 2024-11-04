@@ -929,7 +929,8 @@
                         data-widget_type="text-editor.default">
                         <div class="elementor-widget-container">
                             <p>Trade crypto.
-Anytime, Anywhere.</p></div>
+                            Anytime, Anywhere.
+                            </p></div>
                     </div>
                     <div
                         class="elementor-element elementor-element-2baed1f elementor-invisible elementor-widget elementor-widget-image"
