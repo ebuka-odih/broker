@@ -1514,7 +1514,8 @@
                 data-id="cd3d05d" data-element_type="column"
                 data-settings="{&quot;background_background&quot;:&quot;classic&quot;,&quot;animation&quot;:&quot;fadeIn&quot;,&quot;animation_delay&quot;:200}">
                 <script async src="https://static.coinstats.app/widgets/coin-list-widget.js"></script>
-<coin-stats-list-widget locale="en" currency="USD" bg-color="#1C1B1B" status-up-color="#74D492" status-down-color="#FE4747" text-color="#FFFFFF" font="Roboto, Arial, Helvetica" border-color="rgba(255,255,255,0.15)" width="362" coin-ids="bitcoin,ethereum,litecoin,solana,binance-coin,dogecoin,ripple"></coin-stats-list-widget>
+<coin-stats-list-widget locale="en" currency="USD" bg-color="#ffffff" status-up-color="#74D492" status-down-color="#FE4747" text-color="#000000" font="Roboto, Arial, Helvetica" border-color="rgba(255,255,255,0.15)" width="362" coin-ids="bitcoin,ethereum,litecoin,solana,binance-coin,dogecoin,ripple"></coin-stats-list-widget>
+
             </div>
             <div
                 class="elementor-column elementor-col-50 elementor-top-column elementor-element elementor-element-1b68880"
