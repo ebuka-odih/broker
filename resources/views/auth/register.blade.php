@@ -13,7 +13,7 @@
 <body>
   <header class="light-bb">
     <nav class="navbar navbar-expand-lg">
-      <a class='navbar-brand' href='{{ route('index') }}'><img src="{{ asset('assets/img/logo-dark.svg') }}" alt="logo"></a>
+      <a class='navbar-brand' href='{{ route('index') }}'><img src="{{ asset('img/logo.png') }}" alt="logo"></a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#headerMenu"
         aria-controls="headerMenu" aria-expanded="false" aria-label="Toggle navigation">
         <i class="icon ion-md-menu"></i>
@@ -23,7 +23,9 @@
   </header>
   <div class="vh-100 d-flex justify-content-center">
     <div class="form-access my-auto">
-        <h4 class="text-center mb-3">{{ env('APP_NAME') }}</h4>
+        <div class="mb-3 d-flex justify-content-center">
+        <img src="{{ asset('img/logo.png') }}" width="170" height="140" alt="">
+    </div>
       <form action="{{ route('register') }}" method="POST">
           @csrf
         <span>Create Account</span>

@@ -736,7 +736,7 @@
                                     <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1391">
                                         <a href="{{ route('products') }}" class="elementor-item">Trade</a>
                                         <ul class="submenu">
-                                            <li><a href="#">Future</a></li>
+                                            <li><a href="{{ route('user.dashboard') }}">Future</a></li>
                                             <li><a href="#">Spot</a></li>
                                             <li><a href="#">Margin</a></li>
                                             <li><a href="#">Copy Trading</a></li>
