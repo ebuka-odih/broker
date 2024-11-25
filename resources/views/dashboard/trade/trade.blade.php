@@ -5,10 +5,24 @@
         <div class="row no-gutters">
             <div class="col-md-3">
                 <div class="market-pairs">
-                     <h5 class="m-2">
-                    <span class="text-lef">Balance: </span>
-                      <span class="text-right">${{ number_format($user->balance, 2) }}</span>
-                  </h5>
+                     <div class="m-2">
+                    <div class="row align-items-center">
+                        <!-- USD Balance -->
+                        <div class="col text-left">
+                            <h6>
+                                <span class="text-left">Balance: </span>
+                                <strong>${{ number_format($user->balance, 2) }}</strong>
+                            </h6>
+                        </div>
+                        <!-- BTC Balance -->
+                        <div class="col text-right">
+                            <h6>
+                                <span>BTC</span>
+                                <strong id="btc-balance">{{ $user->balance }}</strong>
+                            </h6>
+                        </div>
+                    </div>
+                </div>
                     <ul class="nav nav-pills" role="tablist">
 
                     </ul>
