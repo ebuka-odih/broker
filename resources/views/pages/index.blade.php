@@ -8,6 +8,22 @@
                 margin-left: 60px;
             }
         }
+
+        .coinPriceBlock-container {
+            overflow-x: scroll;
+            overflow-y: hidden;
+            white-space: nowrap;
+            padding: 10px 10px;
+            box-sizing: border-box;
+            min-height: 174px;
+
+
+            /* Flexbox styles to center content */
+            display: flex;
+            justify-content: center; /* Horizontally center */
+            align-items: center; /* Vertically center */
+        }
+
     </style>
 
 <div data-elementor-type="wp-page" data-elementor-id="6" class="elementor elementor-6" data-elementor-post-type="page">
@@ -1497,65 +1513,8 @@
                 class="elementor-column elementor-col-50 elementor-top-column elementor-element elementor-element-cd3d05d elementor-invisible"
                 data-id="cd3d05d" data-element_type="column"
                 data-settings="{&quot;background_background&quot;:&quot;classic&quot;,&quot;animation&quot;:&quot;fadeIn&quot;,&quot;animation_delay&quot;:200}">
-                <div class="elementor-widget-wrap elementor-element-populated">
-                    <div class="elementor-background-overlay"></div>
-                    <div class="elementor-element elementor-element-d8546c8 elementor-widget elementor-widget-heading"
-                         data-id="d8546c8" data-element_type="widget" data-widget_type="heading.default">
-                        <div class="elementor-widget-container">
-                            <h2 class="elementor-heading-title elementor-size-default">
-                                Low fees.
-                                <br> Powerful trading.</h2>
-                        </div>
-                    </div>
-                    <div
-                        class="elementor-element elementor-element-8cc8df8 elementor-widget elementor-widget-text-editor"
-                        data-id="8cc8df8" data-element_type="widget" data-widget_type="text-editor.default">
-                        <div class="elementor-widget-container">
-                            <p>
-                                Fast-track to as low as 0.0% maker fees on spot pairs. Your CoinCacheX account lets you trade, earn, spend, send, and withdraw. When you aren’t trading, earn 5%* rewards automatically just by holding USDC¹, ETH, ADA, SOL, ATOM or XRP to earn up to 32% APY².
-                            </p></div>
-                    </div>
-                    <section
-                        class="elementor-section elementor-inner-section elementor-element elementor-element-9089766 elementor-section-boxed elementor-section-height-default elementor-section-height-default"
-                        data-id="9089766" data-element_type="section">
-                        <div class="elementor-container elementor-column-gap-default">
-                            <div
-                                class="elementor-column elementor-col-50 elementor-inner-column elementor-element elementor-element-26dbefd"
-                                data-id="26dbefd" data-element_type="column">
-                                <div class="elementor-widget-wrap elementor-element-populated">
-                                    <div
-                                        class="elementor-element elementor-element-4851e29 elementor-widget elementor-widget-image"
-                                        data-id="4851e29" data-element_type="widget" data-widget_type="image.default">
-                                        <div class="elementor-widget-container">
-                                            <img loading="lazy" decoding="async" width="592" height="175"
-                                                 src="wp-content/uploads/sites/5/2021/07/coinonehome010.png"
-                                                 class="elementor-animation-shrink attachment-large size-large wp-image-332"
-                                                 alt=""
-                                                 srcset="https://demo2.strongtheme.com/coinone/wp-content/uploads/sites/5/2021/07/coinonehome010.png 592w, https://demo2.strongtheme.com/coinone/wp-content/uploads/sites/5/2021/07/coinonehome010-300x89.png 300w"
-                                                 sizes="(max-width: 592px) 100vw, 592px"/></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div
-                                class="elementor-column elementor-col-50 elementor-inner-column elementor-element elementor-element-21163d2"
-                                data-id="21163d2" data-element_type="column">
-                                <div class="elementor-widget-wrap elementor-element-populated">
-                                    <div
-                                        class="elementor-element elementor-element-91d6081 elementor-widget elementor-widget-image"
-                                        data-id="91d6081" data-element_type="widget" data-widget_type="image.default">
-                                        <div class="elementor-widget-container">
-                                            <img loading="lazy" decoding="async" width="592" height="175"
-                                                 src="wp-content/uploads/sites/5/2021/07/coinonehome09.png"
-                                                 class="elementor-animation-shrink attachment-large size-large wp-image-331"
-                                                 alt=""
-                                                 srcset="https://demo2.strongtheme.com/coinone/wp-content/uploads/sites/5/2021/07/coinonehome09.png 592w, https://demo2.strongtheme.com/coinone/wp-content/uploads/sites/5/2021/07/coinonehome09-300x89.png 300w"
-                                                 sizes="(max-width: 592px) 100vw, 592px"/></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </section>
-                </div>
+                <script async src="https://static.coinstats.app/widgets/coin-list-widget.js"></script>
+<coin-stats-list-widget locale="en" currency="USD" bg-color="#1C1B1B" status-up-color="#74D492" status-down-color="#FE4747" text-color="#FFFFFF" font="Roboto, Arial, Helvetica" border-color="rgba(255,255,255,0.15)" width="362" coin-ids="bitcoin,ethereum,litecoin,solana,binance-coin,dogecoin,ripple"></coin-stats-list-widget>
             </div>
             <div
                 class="elementor-column elementor-col-50 elementor-top-column elementor-element elementor-element-1b68880"

@@ -473,6 +473,73 @@
     </style>
     <meta name="theme-color" content="#F1F8FF">
 
+    <style>
+        /* General menu styles */
+.dropdown-menu {
+    font-family: Arial, sans-serif;
+    position: relative;
+}
+
+.menu {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+.menu-item {
+    position: relative;
+}
+
+.menu-item > a {
+    text-decoration: none;
+    padding: 10px 15px;
+    display: block;
+    color: #333;
+    /*background-color: #f5f5f5;*/
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.menu-item > a:hover {
+    background-color: #ddd;
+}
+
+/* Submenu styles */
+.submenu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    list-style: none;
+    padding: 10px 0;
+    background-color: #f5f5f5;
+    border-radius: 5px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+}
+
+.submenu li {
+    padding: 5px 15px;
+}
+
+.submenu li a {
+    text-decoration: none;
+    color: #333;
+    display: block;
+    transition: color 0.3s;
+}
+
+.submenu li a:hover {
+    color: #007BFF;
+}
+
+/* Show submenu on hover */
+.menu-item:hover > .submenu {
+    display: block;
+}
+
+    </style>
 </head>
 <body
     class="home page-template page-template-elementor_header_footer page page-id-6 wp-custom-logo elementor-default elementor-template-full-width elementor-kit-3 elementor-page elementor-page-6">
@@ -621,7 +688,7 @@
                     <div class="elementor-element elementor-element-5e03de4 elementor-widget elementor-widget-image"
                          data-id="5e03de4" data-element_type="widget" data-widget_type="image.default">
                         <div class="elementor-widget-container">
-                            <h3>{{ env('APP_NAME') }}</h3>
+                            <img src="{{ asset('img/logo.png') }}"  alt="">
                             <style>/*! elementor - v3.23.0 - 05-08-2024 */
                                 .elementor-widget-image {
                                     text-align: center
@@ -667,13 +734,28 @@
                                         <a href="{{ route('index') }}" aria-current="page"
                                            class="elementor-item elementor-item-active">Home</a></li>
                                     <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1391">
-                                        <a href="{{ route('products') }}" class="elementor-item">Products</a></li>
+                                        <a href="{{ route('products') }}" class="elementor-item">Trade</a>
+                                        <ul class="submenu">
+                                            <li><a href="#">Future</a></li>
+                                            <li><a href="#">Spot</a></li>
+                                            <li><a href="#">Margin</a></li>
+                                            <li><a href="#">Copy Trading</a></li>
+                                            <li><a href="#">AI Assist</a></li>
+                                        </ul>
+                                    </li>
                                     <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1388">
-                                        <a href="{{ route('market') }}" class="elementor-item">Market Coin</a></li>
-                                    <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1382">
-                                        <a href="about/index.html" class="elementor-item">About</a></li>
-                                    <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1385">
-                                        <a href="contact-us/index.html" class="elementor-item">Contact Us</a></li>
+                                        <a href="{{ route('market') }}" class="elementor-item">Markets</a></li>
+                                    <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1391">
+                                        <a href="{{ route('products') }}" class="elementor-item">Buy Crypto</a>
+                                        <ul class="submenu">
+                                            <li><a href="#">MoonPay</a></li>
+                                            <li><a href="#">Kraken</a></li>
+                                            <li><a href="#">ByBit</a></li>
+                                            <li><a href="#">Binance</a></li>
+                                        </ul>
+                                    </li>
+{{--                                    <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1382">--}}
+{{--                                        <a href="about/index.html" class="elementor-item">About</a></li>--}}
                                 </ul>
                             </nav>
                             <div class="elementor-menu-toggle" role="button" tabindex="0" aria-label="Menu Toggle"
@@ -919,7 +1001,8 @@
                         data-settings="{&quot;_animation&quot;:&quot;fadeInUp&quot;,&quot;_animation_delay&quot;:100}"
                         data-widget_type="image.default">
                         <div class="elementor-widget-container">
-                            <h4>{{ env('APP_NAME') }}</h4>
+                            <img src="{{ asset('img/logo.png') }}"  alt="">
+
                         </div>
                     </div>
                     <div
