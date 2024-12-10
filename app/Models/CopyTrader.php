@@ -2,23 +2,19 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
 
 class CopyTrader extends Model
 {
-    use HasFactory;
+    use HasFactory, HasUuids;
     protected $fillable = ['name', 'avatar', 'amount', 'win_rate', 'profit_share', 'win', 'loss'];
 
-    protected $keyType = 'string';
-    public $incrementing = false;
-    public static function boot() {
-        parent::boot();
-
-        static::creating(function ($model) {
-            $model->id = Str::uuid();
-        });
+    public function copied_trades()
+    {
+        return $this->hasMany(CopiedTrade::class, 'copy_trader_id');
     }
 
 }

@@ -48,9 +48,14 @@
               Withdrawal
             </a>
           </li>
-         <li class="nav-item dropdown">
+           <li class="nav-item dropdown">
               <a class="nav-link" href="{{ route('user.sub.plans') }}" >
               Subscription
+            </a>
+          </li>
+          <li class="nav-item dropdown">
+              <a class="nav-link" href="{{ route('user.copyTrading.index') }}" >
+              Copy Trading
             </a>
           </li>
 

@@ -64,7 +64,7 @@
                 </div>
             </div>
         </div>
-        <h2 class="text-center m-3">Subscribe</h2>
+        <h2 class="text-center m-3">Copy Trading</h2>
         <div class="container">
             @if(session()->has('success'))
                 <div class="alert alert-success">
@@ -80,35 +80,34 @@
         <div class="row">
 
 
-            @foreach($plans as $item)
+            @foreach($traders as $item)
                  <div  class="col-md-4">
                   <div style="border: 1px solid green" class="landing-feature-item">
-                    <h3 class="text-center mb-3"><strong>{{ $item->name }}</strong></h3>
+                      <div class="d-flex flex-column align-items-center text-center">
+                        <img style="border-radius: 50%; height: 70px; width: 70px" src="{{ asset($item->avatar) }}" alt="">
+                        <h3 class="mt-0"><strong>{{ $item->name }}</strong></h3>
+                    </div>
+
+
                       <hr>
 
                     <div class="cad">
-                        <div class=" m-3">
-                            <h3>
-                                <strong class="text-primary">${{ $item->min_amount }}</strong>/<small>Min</small>
-                                <strong class="text-primary ml-5">${{ $item->max_amount }}</strong>/ <small>Max</small>
-                            </h3>
+                        <div class="text-center m-3">
+                            <h4><strong class="text-primary text-center">${{ $item->amount }}</strong>/<small>Min</small></h4>
                         </div>
                         <div  class="card-body">
                          <ul >
-                            <li><i class="icon ion-ios-checkmark-circle"></i> Daily Trades: <span class="badge badge-sm bg-primary text-white">{{ $item->maxTrade() }}</span></li>
-                            <li><i class="icon ion-ios-checkmark-circle"></i> Live Trading</li>
-                            <li><i class="icon ion-ios-checkmark-circle"></i> Live Tracking</li>
-                            <li><i class="icon ion-ios-checkmark-circle"></i> Live Market Data</li>
-                            <li><i class="icon ion-ios-checkmark-circle"></i> Live Cryptocurrency Price</li>
+                            <li><i class="icon ion-ios-checkmark-circle"></i> Win Rate: <span class="badge badge-sm bg-secondary text-white">{{ $item->win_rate }}%</span></li>
+                            <li><i class="icon ion-ios-checkmark-circle"></i> Profit Shared: <span class="badge badge-sm bg-secondary text-white">${{ $item->profit_share }}</span></li>
+                            <li><i class="icon ion-ios-checkmark-circle"></i> Win: <span class="badge badge-sm bg-success text-white">{{ $item->win }}</span></li>
+                            <li><i class="icon ion-ios-checkmark-circle"></i> Loss: <span class="badge bg-danger text-white">{{ $item->loss }}</span></li>
                           </ul>
-                            <form  action="{{ route('user.activatePlan') }}" method="POST">
+                            <form  action="{{ route('user.copyTrading.store') }}" method="POST">
                                 @csrf
-                                <input type="hidden" name="plan_id" value="{{ $item->id }}">
-                                <input type="hidden" name="trade_limit_per_day" value="{{ $item->trade_limit_per_day }}">
-                                <input type="hidden" name="max_amount" value="{{ $item->max_amount }}">
-                                <input type="hidden" name="min_amount" value="{{ $item->min_amount }}" >
+                                <input type="hidden" name="trader_id" value="{{ $item->id }}">
+                                <input type="hidden" name="amount" value="{{ $item->amount }}">
 
-                                <button class="btn btn-primary btn-block submit-with mt-3" type="submit">Subscribe</button>
+                                <button class="btn btn-primary btn-block submit-with mt-3" type="submit">Copy Trade</button>
                             </form>
                         </div>
                     </div>
@@ -123,38 +122,29 @@
              <div class="col-md-12 py-3">
                 <div class="card my-2">
                     <div class="card-header">
-                        <h4 class="mb-0">Active Subscription</h4>
+                        <h4 class="mb-0">Copied Trades</h4>
                     </div>
                     <div class="card-body px-3 py-3">
 
                          <div class="payment-grid">
                                 <div class="payment-grid-header">
                                     <div>Date</div>
-{{--                                    <div>Amount</div>--}}
-                                    <div>Package</div>
+                                    <div>Amount</div>
+                                    <div>Trader</div>
                                     <div>Status</div>
-                                    <div>Trade Count</div>
                                 </div>
 
-                                @foreach($subscription as $index => $item)
+                                @foreach($copiedTrades as $index => $item)
                                     <div class="payment-grid-row">
                                         <div>{{ date('d M, Y', strtotime($item->created_at)) }}</div>
-{{--                                        <div>${{ number_format($item->amount, 2) ?? '' }}</div>--}}
-                                        <div>{{ $item->package->name ?? '' }}</div>
+                                        <div>${{ number_format($item->amount, 2) ?? '' }}</div>
+                                        <div>{{ $item->copy_trader->name ?? '' }}</div>
                                         <div>
                                             @if($item->status == 0)
                                                 <span class="badge bg-warning text-white">Pending</span>
                                             @else
                                                 <span class="badge bg-success text-white">Active</span>
                                             @endif
-                                        </div>
-                                        <div>
-                                            @if($item->user->trade_count > 1000)
-                                                UNLIMITED
-                                            @else
-                                                {{ $item->user->trade_count ?? '' }}
-                                            @endif
-
                                         </div>
                                     </div>
                                 @endforeach

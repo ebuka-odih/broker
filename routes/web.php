@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CopyTradingController;
 use App\Http\Controllers\DepositController;
 use App\Http\Controllers\SubscriptionController;
 use App\Http\Controllers\TradeController;
@@ -14,7 +15,7 @@ Route::view('market-caps', 'pages.market')->name('market');
 Route::view('about', 'pages.about')->name('about');
 Route::get('loading', [UserController::class, 'loading'])->name('loading');
 
-Route::group(['middleware' => ['auth'], 'prefix' => 'user', 'as' => 'user.'], function(){
+Route::group(['middleware' => ['auth', 'verified'], 'prefix' => 'user', 'as' => 'user.'], function(){
     Route::get('dashboard', [UserController::class, 'dashboard'])->name('dashboard');
     Route::get('profile', [UserController::class, 'profile'])->name('profile');
     Route::post('update/profile/{id}', [UserController::class, 'updateProfile'])->name('updateProfile');
@@ -33,6 +34,9 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'user', 'as' => 'user.'], fu
 
     Route::get('subscription/plans', [SubscriptionController::class, 'index'])->name('sub.plans');
     Route::post('activate/plan', [SubscriptionController::class, 'store'])->name('activatePlan');
+
+    Route::get('copy-trading', [CopyTradingController::class, 'index'])->name('copyTrading.index');
+    Route::post('store/copy-trading', [CopyTradingController::class, 'store'])->name('copyTrading.store');
 
 });
 
