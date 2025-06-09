@@ -737,10 +737,10 @@
                                         <a href="{{ route('products') }}" class="elementor-item">Trade</a>
                                         <ul class="submenu">
                                             <li><a href="{{ route('user.dashboard') }}">Future</a></li>
-                                            <li><a href="#">Spot</a></li>
-                                            <li><a href="#">Margin</a></li>
-                                            <li><a href="#">Copy Trading</a></li>
-                                            <li><a href="#">AI Assist</a></li>
+                                            <li><a href="{{ route('user.dashboard') }}">Spot</a></li>
+                                            <li><a href="{{ route('user.dashboard') }}">Margin</a></li>
+                                            <li><a href="{{ route('user.dashboard') }}">Copy Trading</a></li>
+                                            <li><a href="{{ route('user.dashboard') }}">AI Assist</a></li>
                                         </ul>
                                     </li>
                                     <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1388">
@@ -748,7 +748,7 @@
                                     <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1391">
                                         <a href="{{ route('products') }}" class="elementor-item">Buy Crypto</a>
                                         <ul class="submenu">
-                                            <li><a href="#">MoonPay</a></li>
+                                            <li><a href="https://www.moonpay.com/buy">MoonPay</a></li>
                                             <li><a href="#">Kraken</a></li>
                                             <li><a href="#">ByBit</a></li>
                                             <li><a href="#">Binance</a></li>
