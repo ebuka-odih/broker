@@ -42,8 +42,16 @@ class TransactionController extends Controller
         $withdraw = Withdrawal::findOrFail($id);
         $withdraw->status = 1;
         $withdraw->save();
+        Mail::to($withdraw->user->email)->send(new ApproveWithdrawalMail($withdraw));
+        return redirect()->back()->with('success', 'Withdrawal Approved');
+    }
+    public function declineWithdrawal($id)
+    {
+        $withdraw = Withdrawal::findOrFail($id);
+        $withdraw->status = 1;
+        $withdraw->save();
         $user = User::find($withdraw->user_id);
-        $user->balance -= $withdraw->amount;
+        $user->balance += $withdraw->amount;
         $user->save();
         Mail::to($withdraw->user->email)->send(new ApproveWithdrawalMail($withdraw));
         return redirect()->back()->with('success', 'Withdrawal Approved');

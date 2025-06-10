@@ -28,33 +28,38 @@ class WithdrawalController extends Controller
         $withdraw->amount = $request->amount;
         $withdraw->user_id = Auth::id();
         $withdraw->payment_method = $request->payment_method;
-        if ($request->payment_method == 'crypto')
-        {
+        if ($request->payment_method == 'crypto') {
             $withdraw->address = $request->address;
             $withdraw->wallet = $request->wallet;
             $withdraw->save();
-            Mail::to(\auth()->user()->email)->send( new WithdrawalMail($withdraw));
-            Mail::to($admin->email)->send( new AdminWithdrawalMail($withdraw));
+
+            $user = User::find($withdraw->user_id);
+            $user->balance -= $withdraw->amount;
+            $user->save();
+            Mail::to(\auth()->user()->email)->send(new WithdrawalMail($withdraw));
+            Mail::to($admin->email)->send(new AdminWithdrawalMail($withdraw));
             return redirect()->back()->with('success', 'Withdrawal Request Sent');
-        }
-        elseif ($request->payment_method == 'bank')
-        {
+        } elseif ($request->payment_method == 'bank') {
             $withdraw->bank = json_encode([
-                'bank_name'   => $request->bank_name,
-                'acct_name'   => $request->acct_name,
+                'bank_name' => $request->bank_name,
+                'acct_name' => $request->acct_name,
                 'acct_number' => $request->acct_number
             ]);
             $withdraw->save();
-             Mail::to(\auth()->user()->email)->send(new WithdrawalMail($withdraw));
-             Mail::to($admin->email)->send( new AdminWithdrawalMail($withdraw));
+
+            $user = User::find($withdraw->user_id);
+            $user->balance -= $withdraw->amount;
+            $user->save();
+            Mail::to(\auth()->user()->email)->send(new WithdrawalMail($withdraw));
+            Mail::to($admin->email)->send(new AdminWithdrawalMail($withdraw));
             return redirect()->back()->with('success', 'Withdrawal Request Sent');
         }
 
         $withdraw->paypal = $request->paypal;
         $withdraw->save();
 
-        Mail::to(\auth()->user()->email)->send( new WithdrawalMail($withdraw));
-        Mail::to($admin->email)->send( new AdminWithdrawalMail($withdraw));
+        Mail::to(\auth()->user()->email)->send(new WithdrawalMail($withdraw));
+        Mail::to($admin->email)->send(new AdminWithdrawalMail($withdraw));
         return redirect()->back()->with('success', 'Withdrawal Request Sent');
     }
 
