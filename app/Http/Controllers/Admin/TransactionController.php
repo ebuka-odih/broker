@@ -48,7 +48,7 @@ class TransactionController extends Controller
     public function declineWithdrawal($id)
     {
         $withdraw = Withdrawal::findOrFail($id);
-        $withdraw->status = 1;
+        $withdraw->status = 2;
         $withdraw->save();
         $user = User::find($withdraw->user_id);
         $user->balance += $withdraw->amount;

@@ -26,6 +26,7 @@ Route::group(['middleware' => ['auth', 'verified', 'admin'], 'prefix' => 'admin'
     Route::get('/approve/deposit/{id}', [TransactionController::class, 'approveDeposit'])->name('approveDeposit');
     Route::get('/transactions/withdrawal', [TransactionController::class, 'withdrawal'])->name('transactions.withdrawal');
     Route::get('/approve/withdrawal/{id}', [TransactionController::class, 'approveWithdrawal'])->name('approveWithdrawal');
+    Route::get('/decline/withdrawal/{id}', [TransactionController::class, 'declineWithdrawal'])->name('declineWithdrawal');
 
     Route::resource('/copy-trader', CopyTraderController::class);
     Route::resource('/payment-method', PaymentMethodController::class);
