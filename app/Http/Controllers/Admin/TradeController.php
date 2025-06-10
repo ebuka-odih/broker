@@ -53,11 +53,20 @@ class TradeController extends Controller
     public function closeTrade(Request $request, $id)
     {
         $trade = Trade::findOrFail($id);
+        if ($request->action == 'profit')
+        {
+            $trade->profit_loss = $request->get('profit_loss');
+            $trade->status = 'closed';
+            $trade->save();
+            $user = User::find($trade->user_id);
+            $user->balance += $trade->amount;
+            $user->save();
+        }
         $trade->profit_loss = $request->get('profit_loss');
         $trade->status = 'closed';
         $trade->save();
         $user = User::find($trade->user_id);
-        $user->balance += $trade->amount;
+        $user->balance -= $trade->amount;
         $user->save();
         return redirect()->route('admin.closedTrades')->with('success', 'Trade closed successfully!');
     }
