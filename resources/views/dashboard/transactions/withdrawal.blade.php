@@ -174,11 +174,7 @@
 
             {{-- Status --}}
             <div>
-                @if ($w->status == 0)
-                    <span class="badge bg-warning">Pending</span>
-                @else
-                    <span class="badge bg-success">Successful</span>
-                @endif
+                {!! $w->status() !!}
             </div>
         </div>
     @empty
