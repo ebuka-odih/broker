@@ -151,6 +151,9 @@
                                         <strong class="text-white-700">Deposit Method:</strong>
                                         <span>{{ $item->payment_method->wallet ?? '' }}</span>
                                     </li>
+                                        <li>
+                                            <img height="170" src="{{ asset('storage/'.$item->proof) }}" alt="">
+                                        </li>
                                 </ul>
 
                                 </div>
