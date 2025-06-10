@@ -17,8 +17,8 @@ class WithdrawalController extends Controller
     public function withdrawal()
     {
         $user = Auth::user();
-        $withdrawal = Withdrawal::whereUserId(auth()->id())->latest()->get();
-        return view('dashboard.transactions.withdrawal', compact('user', 'withdrawal'));
+        $withdrawals = Withdrawal::whereUserId(auth()->id())->latest()->get();
+        return view('dashboard.transactions.withdrawal', compact('user', 'withdrawals'));
     }
 
     public function withdrawalStore(Request $request)

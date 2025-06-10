@@ -96,12 +96,12 @@
                       <span>My Wallet</span>
                     </a>
                   </li>
-                  <li class="nav-item" id="changeThemeLight">
-                    <a href="#!" class="nav-link">
-                      <i class="icon ion-md-sunny"></i>
-                      <span>Theme</span>
-                    </a>
-                  </li>
+{{--                  <li class="nav-item" id="changeThemeLight">--}}
+{{--                    <a href="#!" class="nav-link">--}}
+{{--                      <i class="icon ion-md-sunny"></i>--}}
+{{--                      <span>Theme</span>--}}
+{{--                    </a>--}}
+{{--                  </li>--}}
                   <li class="nav-item">
                       <form method="POST" action="{{ route('logout') }}">
                             @csrf

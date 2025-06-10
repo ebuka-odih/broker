@@ -1,49 +1,47 @@
 @extends('dashboard.layout.app')
 @section('content')
-    <style>
-        .payment-grid {
-            display: grid;
-            grid-template-columns: 1fr 2fr 3fr 2fr;
-            grid-gap: 10px;
-            width: 100%;
-        }
+   <style>
+    .payment-grid {
+        display: grid;
+        /* 5 columns: #  Amount  Method  Details  Status */
+        grid-template-columns: 1fr 2fr 2fr 3fr 2fr;
+        width: 100%;
+    }
 
-        .payment-grid-header, .payment-grid-row {
-            display: contents;
-        }
+    .payment-grid-header,
+    .payment-grid-row {
+        display: contents;        /* keep each cell inside the grid */
+    }
 
-        .payment-grid div {
-            padding: 10px;
-            border-bottom: 1px solid #ddd;
-        }
+    .payment-grid div {
+        padding: 10px;
+        border-bottom: 1px solid #ddd;
+    }
 
-        .payment-grid-header div {
-            font-weight: bold;
-        }
+    .payment-grid-header div {
+        font-weight: bold;
+    }
 
-        .payment-grid-row div {
-            padding: 10px;
-        }
+    .payment-grid-row:last-child div {
+        border-bottom: none;
+    }
+</style>
 
-        .payment-grid-row:last-child div {
-            border-bottom: none;
-        }
-
-    </style>
 
     <div class="container mt-3">
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
-                    <h5 class="card-title"><i style="color: #6c6cf3; font-size: 30px" class="icon ion-md-cash"></i> Main Balance</h5>
+                    <h5 class="card-title"><i style="color: #6c6cf3; font-size: 30px" class="icon ion-md-cash"></i> Main
+                        Balance</h5>
                     <div>
                         <h5>
                             <small>USD</small><strong> {{ number_format($user->balance, 2) }}</strong>
                         </h5>
 
-                         <h5>
-                             <small>BTC</small><strong id="btc-balance"> {{ $user->balance }}</strong>
-                         </h5>
+                        <h5>
+                            <small>BTC</small><strong id="btc-balance"> {{ $user->balance }}</strong>
+                        </h5>
                     </div>
 
                 </div>
@@ -129,11 +127,68 @@
                 <h4 class="mb-0">Withdrawals</h4>
             </div>
             <div class="card-body px-3 py-5">
-                <div class="table-responsive">
-                    <p class="text-center">You haven't made any withdrawals.</p>
-                    <table class="table table-hover table-borderless font-weight-bold">
-                    </table>
-                </div>
+
+                <div class="payment-grid">
+    {{-- header --}}
+    <div class="payment-grid-header">
+        <div>#</div>
+        <div>Amount</div>
+        <div>Method</div>
+        <div>Details</div>
+        <div>Status</div>
+    </div>
+
+    {{-- rows --}}
+    @forelse ($withdrawals as $index => $w)
+        <div class="payment-grid-row">
+            {{-- # --}}
+            <div>{{ $index + 1 }}</div>
+
+            {{-- Amount --}}
+            <div>${{ number_format($w->amount, 2) }}</div>
+
+            {{-- Method --}}
+            <div>{{ ucfirst($w->payment_method) }}</div>
+
+            {{-- Details: show ONLY what was provided --}}
+            <div>
+                @switch($w->payment_method)
+                    @case('crypto')
+                        {{ $w->wallet ?? '—' }}
+                        @break
+
+                    @case('bank')
+                        @php($bank = json_decode($w->bank, true))
+                        {{ $bank['bank_name'] ?? '' }}
+                        {{ isset($bank['acct_name']) ? '· '.$bank['acct_name'] : '' }}
+                        @break
+
+                    @case('paypal')
+                        {{ $w->paypal ?? '—' }}
+                        @break
+
+                    @default
+                        {{ $w->address ?? '—' }}
+                @endswitch
+            </div>
+
+            {{-- Status --}}
+            <div>
+                @if ($w->status == 0)
+                    <span class="badge bg-warning">Pending</span>
+                @else
+                    <span class="badge bg-success">Successful</span>
+                @endif
+            </div>
+        </div>
+    @empty
+        <div class="payment-grid-row">
+            <div colspan="5">No withdrawals found.</div>
+        </div>
+    @endforelse
+</div>
+
+
             </div>
         </div>
     </div>

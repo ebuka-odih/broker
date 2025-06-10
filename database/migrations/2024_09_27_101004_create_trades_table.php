@@ -23,7 +23,7 @@ return new class extends Migration
             $table->integer('leverage')->default(0);
             $table->integer('duration')->default(0);
             $table->integer('stop_loss')->nullable();
-            $table->integer('take_profit')->nullable(0);
+            $table->integer('take_profit')->nullable();
             $table->timestamp('executed_at')->nullable();
             $table->double('profit_loss', 10, 2)->default(0); // Profit or loss
             $table->timestamps();
