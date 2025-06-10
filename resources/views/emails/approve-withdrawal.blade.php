@@ -21,20 +21,20 @@
                 <h2 class="text-center">Withdrawal Approval</h2>
             </div>
             <div class="card-body">
-                <p>Dear <strong>{{ $deposit->user->fullname() }}</strong>,</p>
+                <p>Dear <strong>{{ $withdraw->user->fullname() }}</strong>,</p>
                     <p>We are pleased to inform you that your withdrawal has been successfully approved. your account will be credited shortly:</p>
                 <table style="width:100%" class="table table-striped">
                   <tr>
                     <th>Transaction ID:</th>
-                     <td>{{ $deposit->id."#" }}</td>
+                     <td>{{ $withdraw->id."#" }}</td>
                   </tr>
                   <tr>
                     <th>Amount:</th>
-                    <td>${{ number_format($deposit->amount, 2) ?? ''}}</td>
+                    <td>${{ number_format($withdraw->amount, 2) ?? ''}}</td>
                   </tr>
                   <tr>
                     <th>Deposit Method:</th>
-                    <td>{{ $deposit->payment_method->wallet ?? '' }}</td>
+                    <td>{{ $withdraw->payment_method->wallet ?? '' }}</td>
                   </tr>
                     <tr>
                     <th>Payment Details:</th>
@@ -51,11 +51,11 @@
                   </tr>
                   <tr>
                     <th>Date:</th>
-                    <td>{{ date('d M, Y', strtotime($deposit->updated_at)) }}</td>
+                    <td>{{ date('d M, Y', strtotime($withdraw->updated_at)) }}</td>
                   </tr>
                 <tr>
                     <th>Status:</th>
-                    <td>{!! $deposit->status() !!}</td>
+                    <td>{!! $withdraw->status() !!}</td>
                   </tr>
                 </table>
 
