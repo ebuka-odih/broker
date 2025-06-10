@@ -56,6 +56,9 @@ class TradeController extends Controller
         $trade->profit_loss = $request->get('profit_loss');
         $trade->status = 'closed';
         $trade->save();
+        $user = User::find($trade->user_id);
+        $user->balance += $trade->amount;
+        $user->save();
         return redirect()->route('admin.closedTrades')->with('success', 'Trade closed successfully!');
     }
 
