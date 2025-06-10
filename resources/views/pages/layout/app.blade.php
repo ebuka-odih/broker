@@ -1061,16 +1061,16 @@
                                   href="wp-content/plugins/elementor/assets/css/widget-icon-list.min.css">
                             <ul class="elementor-icon-list-items">
                                 <li class="elementor-icon-list-item">
-                                    <span class="elementor-icon-list-text">Buy Crypto</span>
+                                    <a href="{{ route('user.dashboard') }}"><span class="elementor-icon-list-text">Buy Crypto</span></a>
                                 </li>
                                 <li class="elementor-icon-list-item">
-                                    <span class="elementor-icon-list-text">Sell Crypto</span>
+                                    <a href="{{ route('user.dashboard') }}"> <span class="elementor-icon-list-text">Sell Crypto</span></a>
                                 </li>
                                 <li class="elementor-icon-list-item">
-                                    <span class="elementor-icon-list-text">Track Profit</span>
+                                    <a href="{{ route('user.dashboard') }}"><span class="elementor-icon-list-text">Track Profit</span></a>
                                 </li>
                                 <li class="elementor-icon-list-item">
-                                    <span class="elementor-icon-list-text">Realtime Data</span>
+                                    <a href="{{ route('user.dashboard') }}"><span class="elementor-icon-list-text">Realtime Data</span></a>
                                 </li>
                             </ul>
                         </div>
@@ -1097,13 +1097,10 @@
                         <div class="elementor-widget-container">
                             <ul class="elementor-icon-list-items">
                                 <li class="elementor-icon-list-item">
-                                    <span class="elementor-icon-list-text">About Us</span>
+                                    <a href="#about"><span class="elementor-icon-list-text">About Us</span></a>
                                 </li>
                                 <li class="elementor-icon-list-item">
-                                    <span class="elementor-icon-list-text">Community</span>
-                                </li>
-                                <li class="elementor-icon-list-item">
-                                    <span class="elementor-icon-list-text">Notices</span>
+                                    <a href="#about"><span class="elementor-icon-list-text">Community</span></a>
                                 </li>
                             </ul>
                         </div>
@@ -1130,13 +1127,13 @@
                         <div class="elementor-widget-container">
                             <ul class="elementor-icon-list-items">
                                 <li class="elementor-icon-list-item">
-                                    <span class="elementor-icon-list-text">Download</span>
+                                   <a href="{{ route('user.dashboard') }}"> <span class="elementor-icon-list-text">Download</span></a>
                                 </li>
                                 <li class="elementor-icon-list-item">
-                                    <span class="elementor-icon-list-text">Desktop Application</span>
+                                    <a href="{{ route('user.dashboard') }}"><span class="elementor-icon-list-text">Desktop Application</span></a>
                                 </li>
                                 <li class="elementor-icon-list-item">
-                                    <span class="elementor-icon-list-text">Referral</span>
+                                    <a href="{{ route('user.dashboard') }}"><span class="elementor-icon-list-text">Referral</span></a>
                                 </li>
                             </ul>
                         </div>
@@ -1165,12 +1162,12 @@
                                 <li class="elementor-icon-list-item">
                                     <span class="elementor-icon-list-text">Help Center</span>
                                 </li>
-                                <li class="elementor-icon-list-item">
-                                    <span class="elementor-icon-list-text">Privacy</span>
-                                </li>
-                                <li class="elementor-icon-list-item">
-                                    <span class="elementor-icon-list-text">Terms</span>
-                                </li>
+{{--                                <li class="elementor-icon-list-item">--}}
+{{--                                    <span class="elementor-icon-list-text">Privacy</span>--}}
+{{--                                </li>--}}
+{{--                                <li class="elementor-icon-list-item">--}}
+{{--                                    <span class="elementor-icon-list-text">Terms</span>--}}
+{{--                                </li>--}}
                             </ul>
                         </div>
                     </div>

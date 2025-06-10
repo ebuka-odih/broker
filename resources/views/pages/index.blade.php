@@ -268,7 +268,7 @@
                         data-widget_type="button.default">
                         <div class="elementor-widget-container">
                             <div class="elementor-button-wrapper">
-                                <a class="elementor-button elementor-button-link elementor-size-sm" href="{{ route('register') }}">
+                                <a class="elementor-button elementor-button-link elementor-size-sm" href="{{ route('user.dashboard') }}">
 						<span class="elementor-button-content-wrapper">
 									<span class="elementor-button-text">Start Trading</span>
 					</span>
@@ -1047,7 +1047,8 @@
                                         <div class="elementor-price-list-text">
                                             <div class="elementor-price-list-header">
 											<span class="elementor-price-list-title">
-							Beginner-friendly features</span>
+							                    Beginner-friendly features
+                                            </span>
                                                 <span class="elementor-price-list-separator"></span>
                                             </div>
                                             <p class="elementor-price-list-description">
@@ -1079,7 +1080,7 @@
             </div>
         </div>
     </section>
-    <section
+    <section id="about"
         class="elementor-section elementor-top-section elementor-element elementor-element-f52239c elementor-section-height-min-height elementor-section-boxed elementor-section-height-default elementor-section-items-middle"
         data-id="f52239c" data-element_type="section"
         data-settings="{&quot;background_background&quot;:&quot;classic&quot;}">
@@ -1169,7 +1170,8 @@
                                     padding: 0;
                                     width: 22px;
                                     height: 22px
-                                }</style>
+                                }
+                            </style>
                             <div class="elementor-spacer">
                                 <div class="elementor-spacer-inner"></div>
                             </div>
@@ -1327,7 +1329,8 @@
                                 .e-con-inner > .elementor-widget-divider, .e-con > .elementor-widget-divider {
                                     width: var(--container-widget-width, 100%);
                                     --flex-grow: var(--container-widget-flex-grow)
-                                }</style>
+                                }
+                            </style>
                             <div class="elementor-divider">
 			<span class="elementor-divider-separator">
 						</span>
@@ -1342,11 +1345,11 @@
                         <div class="elementor-widget-container">
                             <div class="elementor-button-wrapper">
                                 <a class="elementor-button elementor-button-link elementor-size-sm" href="#">
-						<span class="elementor-button-content-wrapper">
-						<span class="elementor-button-icon">
-				<i aria-hidden="true" class="fas fa-arrow-right"></i>			</span>
-									<span class="elementor-button-text">About Us</span>
-					</span>
+{{--						<span class="elementor-button-content-wrapper">--}}
+{{--						<span class="elementor-button-icon">--}}
+{{--				<i aria-hidden="true" class="fas fa-arrow-right"></i>			</span>--}}
+{{--									<span class="elementor-button-text">About Us</span>--}}
+{{--					</span>--}}
                                 </a>
                             </div>
                         </div>
@@ -1419,7 +1422,8 @@
                                                     font-size: 19px;
                                                     font-weight: 400;
                                                     line-height: 2.5
-                                                }</style>
+                                                }
+                                            </style>
                                             <div class="elementor-counter">
                                                 <div class="elementor-counter-title">Currencies Available</div>
                                                 <div class="elementor-counter-number-wrapper">
@@ -1448,8 +1452,8 @@
                                                     <span class="elementor-counter-number-prefix"></span>
                                                     <span class="elementor-counter-number" data-duration="2000"
                                                           data-to-value="34" data-from-value="0"
-                                                          data-delimiter=",">0</span>
-                                                    <span class="elementor-counter-number-suffix">M</span>
+                                                          data-delimiter=",">1000</span>
+                                                    <span class="elementor-counter-number-suffix"></span>
                                                 </div>
                                             </div>
                                         </div>
