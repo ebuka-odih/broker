@@ -162,9 +162,9 @@
                                         <div>
 {{--                                            {!! $item->status() !!}--}}
                                             @if($item->status == 0)
-                                                <span class="badge bg-warning">Pending</span>
+                                                <span class="badge bg-warning text-white">Pending</span>
                                             @else
-                                                <span class="badge bg-success">Successful</span>
+                                                <span class="badge bg-success text-white">Successful</span>
                                             @endif
                                         </div>
                                     </div>
