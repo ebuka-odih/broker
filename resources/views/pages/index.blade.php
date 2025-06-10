@@ -1430,7 +1430,7 @@
                                                     <span class="elementor-counter-number-prefix"></span>
                                                     <span class="elementor-counter-number" data-duration="2000"
                                                           data-to-value="500" data-from-value="0"
-                                                          data-delimiter=",">0</span>
+                                                          data-delimiter=",">500</span>
                                                     <span class="elementor-counter-number-suffix">+</span>
                                                 </div>
                                             </div>
@@ -1452,8 +1452,8 @@
                                                     <span class="elementor-counter-number-prefix"></span>
                                                     <span class="elementor-counter-number" data-duration="2000"
                                                           data-to-value="34" data-from-value="0"
-                                                          data-delimiter=",">1000</span>
-                                                    <span class="elementor-counter-number-suffix"></span>
+                                                          data-delimiter=",">12</span>
+                                                    <span class="elementor-counter-number-suffix">k</span>
                                                 </div>
                                             </div>
                                         </div>
@@ -1474,7 +1474,7 @@
                                                     <span class="elementor-counter-number-prefix">$</span>
                                                     <span class="elementor-counter-number" data-duration="2000"
                                                           data-to-value="105" data-from-value="0"
-                                                          data-delimiter=",">0</span>
+                                                          data-delimiter=",">1.6</span>
                                                     <span class="elementor-counter-number-suffix">B</span>
                                                 </div>
                                             </div>
@@ -1496,7 +1496,7 @@
                                                     <span class="elementor-counter-number-prefix"></span>
                                                     <span class="elementor-counter-number" data-duration="2000"
                                                           data-to-value="200" data-from-value="0"
-                                                          data-delimiter=",">0</span>
+                                                          data-delimiter=",">120</span>
                                                     <span class="elementor-counter-number-suffix">+</span>
                                                 </div>
                                             </div>
