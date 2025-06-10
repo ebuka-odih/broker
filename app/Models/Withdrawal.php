@@ -22,12 +22,12 @@ class Withdrawal extends Model
     {
         if ($this->status == 1)
         {
-            return '<span class="badge bg-success">Successful</span>';
+            return '<span class="badge bg-success text-white">Successful</span>';
         }elseif ($this->status == 2)
         {
-            return '<span class="badge bg-danger">Declined</span>';
+            return '<span class="badge bg-danger text-white">Declined</span>';
         }
-        return '<span class="badge bg-warning">Pending</span>';
+        return '<span class="badge bg-warning text-white">Pending</span>';
     }
 
     public function adminStatus()
