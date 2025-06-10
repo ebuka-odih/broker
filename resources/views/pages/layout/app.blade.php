@@ -748,10 +748,10 @@
                                     <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1391">
                                         <a href="{{ route('products') }}" class="elementor-item">Buy Crypto</a>
                                         <ul class="submenu">
-                                            <li><a href="https://www.moonpay.com/buy">MoonPay</a></li>
-                                            <li><a href="#">Kraken</a></li>
-                                            <li><a href="#">ByBit</a></li>
-                                            <li><a href="#">Binance</a></li>
+                                            <li><a href="https://www.moonpay.com/buy" target="_blank">MoonPay</a></li>
+                                            <li><a href="https://www.kraken.com/" target="_blank">Kraken</a></li>
+                                            <li><a href="https://www.bybit.com/" target="_blank">ByBit</a></li>
+                                            <li><a href="https://www.binance.com/" target="_blank">Binance</a></li>
                                         </ul>
                                     </li>
 {{--                                    <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1382">--}}
@@ -779,11 +779,11 @@
                                         <a href="{{ route('market') }}" class="elementor-item" tabindex="-1">Market
                                             Coin</a></li>
                                     <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1382">
-                                        <a href="about/index.html" class="elementor-item" tabindex="-1">About</a></li>
+                                        <a href="{{ route('about') }}" class="elementor-item" tabindex="-1">About</a></li>
 
-                                    <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1385">
-                                        <a href="contact-us/index.html" class="elementor-item" tabindex="-1">Contact
-                                            Us</a></li>
+{{--                                    <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1385">--}}
+{{--                                        <a href="contact-us/index.html" class="elementor-item" tabindex="-1">Contact--}}
+{{--                                            Us</a></li>--}}
                                 </ul>
                             </nav>
                         </div>
