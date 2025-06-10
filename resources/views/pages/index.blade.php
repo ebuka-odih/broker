@@ -103,10 +103,11 @@
                         <div class="elementor-widget-container">
                             <div class="elementor-button-wrapper">
                                 <a class="elementor-button elementor-button-link elementor-size-sm" href="{{ route('user.dashboard') }}">
-						<span class="elementor-button-content-wrapper">
-									<span class="elementor-button-text">Get Started</span>
-					</span>
+                                    <span class="elementor-button-content-wrapper">
+                                                <span class="elementor-button-text">Get Started</span>
+                                </span>
                                 </a>
+
                             </div>
                         </div>
                     </div>

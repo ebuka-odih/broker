@@ -807,12 +807,14 @@
                                         data-id="cc7529d" data-element_type="widget" data-widget_type="button.default">
                                         <div class="elementor-widget-container">
                                             <div class="elementor-button-wrapper">
+                                                 @guest
                                                 <a class="elementor-button elementor-button-link elementor-size-sm"
                                                    href="{{ route('register') }}" target="_blank">
-						<span class="elementor-button-content-wrapper">
-									<span class="elementor-button-text">Sign Up</span>
-					</span>
+                                                    <span class="elementor-button-content-wrapper">
+                                                                <span class="elementor-button-text">Sign Up</span>
+                                                </span>
                                                 </a>
+                                                @endguest
                                             </div>
                                         </div>
                                     </div>
@@ -827,12 +829,21 @@
                                         data-id="050c9e1" data-element_type="widget" data-widget_type="button.default">
                                         <div class="elementor-widget-container">
                                             <div class="elementor-button-wrapper">
+                                                @guest
                                                 <a class="elementor-button elementor-button-link elementor-size-sm"
                                                    href="{{ route('login') }}" target="_blank">
 						<span class="elementor-button-content-wrapper">
 									<span class="elementor-button-text">Login</span>
 					</span>
                                                 </a>
+                                                @else
+                                                    <a style="margin-left: 5px" class="elementor-button elementor-button-link elementor-size-sm"
+                                                   href="{{ route('user.dashboard') }}" target="_blank">
+                                                        <span class="elementor-button-content-wrapper">
+                                                                    <span class="elementor-button-text">Dashboard</span>
+                                                    </span>
+                                                </a>
+                                                @endguest
                                             </div>
                                         </div>
                                     </div>
@@ -1183,8 +1194,7 @@
                         data-settings="{&quot;_animation&quot;:&quot;fadeInUp&quot;,&quot;_animation_delay&quot;:400}"
                         data-widget_type="heading.default">
                         <div class="elementor-widget-container">
-                            <h6 class="elementor-heading-title elementor-size-default">© {{ Date('Y') }} {{ env('APP_NAME') }} is proudly powered
-                                by Onecontributor</h6></div>
+                            <h6 class="elementor-heading-title elementor-size-default">© {{ Date('Y') }} {{ env('APP_NAME') }}</h6></div>
                     </div>
                 </div>
             </div>
