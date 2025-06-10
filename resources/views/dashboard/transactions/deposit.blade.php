@@ -160,6 +160,7 @@
                                         <div>${{ number_format($item->amount, 2) ?? '' }}</div>
                                         <div>{{ optional($item->payment_method)->wallet ?? '' }}</div>
                                         <div>
+{{--                                            {!! $item->status() !!}--}}
                                             @if($item->status == 0)
                                                 <span class="badge bg-warning">Pending</span>
                                             @else
