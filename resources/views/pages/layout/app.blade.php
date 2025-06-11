@@ -540,6 +540,8 @@
 }
 
     </style>
+
+    <script src="//code.tidio.co/tz6tlzbn7e9xjdalsm8oiye884ywwfjh.js" async></script>
 </head>
 <body
     class="home page-template page-template-elementor_header_footer page page-id-6 wp-custom-logo elementor-default elementor-template-full-width elementor-kit-3 elementor-page elementor-page-6">
@@ -1143,7 +1145,7 @@
             <div
                 class="elementor-column elementor-col-20 elementor-top-column elementor-element elementor-element-cd0e941"
                 data-id="cd0e941" data-element_type="column">
-                <div class="elementor-widget-wrap elementor-element-populated">
+                <div style="display: none" class="elementor-widget-wrap elementor-element-populated">
                     <div
                         class="elementor-element elementor-element-406bdc7 elementor-invisible elementor-widget elementor-widget-heading"
                         data-id="406bdc7" data-element_type="widget"
