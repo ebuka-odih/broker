@@ -774,14 +774,14 @@
                                     <li class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item current_page_item menu-item-home menu-item-1394">
                                         <a href="{{ route('index') }}" aria-current="page"
                                            class="elementor-item elementor-item-active" tabindex="-1">Home</a></li>
-                                    <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1391">
-                                        <a href="{{ route('products') }}" class="elementor-item" tabindex="-1">Products</a>
-                                    </li>
+{{--                                    <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1391">--}}
+{{--                                        <a href="{{ route('products') }}" class="elementor-item" tabindex="-1">Products</a>--}}
+{{--                                    </li>--}}
                                     <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1388">
                                         <a href="{{ route('market') }}" class="elementor-item" tabindex="-1">Market
                                             Coin</a></li>
                                     <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1382">
-                                        <a href="{{ route('about') }}" class="elementor-item" tabindex="-1">About</a></li>
+                                        <a href="#about" class="elementor-item" tabindex="-1">About</a></li>
 
 {{--                                    <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1385">--}}
 {{--                                        <a href="contact-us/index.html" class="elementor-item" tabindex="-1">Contact--}}
