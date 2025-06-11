@@ -103,7 +103,7 @@
                 <div class="col-md-7 py-3">
                     <div class="card my-2">
                         <div class="card-header">
-                            <h4 class="mb-0">Submit Payment</h4>
+                            <h4 class="mb-0">Deposit Instructions</h4>
                         </div>
                         <div class="card-body px-3 py-5">
                             <form action="{{ route('user.payment') }}" method="POST" enctype="multipart/form-data"
@@ -114,8 +114,11 @@
                                         {{ session()->get('success') }}
                                     </div>
                                 @endif
-                                <p>To deposit, choose the payment method panel and make the payment to the displayed
-                                    address. After payment has been made, come back to fill this form.</p>
+                                <p>
+                                    To deposit, choose your preferred payment method and send only to the wallet address shown on your screen.
+                                    <br>
+                                    ⚠️ Deposits made without uploading proof of payment may experience delays in processing.
+                                </p>
                                 <div class="form-group">
                                     <label>Method</label>
                                     <select name="payment_method_id" class="custom-select" id="">
@@ -134,7 +137,7 @@
                                            required="">
                                     <label class="custom-file-label" for="customFile">Choose file</label>
                                 </div>
-                                <button class="btn btn-success btn-block">Deposit</button>
+                                <button class="btn btn-success btn-block">Submit Deposit</button>
                             </form>
                         </div>
                     </div>

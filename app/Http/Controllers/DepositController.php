@@ -43,7 +43,7 @@ class DepositController extends Controller
         $admin = User::where('role', 'admin')->first();
         Mail::to(auth()->user()->email)->send(new DepositMail($deposit));
         Mail::to($admin->email)->send(new AdminDepositMail($deposit));
-        return redirect()->back()->with('success', 'Deposit Sent, awaiting for approval');
+        return redirect()->back()->with('success', 'Deposit Sent, awaiting approval');
 
     }
 
